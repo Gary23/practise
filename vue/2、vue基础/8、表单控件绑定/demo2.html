@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绑定value</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!--对于单选按钮，勾选框及选择列表选项，v-model绑定的value通常是静态字符串(对于勾选框是逻辑值)-->
+<div id="app">
+    <!--当选中时，'picked'为字符串'a'-->
+    <input type="radio" v-model="picked" value="a">
+    <p>picked is {{ picked }}</p>
+
+    <!--'toggle'为true或false-->
+    <input type="checkbox" v-model="toggle">
+    <p>{{ toggle }}</p>
+
+    <!--当选中时，'selected'为字符串'abc'-->
+    <select v-model="selected">
+        <option value="abc">ABC</option>
+    </select>
+    <p>option is {{ selected }}</p>
+</div>
+<br>
+<br>
+<!--如果value的值要动态绑定，可以用v-bind-->
+<div id="app2">
+    <!--复选框-->
+    <input type="checkbox" v-model="toggle" v-bind:true-value="a" v-bind:false-value="b">
+    <p>toggle is {{ toggle }}</p>
+    <!--单选按钮-->
+    <input type="radio" v-model="pick" v-bind:value="c">
+    <p>pick is {{ pick }}</p>
+    <!--选择列表-->
+    <select v-model="selected">
+        <!--内联对象字面量-->
+        <option v-bind:value="{ number:123 }">123</option>
+    </select>
+    <p>selected is {{ selected.number }}</p>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            picked: '',
+            toggle: false,
+            selected: ''
+        }
+    })
+
+    // 动态绑定value
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            toggle: '',
+            a: '1',
+            b: '2',
+            pick: '',
+            c: '3',
+            selected:''
+//            selected: {
+//                number: '456'
+//            },
+
+        }
+    })
+    // 当选中时
+    app2.toggle === app2.a;
+    // 当没有选中时
+    app2.toggle === app2.b;
+
+    app2.pick === app2.c;
+
+    console.log(typeof app2.selected)
+    console.log(app2.selected.number)
+</script>
+</body>
+</html>

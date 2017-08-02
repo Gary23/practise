@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象迭代v-for</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="app">
+    <!--也可以用v-for通过一个对象的属性来迭代-->
+    <ul id="repeat-object" class="demo">
+        <!--只渲染value到列表中-->
+        <li v-for="value in object">
+            {{ value }}
+        </li>
+        <!--将key和value都渲染到列表中-->
+        <li v-for="(value,key) in object">
+            {{key}} : {{ value }}
+        </li>
+        <!--将index、key和value都渲染到列表中-->
+        <li v-for="(value,key,index) in object">
+            {{ index }} : {{ key }} : {{ value }}
+        </li>
+        <!--12345678910-->
+        <li>
+            <span v-for="n in 10">{{ n }}</span>
+        </li>
+    </ul>
+</div>
+    <script>
+        var app = new Vue({
+            el: '#repeat-object',
+            data: {
+                // 关键就在于这里对象的写法，如果按照demo那样里边包含多个对象就不能直接写value、key、index了
+                object: {
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    age: 30
+                }
+            }
+        })
+        // 结果列表中的内容是
+        // John
+        // Doe
+        // 30
+    </script>
+</body>
+</html>

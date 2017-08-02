@@ -1,0 +1,382 @@
+/*顶部banner部分*/
+#self_top {
+  width: auto;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+#self_top img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  margin-left: -50%;
+  max-width: 100%;
+}
+
+/*热门商品和官方精选部分*/
+#self_center {
+  width: 100%;
+  overflow: hidden;
+  background: #ededed;
+  min-height: calc(100vh - 454px);
+}
+
+/*通用版心*/
+.self_content {
+  position: relative;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+#self_center .self_hot_panel {
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  margin-top: 29px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, .14);
+  box-shadow: 0 3px 8px -6px rgba(0, 0, 0, .1);
+  box-sizing: border-box;
+}
+
+/*通用标题部分*/
+.self_title {
+  background: #fafafa;
+  line-height: 60px;
+  font-size: 18px;
+  color: #666;
+  position: relative;
+}
+
+.self_title .title {
+  margin-left: 30px;
+  font-size: 100%;
+  font-weight: 400;
+}
+
+/*热门商品列表*/
+#self_center .self_hot_wapper {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  /*webkit-transition: all .3s ease-in-out;*/
+  /*transition: all .3s ease-in-out;*/
+}
+
+/*通用商品列表部分*/
+.self_cell_list li {
+  box-sizing: border-box;
+  float: left;
+  width: 25%;
+  height: 400px;
+  text-align: center;
+  position: relative;
+  transition: all .2s;
+}
+
+/*官方精品大图部分*/
+.self_cell_list li.double {
+  box-sizing: border-box;
+  float: left;
+  width: 50%;
+  height: 400px;
+}
+
+.self_cell_list li.double>div {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.self_cell_list li.double>div img {
+  width: 260px;
+  height: 260px;
+  margin: 70px 0 0 30px;
+}
+
+.self_cell_list li.double>div div {
+  left: 280px;
+  width: 50%;
+}
+
+.self_cell_list li.double>div .info {
+  top: 80px;
+  font-size: 26px;
+}
+
+.self_cell_list li.double>div .info p {
+  font-size: 18px;
+}
+
+.self_cell_list li.double>div .price {
+  top: 240px;
+  left: 200px;
+  font-size: 30px;
+}
+
+.self_cell_list li.double>div .price i {
+  font-size: 26px;
+}
+
+.self_cell_list li.double>div .operator {
+  top: 240px;
+}
+
+/*商品列表的分割线*/
+#self_center .self_cell_list li:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  /*border-left: 1px solid #f2f2f2;*/
+  border-left: 1px solid rgba(0, 0, 0, .1);
+  border-top: 1px solid rgba(0, 0, 0, .1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/*通用商品列表的部分*/
+.self_cell_list li img {
+  margin: 50px auto;
+  width: 206px;
+  height: 206px;
+  display: block;
+}
+
+.self_cell_list li .info {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 274px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.self_cell_list li .info h5 {
+  font-size: 16px;
+  line-height: 1.2;
+  color: #424242;
+  overflow: hidden;
+  /*white-space: nowrap;*/
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  height:38px;
+  font-size: 100%;
+  font-weight: 400;
+}
+.self_cell_list li.double .info h5 {
+  height:60px;
+}
+
+.self_cell_list li .info p {
+  font-size: 12px;
+  line-height: 1.2;
+  color: #B2B2B2;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-top: 7px;
+}
+
+.self_cell_list li .price {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  top: 340px;
+  line-height: 1.2;
+  font-size: 18px;
+  font-family: Arial;
+  color: #DE4037;
+  visibility: visible;
+  transition: all .2s;
+}
+
+.self_cell_list li .price i {
+  font-size: 14px;
+  left: 0;
+  line-height: 1.2;
+  font-size: 14px;
+  font-style: normal;
+}
+
+.self_cell_list li .operator {
+  position: absolute;
+  top: 340px;
+  width: 100%;
+  line-height: 30px;
+  visibility: hidden;
+  z-index: 20;
+  opacity: 0;
+  font-size: 0;
+  /*transition: all .2s;*/
+}
+
+.self_cell_list li .operator span {
+  margin: 0 5px;
+  box-sizing: border-box;
+  width: 100px;
+  height: 30px;
+  line-height: 28px;
+  vertical-align: middle;
+  
+}
+.self_cell_list li .operator a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.self_cell_list li .detail-btn {
+  font-size: 12px;
+  border-radius: 4px;
+  border: 1px solid #5c81e3;
+  background: #678ee7;
+  background-image: -webkit-linear-gradient(top, #678ee7, #5078df);
+  background-image: linear-gradient(to bottom, #678ee7, #5078df);
+  display: inline-block;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.self_cell_list li .detail-btn a {
+  color: #fff;
+}
+
+.self_cell_list li .cover-link {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 4;
+}
+
+.self_hot_list {
+  float: left;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*官方精选*/
+#self_center .self_floor-panel {
+  background: #fff;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  margin-top: 29px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, .14);
+  box-shadow: 0 3px 8px -6px rgba(0, 0, 0, .1);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/*底部XX商品部分的单独设置*/
+#self_bottom {
+  width: 100%;
+  overflow: hidden;
+  background: #ededed;
+  min-height: calc(100vh - 454px);
+}
+
+#self_bottom .self_goods {
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  margin-top: 29px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, .14);
+  box-shadow: 0 3px 8px -6px rgba(0, 0, 0, .1);
+  box-sizing: border-box;
+}
+
+#self_bottom .self_title {
+  background: #f3f3f3;
+}
+
+/*底部XX商品部分的列表部分*/
+#self_bottom .self_wapper {
+  height: 340px;
+  background: #e9e9e9;
+  position: relative;
+}
+
+#self_bottom .self_wapper ul {
+  position: absolute;
+  width: 100%;
+}
+
+#self_bottom .self_wapper .self_animate {
+  width: 25%;
+  height: 340px;
+  box-sizing: border-box;
+  border-top: 2px solid #477afc;
+  background: #ffffff;
+  position: absolute;
+}
+
+#self_bottom .self_wapper li {
+  float: left;
+  width: 25%;
+  height: 340px;
+  background: transparent;
+}
+
+#self_bottom .self_wapper li div {
+  width: 100%
+}
+
+#self_bottom .self_wapper li .info {
+  top: 30px;
+}
+
+#self_bottom .self_wapper li .price {
+  top: 50px;
+  color: #477afc;
+}
+
+#self_bottom .self_wapper li img {
+    position: absolute;
+    margin: 0;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -103px;
+}
+
+/*热门商品和人官方精选动画部分*/
+#self_center li:hover {
+    box-shadow: inset 0px 0px 25px 10px rgba(200,200,200,0.6); 
+    transition: all .3s;
+}
+
+#self_center li:hover:not(.double) .price {
+  visibility: hidden;
+  transition: all .2s;
+}
+#self_center li:hover:not(.double) .operator {
+  visibility: visible;
+  opacity: 1;
+  /*transition: all .2s;*/
+}
+
+#self_center li .detail-btn:hover {
+  background-image: linear-gradient(#5078df, #24469c);
+  transition: all .2s;
+}
+
+
+
+  

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for with v-if</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<ul>
+    <!--当v-for和v-if处于同一个节点。v-for的优先级比v-if更高，这意味着v-if将分别重复运行于每个v-for循环中。不能有判断的跳过循环-->
+    <li v-for="todo in todos" v-if="!todo.isComplete">
+        {{ todo }}
+    </li>
+</ul>
+
+<!--这样可以有条件的跳过循环的执行，将v-if置于v-for外部元素上，或者置于temolate元素上-->
+<ul v-if="shouldRenderTodos">
+    <li v-for="todo in todos">
+        {{ todo }}
+    </li>
+</ul>
+</body>
+</html>

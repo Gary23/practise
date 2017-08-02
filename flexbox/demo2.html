@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		html,
+		body,
+		section,
+		div {
+			margin: 0;
+			padding: 0;
+		}
+
+		html,
+		body {
+			height: 100%;
+		}
+
+		body {
+			display: flex;
+			flex-direction: column;
+			color: #222;
+		}
+
+		.main {
+			flex: 1 0 auto;
+			/*background-color: pink;		*/
+			display: flex;	
+		}
+
+		.main aside {
+			flex: 0 0 40px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+			align-items: center;
+			background-color: #f2f2f2;
+		}
+		.main aside.fa {
+			font-size: 0.9em;
+		}
+
+		.content {
+			display: flex;
+			flex: 1 0 auto;
+			flex-direction: column;
+		}
+
+		.music-head {
+			flex: 0 0 280px;
+			display: flex;
+			padding: 40px;
+			background-color: #4e4e4e;
+		}
+
+		.music-list {
+			flex: 1 0 auto;
+			list-style: none;
+			padding: 5px 10px 0px;
+		}
+
+		li {
+			display: flex;
+			padding: 0 20px;
+			min-height: 50px;
+		}
+
+		li span.catty-cloud {
+			border: 1px solid black;
+			font-size: 0.6em;
+			padding: 3px;
+		}
+
+		li:nth-child(2n) {
+			background-color: #f2f2f2;
+		}
+
+		li p {
+			flex: 0 0 25%;
+		}
+
+		.catty-music {
+			flex: 1 0 auto;
+			display: flex;
+			flex-direction: column;
+			font-weight: 300;
+			color: #fff;
+			padding-left: 50px;
+			
+		}
+		.catty-music div:nth-child(1) {
+			margin-bottom: auto;
+		}
+		.catty-music div:nth-child(2) {
+			margin-top: 0
+		}
+		.catty-music div:nth-child(2) i.fa {
+			font-size: 0.9em;
+			padding: 0 0.7em;
+			font-weight: 300;
+		}
+		.catty-music div:nth-child(1) p:first-child {
+			font-size: 1.8em;
+			margin: 0 0 10px;
+		}
+		.catty-music div:nth-child(1) p:not(:first-child) {
+			font-size: 0.9em;
+			margin: 2px 0;
+		}
+
+		.footer {
+			flex: 0 0 90px;
+			padding: 10px;
+			color: #fff;
+			background-color: rgba(61, 100, 158, 0.9);
+		}
+
+	</style>
+	<link rel="stylesheet" type="" href="./font-awesome/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+	<div class="main">
+		<aside>
+			<i class="fa fa-bars"></i>
+			<i class="fa fa-home"></i>
+			<i class="fa fa-search"></i>
+			<i class="fa fa-volume-up"></i>
+			<i class="fa fa-user"></i>
+			<i class="fa fa-spotify"></i>
+			<i class="fa fa-cog"></i>
+			<i class="fa fa-soundcloud"></i>
+		</aside>
+		<div class="content">
+			<div class="music-head">
+				<img src="" alt="">
+				<section class="catty-music">
+					<div>
+						<p>CattyBoard Top 100 Single Charts (11.06.36)</p>
+						<p>Unknown Artist</p>
+						<p>2016 . Charts . 100 songs</p>
+					</div>
+					<div>
+						<i class="fa fa-play"></i>
+						<i class="fa fa-plus"></i>
+						<i class="fa fa-ellipsis-h"></i>
+					</div>
+				</section>
+			</div>
+			<ul class="music-list">
+				<li>
+					<p>1. One Dance</p>
+					<p>Crake feat CatKid & Cyla</p>
+					<p>2:54</p>
+					<p><span class="catty-cloud">CATTY CLOUD SYNC</span></p>
+				</li>
+				<li>
+					<p>2. panda</p>
+					<p>Catin Cimberlake</p>
+					<p>4:06</p>
+					<p><span class="catty-cloud">CATTY CLOUD SYNC</span></p>
+				</li>
+				<li>
+					<p>3. Can't Stop the Feeling!</p>
+					<p>Catin Cimberlake</p>
+					<p>3:56</p>
+					<p><span class="catty-cloud">CATTY CLOUD SYNC</span></p>
+				</li>
+				<li>
+					<p>4. Work From Home</p>
+					<p>Cat Harmony feat Colla</p>
+					<p>3:34</p>
+					<p><span class="catty-cloud">CATTY CLOUD SYNC</span></p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="footer"></div>
+</body>
+
+</html>

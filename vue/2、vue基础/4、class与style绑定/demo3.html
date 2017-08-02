@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绑定内联样式</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!--v-bind:style的对象语法十分直观，看着非常像css，但其实是一个js对象。css属性名可以用驼峰式，或者配合引号的短横分隔命名-->
+<div id="app">
+    <div v-bind:style="{color:activeColor,fontSize:fontSize + 'px'}"></div>
+    <!--直接绑定一个对象通常更好,也可以将多个对象用在一个元素上-->
+    <div v-bind:style="styleObject"></div>
+    <!--另外对于css3的前缀，vue会自动添加-->
+
+    <!--在新版本的vue中支持这种写法-->
+    <div v-bind:style="{display:['webkit-box','-ms-flexbox','flex']}"></div>
+</div>
+<script>
+    // style属性也是支持计算后得属性的，用法和之前一样
+    var app = new Vue({
+        el:'#app',
+        data:{      // color: red; font-size: 30px;
+            activeColor:'red',
+            fontSize:30,
+            styleObject:{   // color: red; font-size: 13px;
+                color:'red',
+                fontSize:'13px'
+            }
+        }
+    })
+</script>
+</body>
+</html>

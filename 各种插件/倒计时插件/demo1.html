@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		
+		i {
+			font-style: normal;
+		}
+		
+		#box {
+			width: 200px;
+			height: 50px;
+			margin-bottom: 20px;
+			color: #023479;
+		}
+	</style>
+	<script src="./jquery1.9.1.min.js"></script>
+	<script src="./count_down.js"></script>
+</head>
+
+<body>
+	<div id="box">
+
+	</div>
+
+
+	<script>
+		$('#box').countDown({
+			type: 2,
+			time: 96405
+		})
+
+
+
+
+
+		function num(id){
+			return document.getElementById('box');
+		}
+
+		console.log(document.domain);
+
+		
+
+	</script>
+</body>
+
+</html>

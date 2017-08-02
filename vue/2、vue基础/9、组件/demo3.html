@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM模板解析说明</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!--
+当使用DOM作为模板时，会受到html的一些限制，
+限制一是：因为vue只在浏览器解析和标准化html后才能获取模板内容
+限制二是：尤其像这些元素，尤其是ul、ul、table、select,限制了能被它包裹的元素。-->
+
+<!--比如：-->
+<table>
+    <my-row>...</my-row>
+</table>
+<!--自定义组件<my-row>被认为是无效的内容，table标签中只能包含固定的元素，因此在渲染的时候会导致错误。变通的方案是特殊的is属性-->
+<table>
+    <tr is="my-row"></tr>
+</table>
+<!--如果使用的是字符串模板，这些限制将不适用-->
+
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>绑定DOM元素属性</title>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<!--v-bind在vue中被称为指令，指令带有v-前缀，vue的指令都是v-开头-->
+	<!--它们会在渲染的DOM上应用特殊的响应式行为-->
+	<!--在这个demo中指令的作用是：将这个元素节点的title属性和vue实例的message属性保持一致-->
+	<div id="app">
+		<span v-bind:title="message">
+			鼠标悬停几秒查看此处动态绑定的信息
+		</span>
+	</div>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				message: '页面加载于' + new Date()
+			}
+		})
+		console.log(app);
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>创建一个vue实例</title>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<!--首先要创建一个模板-->
+	<div id="app">
+		<span v-on:click="clickHandle">{{ message }}</span>
+	</div>
+	<script>
+		// 参数是一个选项对象，可以包含数据、模板、挂载元素、方法、声明周期钩子等选项。
+		var vm = new Vue({
+			el: '#app',		// 挂载元素
+			data: {		// 代理数据,这里所有数据都具有响应的功能，新添加的就没有响应功能。
+			    message: 'hello,Vue!'
+			},
+			methods: {		// 定义方法，用于执行函数，key:fun的格式
+				// 可以把事件处理函数都放在这里
+				clickHandle: function(){
+					alert('click')
+				}
+			}
+		})
+
+        /**
+		 * 渲染方式
+		 * 声明式
+		 * 只需要声明在哪里(where)做什么(what)，而无需关心如何实现(how)
+		 *
+		 * 如果拿js举例，用原生遍历的方式写一个排序功能算是命令式，直接用sort就算是声明式
+		 *
+		 * 命令式
+		 * 需要以具体代码表达在哪里(where)做什么(what)，如何实现(how)
+		 *
+		 * 上面的new Vue就是声明式渲染，不需要关心怎么实现，只需要关系参数写在哪个位置
+         */
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>使用layui</title>
+  <link rel="stylesheet" type="" href="./layui/css/layui.css">
+  <script src="./layui/layui.js"></script>
+  <script>
+    layui.use(['element', 'form'], function () {
+      layui.element();
+      layui.form();
+    })
+
+    
+  </script>
+</head>
+
+<body id="body">
+  <div class="layui-progress" lay-showPercent="yes">
+    <div class="layui-progress-bar layui-bg-orange" lay-percent="10%"></div>
+  </div>
+  <div class="layui-progress layui-progress-big" lay-showPercent="yes">
+    <div class="layui-progress-bar layui-bg-cyan" lay-percent="30%"></div>
+  </div>
+  <blockquote class="layui-elem-quote">引用区域的文字</blockquote>
+  <blockquote class="layui-elem-quote layui-quote-nm">引用区域的文字</blockquote>
+
+  <fieldset id="bbb" class="layui-elem-field">
+    <legend>字段区块-默认风格</legend>
+    <div class="layui-field-box">
+      内容区块
+    </div>
+  </fieldset>
+
+  <fieldset class="layui-elem-field layui-field-title">
+    <legend>字段区块-横线风格</legend>
+    <div class="layui-field-box">
+      内容
+    </div>
+  </fieldset>
+
+  <button type="" class="layui-btn">标准按钮</button>
+  <a href="http://www.baidu.com" class="layui-btn">可跳转的按钮</a>
+
+  <button type="button" class="layui-btn">
+    <i class="layui-icon">&#xe608;</i>
+  </button>
+  <button type="button" class="layui-btn">
+    <i class="layui-icon">&#x1002;</i>
+  </button>
+
+  <div class="layui-btn-group">
+    <button type="" class="layui-btn">增加</button>
+    <button type="" class="layui-btn">删除</button>
+    <button type="" class="layui-btn">编辑</button>
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+  <form class="layui-form" style="width: 600px">
+    <div class="layui-form-item">
+      <label for="" class="layui-form-label">标签区域</label>
+      <div class="layui-input-block">
+        <input type="text" name="title" placeholder="请输入标题" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label for="" class="layui-form-label">标签区域</label>
+      <div class="layui-input-block">
+        <select name="city" lay-verify="">
+          <option value="">请选择一个城市</option>
+          <option value="010">北京</option>
+          <option value="021" selected>上海</option>
+          <option value="0571">杭州</option>
+        </select>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label for="" class="layui-form-label">标签区域</label>
+      <div class="layui-input-block">
+        <select name="quiz">
+          <optgroup label="城市记忆">
+            <option value="你工作的第一个城市">你工作的第一个城市</option>
+          </optgroup>
+          <optgroup label="学生时代">
+            <option value="你的工号">你的工号</option>
+            <option value="你的学校">你的学校</option>
+          </optgroup>
+         </select>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label for="" class="layui-form-label">标签区域</label>
+      <div class="layui-input-block">
+        <input type="checkbox" name="" title="写作" value="" checked>
+        <input type="checkbox" name="" title="发呆" value="">
+        <input type="checkbox" name="" title="禁用" value="" disabled>
+      </div>
+    </div>
+  </form>
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册组件</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!--
+什么是组件
+组件(Component)是vue最强大的功能之一。组件可以扩展html元素，封装可重用的代码。在较高层面上，组件是自定义元素，vue的编译器为它添加特殊功能。在有些情况下，组件也可以是原生html元素的形式，以is特性扩展。
+-->
+
+<!--定义组件之后就可以在父元素实例内部，以自定义元素<my-component></my-component>的形式使用-->
+<div id="app">
+    <my-component></my-component>
+</div>
+<script>
+    // 要注册一个全局组件可以使用Vue.component(tagName,options)
+    Vue.component('my-component',{
+        // 选项
+        template: '<div>A custom component!</div>div>'
+    })
+
+    // 要确保初始化实例在注册组件之后
+    var app = new Vue({
+        el: '#app',
+    })
+</script>
+
+</body>
+</html>

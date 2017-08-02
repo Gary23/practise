@@ -1,0 +1,226 @@
+#rebate-main {
+    background: #efeef4;
+    padding-bottom: 1rem;
+}
+
+#rebate-main .main li {
+    box-shadow: 0px 2px 0px #dddddd;
+}
+
+
+/*顶部banner样式*/
+#rebate-main .banner-img {
+    width: 100%;
+    height: 19.5%;
+}
+
+#rebate-main .banner-img a {
+    display: block;
+}
+
+#rebate-main .banner-img img {
+    width: 100%;
+    height: 100%;
+}
+
+#rebate-main .banner-text {
+    background: #283144;
+    position: relative;
+    overflow: hidden;
+}
+#rebate-main .banner-text:after {
+    content: '';
+    position: absolute;
+    background: #646e85;
+    width: 0.125rem;
+    height: 2rem;
+    left: 50%;
+    margin-left: -0.062rem;
+    top: 50%;
+    margin-top: -1rem;
+}
+#rebate-main .banner-text div {
+    float: left;
+    text-align: center;
+    width: 50%;
+    padding: 0.5rem 0 0.675rem 0;
+}
+
+#rebate-main .banner-text em {
+    color: #4573e3;
+    font-size: 0.934rem;
+}
+
+#rebate-main .banner-text p {
+    color: #FFFFFF;
+    font-size: 0.675rem;
+}
+
+/*主体内容*/
+#rebate-main .main {
+    width: 95%;
+    margin: 0 auto;
+}
+
+#rebate-main .main li {
+    margin-top: 1rem;
+}
+
+#rebate-main .main div {
+    background: #FFFFFF;
+}
+
+/*今日爆款*/
+#rebate-main .hot-today .title{
+    border-bottom: 1px dashed #cccccc;
+    color: #000;
+    padding: 0.25rem 0 0.25rem 0.95rem;
+    font-size: 0.8rem;
+}
+
+#rebate-main .hot-today .title strong {
+    color: #ed3d3d;
+    padding: 0 4px;
+}
+
+#rebate-main .hot-today .content {
+    text-align: center;
+}
+
+#rebate-main .hot-today .income {
+    text-align: center;
+    padding-top: 0.5rem;
+    color: #ed3d3d;
+    position: relative;
+}
+
+#rebate-main .hot-today .income span {
+    background: #a1c2fa;
+    position: absolute;
+    top: 1.1rem;
+    left: 60%;
+    color: #FFFFFF;
+    font-size: 0.55rem;
+    padding: 0.2rem 0.125rem;
+}
+
+#rebate-main .hot-today .income em {
+    font-size: 3rem;
+}
+
+#rebate-main .hot-today .text {
+    color: #AAAAAA;
+    font-size: 0.7rem;
+}
+
+#rebate-main .hot-today .rebate {
+    color: #ed3d3d;
+    font-size: 0.85rem;
+    padding-top: 0.5rem;
+}
+#rebate-main .hot-today .rebate em {
+    font-size: 1.2rem;
+}
+
+#rebate-main .hot-today .buy {
+    padding: 1.1rem 0;
+}
+
+#rebate-main .hot-today .buy span {
+    background: -webkit-linear-gradient(top, #ef493e 0%,#f87b41 100%);
+    padding: 0.45rem 6.5rem;
+    border-radius: 0.3rem;
+    color: #FFFFFF;
+    letter-spacing: 0.125rem;
+    font-size: 0.85rem;
+}
+
+/*内容列表部分*/
+#rebate-main .item a {
+    display: block;
+}
+#rebate-main .item img {
+    width: 5.05rem;
+    height: 1.87rem;
+    margin-left: 0.75rem;
+}
+#rebate-main .item .title {
+    border-bottom: 1px dashed #cccccc;
+    color: #999999;
+    font-size: 0.7rem;
+    padding: 0.5rem 0;
+}
+#rebate-main .item .title p {
+    padding-left: 1.2rem;
+}
+
+#rebate-main .item .description {
+    overflow: hidden;
+    padding: 1rem 0;
+}
+
+#rebate-main .item .desc-income {
+    width: 35%;
+    box-sizing: border-box;
+    float: left;
+    padding-left: 1.2rem;
+}
+
+#rebate-main .item .desc-rebate {
+    width: 65%;
+    box-sizing: border-box;
+    float: left;
+    padding-left: 1.2rem;
+}
+
+#rebate-main .item .desc-title {
+    color: #999999;
+    font-size: 0.7rem;
+}
+
+#rebate-main .item .desc-text p {
+    font-size: 0.8rem;
+    padding-top: 0.38rem;
+}
+
+#rebate-main .item .desc-text em {
+    font-size: 0.98rem;
+}
+
+#rebate-main .item .desc-text p + p {
+    padding-top: 0.38rem;
+    font-size: 0.7rem;
+}
+
+#rebate-main .item .desc-rebate {
+    color: #f50000;
+}
+
+#rebate-main .item .desc-income span {
+    color: #647192;
+    border: 1px solid #647192;
+    font-size: 0.7rem;
+    border-radius: 0.45rem;
+    padding: 0.1rem 0.25rem;
+}
+
+#rebate-main .item .invest-buy {
+    text-align: center;
+    padding: 0.7rem 0 1.2rem 0;
+}
+
+#rebate-main .item .invest-buy span {
+    background: #4286f5;
+    padding: 0.45rem 6.5rem;
+    border-radius: 0.3rem;
+    color: #FFFFFF;
+    letter-spacing: 0.125rem;
+    font-size: 0.85rem;
+}
+
+
+
+
+
+
+

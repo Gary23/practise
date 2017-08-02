@@ -1,0 +1,91 @@
+{
+  "index.html": {
+    "resources": [
+      "common/css/mui.min.css",
+      "login/login.html",
+      "common/js/mui.min.js"
+    ],
+    "refer": [
+      "login/login.html"
+    ]
+  },
+  "login/login.html": {
+    "resources": [
+      "login/login.js",
+      "login/login.css",
+      "common/css/mui.min.css",
+      "menu/menu.html",
+      "common/js/mui.min.js",
+      "common/fonts/mui.ttf"
+    ],
+    "refer": [
+      "menu/menu.html"
+    ]
+  },
+  "menu/menu.html": {
+    "resources": [
+      "menu/menu.css",
+      "main/main.html",
+      "common/css/mui.min.css",
+      "login/login.html",
+      "validation/validation.html",
+      "common/fonts/mui.ttf",
+      "order/order.html",
+      "menu/menu.js",
+      "login.html"
+    ],
+    "refer": [
+      "main/main.html",
+      "login/login.html",
+      "validation/validation.html",
+      "order/order.html"
+    ]
+  },
+  "main/main.html": {
+    "resources": [
+      "common/css/mui.min.css",
+      "main/main.js",
+      "main/main.css",
+      "common/images/1.jpg",
+      "menu/menu.html",
+      "common/fonts/mui.ttf",
+      "common/js/mui.min.js"
+    ],
+    "refer": [
+      "menu/menu.html"
+    ]
+  },
+  "validation/validation.html": {
+    "resources": [
+      "common/css/mui.min.css",
+      "menu/menu.html",
+      "validation/validation.css"
+    ],
+    "refer": [
+      "menu/menu.html"
+    ]
+  },
+  "order/order.html": {
+    "resources": [
+      "common/css/mui.min.css",
+      "menu/menu.html",
+      "order/order.css"
+    ],
+    "refer": [
+      "menu/menu.html"
+    ]
+  },
+  "login.html": {
+    "resources": [
+      "login/login.js",
+      "common/fonts/mui.ttf",
+      "common/css/mui.min.css",
+      "menu/menu.html",
+      "common/js/mui.min.js",
+      "login/login.css"
+    ],
+    "refer": [
+      "menu/menu.html"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prop</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!--使用Prop传递数据-->
+<!--组件实例的作用域是孤立的。这意味着不能(也不应该)在子组件的模板内直接引用父组件的数据。要让子组件使用父组件的数据，我们需要通过子组件的props选项。-->
+<!--子组件要显示的用props选项声明它期待获得的数据-->
+
+<!--下面的组件创建完成后，就可以这样向它传入一个普通字符串，页面中的结果就是hello!-->
+<div id="app">
+    <child message="hello!"></child>
+    <br>
+    <child1 my-message="myMessage--->my-message"></child1>
+</div>
+
+<script>
+    Vue.component('child',{
+        // 声明props
+        props:['message'],
+        // 就像data一样，prop可以用在模板内
+        // 同样也可以在vm实例中像'this.message'这样使用
+        template:'<span>{{ message }}</span>'
+    })
+
+    Vue.component('child1',{
+        // html中不区分大小学，所以在html中这种驼峰写法要写为my-message
+        props:['myMessage'],
+        template:'<span>{{ message }}</span>'
+    })
+
+    new Vue({
+        el: '#app'
+    })
+</script>
+</body>
+</html>

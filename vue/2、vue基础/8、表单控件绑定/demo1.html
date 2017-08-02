@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基础用法</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!--可以用v-model指令在表单控件元素上创建双向数据绑定，它根据控件类型自动选区正确的方法来更新元素。-->
+<!--v-model会忽略所有表单元素的value、checked、selected特性的初始值，应该通过js在组件的data中声明初始值-->
+
+<!--文本框-->
+<div id="app">
+    <input type="text" v-model="message" placeholder="edit">
+    <p>Message is {{ message }}</p>
+</div>
+
+<!--复选框-->
+<div id="app1">
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{ checked }}</label>
+    <br>
+
+    <input type="checkbox" id="jack" value="jack" v-model="checkNames">
+    <label for="jack">jack</label>
+    <input type="checkbox" id="john" value="john" v-model="checkNames">
+    <label for="john">john</label>
+    <input type="checkbox" id="mike" value="mike" v-model="checkNames">
+    <label for="mike">mike</label>
+    <br>
+    <span>Checked name: {{ checkNames }}</span>
+</div>
+
+<!--单选按钮-->
+<div id="app2">
+    <input type="radio" id="one" value="One" v-model="picked">
+    <label for="one">One</label>
+    <br>
+    <input type="radio" id="two" value="Two" v-model="picked">
+    <label for="two">Two</label>
+    <br>
+    <span>Picked: {{ picked }}</span>
+</div>
+
+<!--下拉单选列表-->
+<div id="app3">
+    <select v-model="selected">
+        <option disabled value="">请选择</option>
+        <option >A</option>
+        <option >B</option>
+        <option >C</option>
+    </select>
+    <span>Selected: {{ selected }}</span>
+    <br>
+    <br>
+    <select v-model="selected1" multiple style="width: 100px;">
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+        <option>D</option>
+    </select>
+    <br>
+    <span>Selected: {{ selected1 }}</span>
+    <br>
+    <br>
+    <!--动态选项-->
+    <select v-model="selected2">
+        <option v-for="option in options" v-bind:value="option.value">
+            {{ option.text }}
+        </option>
+    </select>
+    <span>Selected: {{ selected2 }}</span>
+</div>
+
+
+<script>
+    //文本框
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: ''
+        }
+    })
+    //复选框
+    var app1 = new Vue({
+        el: "#app1",
+        data: {
+            checked: false,
+            checkNames: []
+        }
+    })
+    // 单选框
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            picked:''
+        }
+    })
+    // 下拉列表
+    var app3 = new Vue({
+        el: '#app3',
+        data: {
+            selected:'',
+            selected1:[],
+            selected2: 'A',
+            options: [
+                {text:'One',value:'A'},
+                {text:'Two',value:'B'},
+                {text:'Three',value:'C'}
+            ]
+        }
+    })
+</script>
+</body>
+</html>

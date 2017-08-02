@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件的data属性</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="app">
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <br>
+    <br>
+    <simple-counter1></simple-counter1>
+    <simple-counter1></simple-counter1>
+    <simple-counter1></simple-counter1>
+</div>
+<script>
+//通过vue构造器传入的各种选项大多数都可以在组件里用。data是个例外，它必须是函数，否则vue会报错
+    var data = { counter:0 }
+    Vue.component('simple-counter',{
+        template:'<button v-on:click="counter += 1">{{ counter }}</button>',
+        // 这样虽然可以绕过vue报错，但是三个button共享一个data(在内存中指针都指向那个对象)，不管点击哪个button，counter都会+=1，而我们要的效果是每个button独享counter这个变量
+        data: function(){
+            return data
+        }
+    })
+
+
+    Vue.component('simple-counter1',{
+        template:'<button v-on:click="counter += 1">{{ counter }}</button>',
+        // 这样每个button的counter都是独立计算，也就相当于是在内存中是三个指向
+        data: function(){
+            return {
+                counter: 0
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app'
+    })
+</script>
+<!---->
+</body>
+</html>

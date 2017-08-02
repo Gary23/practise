@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模板</title>
+</head>
+<body>
+<!--
+html模板
+基于DOM的模板，只要是有效的可解析的html就可以
+
+插值
+文本：就是{{ key }}，替换实例上的属性值，插值内容会自动更新
+原生的html: {{}} 输出的是文本，不会解析html，如果在data中有html: '<div>hello Vue</div>'这样的数据，直接{{ html }}只会将其当做文本而不是html。如果需要被当做dom渲染，需要在父元素设置v-html="html"。
+属性：使用v-bind进行绑定，可以响应变化
+使用javascript表达式：些简单的表达式(不要写复杂语句)，可以写比如{{ true?'yes':'noe' }}或者{{ 'data'+msg }}，如果复杂的就写到计算属性中去。
+-->
+
+<!--
+字符串模板(template)
+template选项对象的属性
+模板将会替换挂载的元素，挂载元素的内容都将被忽略，根节点只能有一个，也可以将html结构写在一对script标签中，设置type="X-template"
+
+替换挂载元素：
+<div id="demo1">
+    <span>hi Vue</span>
+</div>
+
+var str = '<span>{{ message ]}}</span>'
+new Vue({
+    el: '#demo1',
+    data:{
+        message: 'hello Vue'
+    },
+    template:str
+})
+
+最终页面会显示hello Vue，会将新渲染的字符串模板替换掉原来的元素
+
+根节点只能有一个：
+var str = '<span>{{ message ]}}</span><span>11<span>'这种写法是错误的，因为最外层的根节点只能是一个。只能去包含别的元素，比如var str = '<span>{{ message ]}}<span>11<span></span>'
+
+写在script标签中
+<script type="X-template" id="temp">
+    <span>
+        {{ message ]}}
+        <span>11<span>
+    </span>
+</script>
+
+new Vue({
+    el: '#demo1',
+    data:{
+        message: 'hello Vue'
+    },
+    template: '#temp'
+})
+-->
+
+<!--
+rander函数
+写组件会经常使用
+通过上面字符串创建的元素不会直接放到页面上，而是要通过render函数编辑，其实虚拟dom树到真实dom树就是通过render实现的。
+
+var vm = new Vue({
+    el: '#demo',
+    data: {
+        class: true
+    },
+    render: function(createElement){
+        return createElement(
+            'ul',       // 父元素
+            {       // 这里写元素的属性，第二个参数如果是对象就是参数，是数组就是子元素
+                class: {       // 这里的属性是遵循v-bind:class而不是dom中的那种class。
+                    bg: true   // 添加class名为bg
+                },
+                style: {     // 设置行内样式,也是和v-bind:style一样的
+                    fontSize: '50px'
+                },
+                attrs: {    // 设置自定义属性
+                    abc: 'miaov'
+                },
+                domProps: {     // dom元素属性，不是标签里的，还是元素对象身上的。就好比length一样
+                    innerHTML: '<li>我是html</li>'    // 这里创建了innerHTML相当于是ul.innerHTML='<li>我是html</li>'，下面数组里的那些就会被覆盖了
+                },
+                on: {
+                    // 这里绑定事件，和v-on是一样的
+                }
+            },
+            [       // 子元素写在数组里，
+                createElement('li',1),
+                createElement('li',2),
+                createElement('li',3)
+            ]
+        )
+    }
+})
+
+-->
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修饰符</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="app">
+
+
+    <!--.lazy-->
+    <!--在默认情况下，v-model在input事件中同步输入框的值与数据，但其实可以添加一个修饰符lazy，从而转变为在change事件中同步-->
+    <!--在'change'而不是'input'事件中更新-->
+    <input type="text" v-model.lazy="msg">
+    <p>msg is {{ msg }}</p>
+    <br>
+    <!--.number-->
+    <!--如果想自动将用户的输入值转为Number类型(如果原值的转换结果为NaN则返回原值),可以添加一个修饰符number给v-model来处理输入值-->
+    <input v-model.number="age" type="number">
+    <p>这里就是number类型了：{{ age }}</p>
+    <br>
+
+    <!--.trim-->
+    <!--如果要自动过滤用户输入的首尾空格，可以添加trim-->
+    <input type="text" v-model.trim="trim">
+    <p>去掉空格后： {{ trim }}</p>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            msg: '123',
+            age: '',
+            trim: ''
+        }
+    })
+</script>
+</body>
+</html>

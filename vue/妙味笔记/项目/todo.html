@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>todo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!--
+css需要修改：
+1. 任务列表中文字字数限制
+2. checkbox的样式美化
+-->
+<section id="top">
+  <div class="top-main">
+    <h1>任务计划列表</h1>
+  </div>
+</section>
+<section id="todo">
+  <div class="add-todo">
+    <label>添加任务：</label>
+    <textarea name="" v-on:keyup.enter="addTodo" v-model="todo" rows="1"></textarea>
+  </div>
+  <div class="view-todo hidden" v-show="list.length">
+    <div class="num lf">
+      <span>
+        {{ noCheckedNum }}
+        个任务未完成</span>
+    </div>
+    <div class="tab rf">
+      <a href="#all" class="active">所有任务</a>
+      <a href="#unfinished">未完成的任务</a>
+      <a href="#finished">完成的任务</a>
+    </div>
+  </div>
+  <div class="list-todo">
+    <label>任务列表：</label>
+    <p class="msg" v-show="!list.length">还没有任务列表</p>
+    <ul>
+      <li
+        class="hidden"
+        v-for="item in filterList"
+        :class="{edtor:item === editTodos}"
+      >
+        <input type="checkbox" v-model="item.isChecked">
+        <p class="inline-b" :class="{ del:item.isChecked }">{{ item.title }}</p>
+        <span class="rf" @click="deleteTodo(item)">删除</span>
+        <span class="rf" @click="editTodo(item)">编辑</span>
+        <input
+          v-focus="editTodos === item"
+          type="text"
+          class="edit"
+          v-model="item.title"
+          @blur="edited(item)"
+          @keyup.enter="edited(item)"
+          @keyup.esc="editback(item)"
+        >
+      </li>
+    </ul>
+  </div>
+</section>
+<script src="vue.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

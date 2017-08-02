@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template v-for</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!--如同v-if模板，v-for也有<template>标签来渲染多个元素块-->
+<ul>
+   <template v-for="item in items">
+       <li>
+           {{ item.msg }}
+       </li>
+       <li class="divder"></li>
+   </template>
+</ul>
+
+</body>
+</html>

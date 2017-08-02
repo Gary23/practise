@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="./style.css"/>
+    <script src="jquery1.9.1.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+<div id="site-nav-area">
+    <ul class="fl">
+        <li class="dorpdown" id="city-choice">
+            <dd class="dorpdown-layer">
+                <div style="width: 54px;" class="dd-spacer"></div>
+                <div class="ui-areamini-content-wrap" id="ui-content-wrap">
+                    <dl>
+                        <dt>热门</dt>
+                        <dd><a title="尚未开通" href="javascript:;" class="is_district">北京</a></dd>
+                        <dd><a title="尚未开通" href="javascript:;" class="is_district">上海</a></dd>
+                        <dd>
+                            <a title="尚未开通" href="javascript:;" class="is_district">广州</a></dd>
+                        <dd>
+                            <a title="尚未开通" href="javascript:" class="is_district">深圳</a></dd>
+                        <dd>
+                            <a title="尚未开通" href="javascript:;" class="is_district">成都</a></dd>
+                        <dd>
+                            <a title="尚未开通" href="javascript:;" class="is_district">西安</a></dd>
+                        <dd>
+                            <a title="尚未开通" href="javascript:;" class="is_district">天津</a></dd>
+                        <dd>
+                            <a title="尚未开通" href="javascript:;" class="is_district">武汉</a></dd>
+                        <dd>
+                            <a title="尚未开通" href="javascript:;" class="is_district">海口</a></dd>
+                        <dd>
+                            <a title="尚未开通" href="javascript:;" class="is_district">南京</a></dd>
+                    </dl>
+                    <div class="search-first-letter">
+                        <a href="javascript:void(0);" data-letter="A">A</a>
+                        <a href="javascript:void(0);" data-letter="B">B</a>
+                        <a href="javascript:void(0);" data-letter="C">C</a>
+                        <a href="javascript:void(0);" data-letter="D">D</a>
+                        <a href="javascript:void(0);" data-letter="E">E</a>
+                        <a href="javascript:void(0);" data-letter="F">F</a>
+                        <a href="javascript:void(0);" data-letter="G">G</a>
+                        <a href="javascript:void(0);" data-letter="H">H</a>
+                        <a href="javascript:void(0);" data-letter="J">J</a>
+                        <a href="javascript:void(0);" data-letter="K">K</a>
+                        <a href="javascript:void(0);" data-letter="L">L</a>
+                        <a href="javascript:void(0);" data-letter="M">M</a>
+                        <a href="javascript:void(0);" data-letter="N">N</a>
+                        <a href="javascript:void(0);" data-letter="P">P</a>
+                        <a href="javascript:void(0);" data-letter="Q">Q</a>
+                        <a href="javascript:void(0);" data-letter="R">R</a>
+                        <a href="javascript:void(0);" data-letter="S">S</a>
+                        <a href="javascript:void(0);" data-letter="T">T</a>
+                        <a href="javascript:void(0);" data-letter="W">W</a>
+                        <a href="javascript:void(0);" data-letter="X">X</a>
+                        <a href="javascript:void(0);" data-letter="Y">Y</a>
+                        <a href="javascript:void(0);" data-letter="Z">Z</a></div>
+                    <div class="scrollBody" id="scrollBody">
+                        <div class="all-list" id="scrollMap">
+                            <ul style="margin-top: 0px;" id="ul">
+                                <li data-id="1" data-name="A">
+                                    <em>A</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">安庆</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">安顺</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">安阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">鞍山</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">阿拉善盟</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">安康</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">阿坝</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">阿里</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">阿克苏</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">阿拉尔</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">澳门</a></div>
+                                </li>
+                                <li data-id="2" data-name="B">
+                                    <em>B</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">蚌埠</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">亳州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">北京</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">白银</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">百色</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">北海</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">毕节</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">白沙</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">保亭</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">保定</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">白城</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">白山</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">本溪</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">巴彦淖尔盟</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">包头</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">滨州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">宝鸡</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">巴中</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">巴音郭楞</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">博尔塔拉</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">保山</a></div>
+                                </li>
+                                <li data-id="3" data-name="C">
+                                    <em>C</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">巢湖</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">池州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">滁州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">潮州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">崇左</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">昌江</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">澄迈县</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">沧州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">承德</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">长沙</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">常德</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">郴州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">长春</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">常州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">朝阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">赤峰</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">长治</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">成都</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">昌都</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">昌吉</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">楚雄</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">重庆</a></div>
+                                </li>
+                                <li data-id="4" data-name="D">
+                                    <em>D</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">定西</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">东莞</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">定安县</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">东方</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">大庆</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">大兴安岭</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">大连</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">丹东</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">德州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">东营</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">大同</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">达州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">德阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">大理</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">德宏</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">迪庆</a></div>
+                                </li>
+                                <li data-id="5" data-name="E">
+                                    <em>E</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">鄂州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">恩施</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">鄂尔多斯</a></div>
+                                </li>
+                                <li data-id="6" data-name="F">
+                                    <em>F</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">阜阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">福州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">佛山</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">防城港</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">抚州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">抚顺</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">阜新</a></div>
+                                </li>
+                                <li data-id="7" data-name="G">
+                                    <em>G</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">甘南</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">广州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">桂林</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">贵港</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">贵阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">赣州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">固原</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">果洛</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">甘孜</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">广安</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">广元</a></div>
+                                </li>
+                                <li data-id="8" data-name="H">
+                                    <em>H</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">淮北</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">淮南</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">黄山</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">河源</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">惠州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">河池</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">贺州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">海口</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">邯郸</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">衡水</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">鹤壁</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">漯河</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">哈尔滨</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">鹤岗</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">黑河</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">黄冈</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">黄石</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">衡阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">怀化</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">淮安</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">葫芦岛</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">呼和浩特</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">呼伦贝尔</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">海北</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">海东</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">海南</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">海西</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">黄南</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">菏泽</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">汉中</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">哈密</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">和田</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">红河</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">杭州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">湖州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">合肥</a></div>
+                                </li>
+                                <li data-id="9" data-name="J">
+                                    <em>J</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">嘉峪关</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">金昌</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">酒泉</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">江门</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">揭阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">济源</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">焦作</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">鸡西</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">佳木斯</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">荆门</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">荆州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">吉林</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">吉安</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">景德镇</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">九江</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">锦州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">济南</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">济宁</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">晋城</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">晋中</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">嘉兴</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">金华</a></div>
+                                </li>
+                                <li data-id="10" data-name="K">
+                                    <em>K</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">开封</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">喀什</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">克拉玛依</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">克孜勒苏</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">昆明</a></div>
+                                </li>
+                                <li data-id="11" data-name="L">
+                                    <em>L</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">六安</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">龙岩</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">兰州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">临夏</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">陇南</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">来宾</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">柳州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">六盘水</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">乐东</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">临高县</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">陵水</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">廊坊</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">洛阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">娄底</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">辽源</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">连云港</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">辽阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">莱芜</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">聊城</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">临沂</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">临汾</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">吕梁</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">乐山</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">凉山</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">拉萨</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">林芝</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">丽江</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">临沧</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">丽水</a></div>
+                                </li>
+                                <li data-id="12" data-name="M">
+                                    <em>M</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">马鞍山</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">茂名</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">梅州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">牡丹江</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">绵阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">眉山</a></div>
+                                </li>
+                                <li data-id="13" data-name="N">
+                                    <em>N</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">南平</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">宁德</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">南宁</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">南阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">南京</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">南通</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">南昌</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">南充</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">内江</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">那曲</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">怒江</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">宁波</a></div>
+                                </li>
+                                <li data-id="14" data-name="P">
+                                    <em>P</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">莆田</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">平凉</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">平顶山</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">萍乡</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">盘锦</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">攀枝花</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">普洱</a></div>
+                                </li>
+                                <li data-id="15" data-name="Q">
+                                    <em>Q</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">泉州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">庆阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">清远</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">钦州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">黔东南</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">黔南</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">黔西南</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">琼海</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">琼中</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">秦皇岛</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">七台河</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">齐齐哈尔</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">潜江</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">青岛</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">曲靖</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">衢州</a></div>
+                                </li>
+                                <li data-id="16" data-name="R">
+                                    <em>R</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">日照</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">日喀则</a></div>
+                                </li>
+                                <li data-id="17" data-name="S">
+                                    <em>S</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">宿州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">三明</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">深圳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">汕头</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">汕尾</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">韶关</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">三亚</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">石家庄</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">三门峡</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">商丘</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">双鸭山</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">绥化</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">神农架林区</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">十堰</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">随州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">邵阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">四平</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">松原</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">苏州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">宿迁</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">上饶</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">沈阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">石嘴山</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">朔州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">商洛</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">上海</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">遂宁</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">山南</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">石河子</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">绍兴</a></div>
+                                </li>
+                                <li data-id="18" data-name="T">
+                                    <em>T</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">铜陵</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">天水</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">铜仁</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">屯昌县</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">唐山</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">天门</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">通化</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">泰州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">铁岭</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">通辽</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">泰安</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">太原</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">铜川</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">天津</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">图木舒克</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">吐鲁番</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">台州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">台湾</a></div>
+                                </li>
+                                <li data-id="19" data-name="W">
+                                    <em>W</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">芜湖</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">武威</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">梧州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">万宁</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">文昌</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">五指山</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">武汉</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">无锡</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">乌海</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">乌兰察布市</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">吴忠</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">威海</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">潍坊</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">渭南</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">乌鲁木齐</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">五家渠</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">文山</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">温州</a></div>
+                                </li>
+                                <li data-id="20" data-name="X">
+                                    <em>X</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">宣城</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">厦门</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">邢台</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">新乡</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">信阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">许昌</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">仙桃</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">咸宁</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">襄樊</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">孝感</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">湘潭</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">湘西</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">徐州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">新余</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">锡林郭勒盟</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">兴安盟</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">西宁</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">忻州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">西安</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">咸阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">西双版纳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">香港</a></div>
+                                </li>
+                                <li data-id="21" data-name="Y">
+                                    <em>Y</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">阳江</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">云浮</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">玉林</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">濮阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">伊春</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">宜昌</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">益阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">永州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">岳阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">延边</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">盐城</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">扬州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">宜春</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">鹰潭</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">营口</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">银川</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">玉树</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">烟台</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">阳泉</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">运城</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">延安</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">榆林</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">雅安</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">宜宾</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">伊犁</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">玉溪</a></div>
+                                </li>
+                                <li data-id="22" data-name="Z">
+                                    <em>Z</em>
+                                    <div class="itme-city">
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">漳州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">张掖</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">湛江</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">肇庆</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">中山</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">珠海</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">遵义</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">儋州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">张家口</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">郑州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">周口</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">驻马店</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">张家界</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">株洲</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">镇江</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">中卫</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">枣庄</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">淄博</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">资阳</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">自贡</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">泸州</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">昭通</a>
+                                        <a href="javascript:void(0);" title="尚未开通" class="is_district">舟山</a></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="scrollBar" id="scrollBar">
+                            <p style="top: 1px;" id="city_bar"></p>
+                        </div>
+                        <input name="area_phpName" id="phpName" value="" type="hidden"></div>
+                </div>
+            </dd>
+        </li>
+    </ul>
+</div>
+<script>
+    $('#site-nav-area a').click(function(event) {
+        event.preventDefault();
+    });
+    //城市选择
+    $("#city-choice,.f-store,.li_dorpdown").hover(function(){
+        $(this).addClass("hover");
+        var width = $(this).find(".sc-choie").outerWidth();
+        $(this).find(".dd-spacer").css("width",width-2);
+    },function(){
+        $(this).removeClass("hover");
+    });
+
+    $(".li_dorpdown").hover(function(){
+        $(this).addClass("hover");
+        var width = $(this).find(".dt").outerWidth();
+        $(this).find(".dd-spacer").css({"width":width-2,"right":0});
+    },function(){
+        $(this).removeClass("hover");
+    });
+
+    $("#site-nav-area").jScroll();
+    function get_district_list(){
+        return false;
+    }
+</script>
+</body>
+</html>

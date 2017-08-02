@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>属性与方法</title>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<p>{{ a }}</p>
+	</div>
+	<script>
+		// 所有的api查看：https://cn.vuejs.org/v2/api/
+		var data = {a:1};
+		var vm = new Vue({
+			el:'#app',
+			data:data
+		})
+		// 改变vue实例的属性也会影响到原始数据，反之亦然
+		data.a = 2;
+		console.log(vm.a);		// 打印2
+		vm.a = 3;
+		console.log(data.a);	// 打印3
+		console.log(data.a === vm.a);	// 打印true
+
+		// 只有被代理的属性是可以互相响应的,如果在实例创建之后添加新的属性，buhui触发视图更新。
+		vm.b = 23;
+		console.log(data.b);	// undefined
+		data.b = 24;
+		console.log(vm.b);		// undefined
+
+		// 除了data属性，vue实例也暴露了一些有用的属性和方法
+		// 这些属性和方法都有前缀$，以便与代理的data属性区分。
+		console.log(vm.$data === data)    // true;
+		console.log(vm.$el === document.getElementById('app'))    // true
+		vm.$watch('a',function(){
+			console.log(this)	// 打印vm实例
+			// 这个回调将在vm.a改变后调用,改变的语句要写在调用之后。
+		})
+		vm.a = 222;
+		// 注意：不要再实例属性或回调中使用es6的箭头函数。因为箭头函数绑定父级上下文，所以this不会像预想的一样是vue实例，而是this.myMethod未定义
+
+	</script>
+</body>
+</html>

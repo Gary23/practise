@@ -1,0 +1,42 @@
+#rule {
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 1rem;
+}
+#rule .title {
+    color: #aaaaaa;
+    overflow: hidden;
+    padding: 1rem 0;
+}
+
+#rule .title h3 {
+    font-size: 0.8rem;
+    float: left;
+}
+
+#rule .title span {
+    font-size: 0.7rem;
+    float: right;
+}
+
+#rule .content {
+    font-size: 0.74rem;
+    line-height: 1.1rem;
+}
+
+#rule .rule-text span {
+    padding-right: 0.2rem;
+}
+
+#rule .rule-text {
+    margin-bottom: 1rem;
+}
+
+#rule .rule-warn {
+    color: #ff2b2b;
+    margin-bottom: 1rem;
+}
+
+#rule .rule-msg {
+    color: #999999;
+}

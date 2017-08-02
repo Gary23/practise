@@ -1,0 +1,508 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="full-screen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+    <title>全部商品</title>
+    <!--<base href="http://m.meiquan8.com/" />-->
+    <link rel=stylesheet type=text/css href="./css/style.css" />
+    <script type="text/javascript" src="./js/index.js"></script>
+    <style>
+        .go_top {
+            width: 45px;
+            height: 45px;
+            background: url(./images/gotop.png) no-repeat 0 0;
+            background-size: cover;
+            display: inline-block;
+            position: fixed;
+            right: 10px;
+            bottom: 65px;
+            z-index: 999;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    // 导航栏切换显示
+    $(function(){
+        $('.m-list-nav-catlog a').click(function(){
+            $('.m-list-nav-catlog a').toggleClass('open');
+            $('.m-list-catlog').toggle();
+            $('.g-body-bd-mask').toggle();
+        })
+    })
+</script>
+
+<!--顶部导航栏-->
+<!--每个选项点击会触发set_tab函数，会根据序号更改商品(缓存有从缓存取，缓存没有ajax)-->
+<div class="top_fixed">
+    <div class="m-top">
+        <div class="back" onclick="window.history.go(-1);">
+            <span class="back-icon"></span>
+        </div>
+        <div class="title">全部商品</div>
+        <div class="search"></div>
+    </div>
+    <div class="m-list">
+        <div class="g-wrap g-body-hd m-list-nav">
+            <div class="m-list-nav-catlog selected">
+                <a href="javascript:void(0)" class="">
+                    <span class="txt-red">商品分类</span>
+                    <i class="ico ico-arrow ico-arrow-down ico-arrow-s-gray"></i>
+                </a>
+            </div>
+            <div class="m-list-types">
+                <ul class="m-list-types-list">
+                    <li> <a href="javascript:;" onclick="set_tab($(this),'1')">今日上新</a> </li>
+                    <li> <a href="javascript:;" onclick="set_tab($(this),'2')">热门爆款</a> </li>
+                    <li> <a href="javascript:;" onclick="set_tab($(this),'3')">最后疯抢</a> </li>
+                </ul>
+            </div>
+            <!-- 所有分类列表 -->
+            <div class="m-list-catlog" style="display: none;">
+                <ul class="m-list-catlog-list">
+                    <li><a href="javascript:;" onclick="set_cid('0',this)" class="active">全部</a></li>
+                    <li><a href="javascript:;" onclick="set_cid('10001',this)">服装</a></li>
+                    <li><a href="javascript:;" onclick="set_cid('10002',this)">母婴</a></li>
+                    <li><a href="javascript:;" onclick="set_cid('10003',this)">美妆</a></li>
+                    <li><a href="javascript:;" onclick="set_cid('10004',this)">居家</a></li>
+                    <li><a href="javascript:;" onclick="set_cid('10005',this)">鞋包</a></li>
+                    <li><a href="javascript:;" onclick="set_cid('10006',this)">美食</a></li>
+                    <li><a href="javascript:;" onclick="set_cid('10007',this)">文体车品</a></li>
+                    <li><a href="javascript:;" onclick="set_cid('10008',this)">数码家电</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--商品列表-->
+    <div class="cf_list" id="cf_height">
+        <ul id="shuju_load">
+
+        </ul>
+    </div>
+</div>
+<div class="mc radius nodata" style="display:none">
+    <div class="mu-l2w" style="margin-top:8em;">
+        <div class="div_auto">
+            <div class="radius_dd">
+                <i class="iconfont_wap auto_icon"></i>
+            </div>
+            <p>还没有商品上架哦</p>
+            <a href="http://m.meiquan8.com"><input type="button" class="gg_btn" value="去逛逛"></a>
+        </div>
+    </div>
+</div>
+
+
+<div class="more">
+    <div class="more_curr clear"> <i></i> <a class="chakan_more">点击加载更多&gt;</a> <i></i> </div>
+</div>
+
+<div id="tpl-wrap" class="tpl-v3" style="width: 100%; height:100%; top: 0px; display:none;">
+    <div class="box">
+        <p>亲，该商品的活动还没开始喔！</p>
+        <div> <a class="go_bt" target="_blank">立即前往</a> <a class="off_bt">含泪关闭</a> </div>
+    </div>
+</div>
+
+<script>
+    var floorStep=1;
+    var ajaxTag=0;
+    var cid='0';
+    var type=0;
+    var click_id=0;
+    var q='';
+    var code='';
+    var gmaxid=0;
+
+    // 点击商品列表的某个商品会跳转的地址
+    function buy(id){
+        window.location="http://m.meiquan8.com/index.php?mod=coupon&act=view"+"&id="+id;
+    }
+
+    $(function(){
+        var loadImg = function (url, fn) {
+            var img = new Image();
+            img.src = url;
+            if (img.complete) {
+                fn.call(img);
+            } else {
+                img.onload = function () {
+                    fn.call(img);
+                    img.onload = null;
+                };
+            };
+        };
+        $.fn.imgAutoSize = function (padding) {
+            var maxWidth = this.innerWidth() - (padding || 0);
+            return this.find('img.picimg').each(function (i, img) {
+                loadImg(this.src, function () {
+                    if (this.width != maxWidth) {
+                        img.width = maxWidth;
+                        img.height = maxWidth;
+                    };
+                });
+            });
+        };
+
+        // 页面滚动到指定值就加载更多商品
+        $(window).bind('scroll',function(){
+            if($(window).scrollTop()+$(window).height()>=$(document).height()-400){
+                if(ajaxTag==0){
+                    ajaxTag=1;
+                    jiazai(floorStep,cid,type);
+                    floorStep++;
+                }
+            }
+        });
+
+        $('#go_buy').click(function(){
+            window.location="http://m.meiquan8.com/index.php?mod=coupon&act=view"+"&id="+click_id;
+        });
+        $('#no_tip').click(function(){
+            setCookie('buytip',1,60*60*24*365﻿﻿);
+            window.location="http://m.meiquan8.com/index.php?mod=coupon&act=view"+"&id="+click_id;
+        });
+
+    });
+
+    // 导航栏切换
+    function set_cid(c_id,elem){
+        $('.m-list-nav-catlog a').click();
+        cid=c_id;
+        floorStep=1;
+        $('.m-list-catlog-list a').removeClass('active');
+        $(elem).addClass('active');
+        $('.m-top .title').html($(elem).html())
+        jiazai(1,cid,type);
+    }
+
+
+    function set_tab(tb,t){
+        $('.table_hb').removeClass('current');
+        tb.addClass('current');
+        floorStep=1;
+        type=t;
+        jiazai(1,cid,type,q);
+    }
+
+    // 动态生成商品列表的部分,其中的{$变量}与ajax返回的对象的变量对应
+    function index_tpl(){/*<li class="clear"><a name="a{$id}" id="a{$id}"></a>
+     <div class="cf_li_left">
+     <a onclick="jump_url('{$view}',{$id});">
+     <img data-original="{$img}" class="lazy" src="./images/lazyload-1.png" style="margin:0 auto;display: block;"/>
+     {$shouqing}
+     <!--<div class="left_up">限量</div>-->
+     </a>
+     </div>
+     <div class="cf_li_right">
+     <div>
+     <a onclick="jump_url('{$view}',{$id});">
+     <div class="title">{$source}&nbsp;{$title}</div>
+     </a>
+     </div>
+     <div class="cf_price">
+     <div class="cf_p_left">
+     <div class="mb_25"><!--<del class="cf_span">¥{$discount_price}</del>--><span style="color:#FF999A;border:1px solid #FF999A;padding:0 0.2em">{$jrate}%</span></div>
+     <div class="mb_25"><span class="quanhoujia">{$quanhoujia}</span>&nbsp;&nbsp;<span class="quanhoujia_price">¥<span>{$jprice}</span></span></div>
+     <div class="rab-dy">得<span class="price">{$rab_dy_price}</span><i class={$rab_dy_icon} style="margin-left:0.2em;"></i></div>
+     <!--<div class="shenyu">{$shengyu}</div>
+     <div class="jindu"><span style="width:{$rate}%" class="jindujuti"></span></div>-->
+     </div>
+     <div class="cf_p_right">
+     <div>
+     {$buy}
+     <!--<div class="tydian mfling">¥{$pricejian}</div>
+     <div class="tydian qianggl">¥{$pricejian}</div>
+     <div class="tydian likeq">¥{$pricejian}</div>
+     <div class="tydian qgm">¥{$pricejian}</div>-->
+     </div>
+     </div>
+     <div style="clear:both;"></div>
+     </div>
+     </div>
+     <div style="clear:both;"></div>
+     </li>*/;}
+
+    // 根据ajax返回的数据长度和 判断显示的文字
+    function check_tip(data){
+        var num=data.length;
+        var p=floorStep;
+        if(p==0){p=1;}
+        $('.nodata').hide();
+        $('.chakan_more').show();
+        if(num==0 && p==1){
+            $('.nodata').show();
+            $('.chakan_more').hide();
+        }
+        else if(num==10){
+            $('.chakan_more').text('点击更多');
+        }else{
+            $('.chakan_more').text('没有更多了');
+        }
+    }
+
+
+    // 模拟ajax的数据，美券返回的数据有些html元素，因为样式和美券不完全一样所以不方便直接用美券的数据。
+    function jiazai(){
+        var url = 'data.json';
+        var html = ''
+        $.get(url,{},function(data){
+            for(i in data){
+                row=data[i];
+                html+=getTplObj(index_tpl,row);
+            }
+
+            $('#shuju_load').append(html);
+
+            $('#shuju_load img.lazy').lazyload({
+                threshold:20,
+                failure_limit:50
+            });
+
+            $('#shuju_load li img').each(function(){
+                var w=$(this).width();
+                /*$(this).height(w);*/
+            });
+
+        })
+    }
+
+
+
+    // ---------------------------------------这是美券的ajax步骤---------------------------------------------------
+    // 加载商品列表，首先从缓存查找，没有就ajax请求
+    // 因为改变模板的结构了，所以这里获取的数据要改成上面data.json的数据，直接用美券的会有问题
+//    function jiazai(floorStep,cid,type){
+//        $('.chakan_more').text('加载更多数据中……');
+//        var url = 'http://m.meiquan8.com/index.php?mod=coupon&act=list';
+//
+//        var cache_data = get('ajax_list_'+floorStep+cid+code+type+q);
+//        if(typeof cache_data == 'object'){
+//            var data = cache_data;
+//            ajaxTag=0;
+//            if(data.webtitle!=''){
+//                $('#webtitle').html(data.webtitle);
+//            }
+//            check_tip(data.r);
+//            if(data.s=='1'){
+//                if(data.over_num>0){
+//                    $('.p_first').show();
+//                    $('#over_num').html(data.over_num);
+//                }
+//                if(floorStep==1){
+//                    $('#shuju_load').html('');
+//                }
+//                if(data.r=='' || data.r=='null' || data.r==null){
+//                    ajaxTag=1;
+//                }else{
+//                    var html='';
+//                    for(i in data.r){
+//
+//                        row=data.r[i];
+//
+//                        html+=getTplObj(index_tpl,row);
+//                    }
+//                    $('#shuju_load').append(html);
+//
+//                    $('#shuju_load img.lazy').lazyload({
+//                        threshold:20,
+//                        failure_limit:50
+//                    });
+//
+//                    $('#shuju_load li img').each(function(){
+//                        var w=$(this).width();
+//                    });
+//                }
+//            }else{
+//                alert(data.r);
+//                if(data.r=='' || data.r=='null' || data.r==null){
+//                    ajaxTag=1;
+//                    //$('.chakan_more').hide();
+//                }
+//            }
+//        }else{
+//            $.getJSON(url,{page:floorStep,cid:cid,type:type,q:q,gmaxid:gmaxid,ajax:1},function(data){
+//                ajaxTag=0;
+//                if(data.webtitle!=''){
+//                    $('#webtitle').html(data.webtitle);
+//                }
+//                check_tip(data.r);
+//                if(data.s=='1'){
+//
+//                    set('ajax_list_'+floorStep+cid+code+type+q,data,300);
+//                    if(data.over_num>0){
+//                        $('.p_first').show();
+//                        $('#over_num').html(data.over_num);
+//                    }
+//                    if(floorStep==1){
+//                        $('#shuju_load').html('');
+//                    }
+//                    if(data.r=='' || data.r=='null' || data.r==null){
+//                        ajaxTag=1;
+//                    }else{
+//                        var html='';
+//                        gmaxid=data.r['0']['gmaxid'];
+//                        for(i in data.r){
+//                            row=data.r[i];
+//                            html+=getTplObj(index_tpl,row);
+//                        }
+//                        $('#shuju_load').append(html);
+//
+//                        $('#shuju_load img.lazy').lazyload({
+//                            threshold:20,
+//                            failure_limit:50
+//                        });
+//
+//                        $('#shuju_load li img').each(function(){
+//                            var w=$(this).width();
+//                            /*$(this).height(w);*/
+//                        });
+//                    }
+//                }else{
+//                    alert(data.r);
+//                    if(data.r=='' || data.r=='null' || data.r==null){
+//                        ajaxTag=1;
+//                        //$('.chakan_more').hide();
+//                    }
+//                }
+//            });
+//        }
+//    }
+
+
+
+    var currentState = history.state;
+
+    if(typeof currentState != 'undefined' && currentState!='null' && currentState!=null){
+        floorStep = currentState.page;
+        q = currentState.title;
+        cid = currentState.c;
+        type = currentState.t;
+        code = currentState.co;
+    }
+
+    // 页面第一次加载时获取商品
+    jiazai(1,cid,type,q);
+
+    var height=$('.index_head').height();
+    $('.top_fixed').css('margin-top',height);
+    var m_height=$('.m-list').height();
+    var m_top = $('.m-top').height();
+    $('#cf_height').css('padding-top',m_height+m_top+10);
+
+    // 这里history.pushState的第三个参数是历史的地址，需要根据环境修改，这样可以回到上次浏览的位置，而且并没有刷新页面
+    function jump_url(href,goods_id){
+        var stateObj = {id:goods_id,page:floorStep,title:q,c:cid,t:type,co:code};
+        history.pushState(stateObj, "list", "http://localhost:63342/PJ.Yu/WAP/%E7%BE%8E%E5%88%B8/shop_list/shop_list.html?_ijt=3jhvj5ufjqghk0g140ki91psdq");
+        window.location=href;
+    }
+
+    function intval(v)
+    {
+        v = parseInt(v);
+        return isNaN(v) ? 0 : v;
+    }
+
+    // 返回或者刷新时确定在页面停留的位置
+    $(function(){
+        var currentState = history.state;
+        if(typeof currentState != 'undefined' && currentState!='null' && currentState!=null){
+            var id = currentState.id;
+            var this_page = currentState.page-1;
+            var q = currentState.title;
+            var cid = currentState.c;
+            var type = currentState.t;
+
+            for(var a=2;a<=this_page;){
+                jiazai(a,cid,type,q);
+                a++;
+            }
+            scroller('a'+id,500);
+        }
+    })
+</script>
+
+
+
+<script src="./js/draggabilly.pkgd.min.js"></script>
+<script src="./js/dynamics.min.js"></script>
+<script src="./js/main.js"></script>
+<link href="./css/dialog.css" rel="stylesheet" type="text/css"/>
+<script>
+
+    $(document).scroll(function(){
+        var scrollTop = $(document).scrollTop(),bodyHeight = 200;
+        if(scrollTop > bodyHeight){
+//            $('.user-footer').css('display','none');
+//            var u_height = $('.fixed-bar').height();
+            $('.download-con').css('bottom',0);
+            $('.go_top').css('display','block');
+            $('.linquan').css('display','block');
+        }else{
+//            $('.user-footer').css('display','block');
+//            var u_height = $('.user-footer').height();
+            $('.download-con').css('bottom',0);
+            $('.go_top').css('display','none');
+            $('.linquan').css('display','none');
+        }
+    })
+
+    // 回到页面顶部
+    $(function(){
+        $('.go_top').click(function(){
+            $('body,html').animate({scrollTop:0},0);
+            return false;
+        });
+    });
+    // 领券规则弹窗
+    $(function() {
+        var dialog = new DialogEl(document.getElementById('dialog-1'), {
+            mainElement : {
+                minscale : 0.6,
+                minopacity : 0.5,
+                rY : 40
+            },
+            innerElements : {tx : 100, ty : 100},
+            outofbounds: {x : 0, y: 0}
+        });
+
+        document.getElementById('trigger-dialog').addEventListener('click', function(ev) {
+            dialog.open();
+        });
+    });
+</script>
+
+<div class="go_top" id="backToTop" style="display: none;"></div>
+<div class="linquan" id="trigger-dialog" style="display: none;"></div>
+
+<!--领券的弹窗-->
+<div class="dialog" id="dialog-1">
+    <div class="mover-wrap dialog__content" style="margin:auto; width:80%;">
+        <div class="dialog__content-inner">
+            <div class="dialog__header">
+                <h2>领券购物玩法</h2>
+                <button class="action action--close">
+                    <i class="icon iconfont_wap">&#xe77c;</i>
+                    <span class="text-hidden">Close dialog</span>
+                </button>
+            </div>
+            <div class="dialog__body">
+                <div class="actions">
+                    <img src="./images/wanfa.jpg" width="100%" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

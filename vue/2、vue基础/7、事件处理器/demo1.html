@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件监听</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!--可以用v-on指令监听dom事件来触发一些javascript代码-->
+<div id="example1">
+    <button v-on:click="counter += 1">增加 1</button>
+    <p>这个按钮被点击了 {{ counter }} 次</p>
+</div>
+<script>
+    var example1 = new Vue({
+        el: '#example1',
+        data: {
+            counter: 0
+        }
+    })
+</script>
+</body>
+</html>

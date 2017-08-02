@@ -1,0 +1,220 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    margin: 0px;
+    background-color: #333;
+}
+
+canvas {
+    position: absolute;
+    background-color: #000000;
+}
+
+.loading {
+    position: absolute;
+    left: 140px;
+    top: 320px;
+}
+
+.center {
+    width: 100px;
+    height: 220px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -110px 0 0 -50px;
+}
+
+.over {
+    display: none;
+}
+.gameover {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 9;  
+    top: 0;
+    left: 0;
+    display: none; 
+    background-color: rgba(0,0,0,0.7);
+}
+.message {
+    background: url('../img/bingo1.png') no-repeat;
+    background-size: 7.5rem 7.8rem;
+    width: 7.5rem;
+    height: 7.8rem;
+    position: relative;
+    margin-top:1rem; 
+}
+.message .copy-text {
+    display: block;
+    width: 2.7rem;
+    height: 0.8rem;
+    position: absolute;
+    z-index: 99;
+    top: 4.1rem;
+    left: 2.4rem;
+    color: #ffecaa;
+    font-size: 0.4rem;
+    text-align: center;
+    line-height: 0.8rem;
+}
+.message .reset-game {
+    display: block;
+    position: absolute;
+    z-index: 99;
+    width: 2rem;
+    height: 0.8rem;
+    bottom: 1.4rem;
+    margin: -1rem;
+    left: 50%;
+    background: url('../img/reset.png') no-repeat;
+    background-size: 2rem 0.8rem;
+}
+
+.message .ewm {
+    display: block;
+    position: absolute;
+    z-index: 99;
+    width: 3rem;
+    height: 3rem;
+    bottom: 1.8rem;
+    left: 2.25rem;
+    border: none;
+}
+
+.message .game-text {
+    position: absolute;
+    top: 0.6rem;
+    left: 0;
+    width: 100%;
+    height: 2rem;
+    font-size: 0.38rem;
+    color: #fff;
+    padding: 0 0.6rem;
+    box-sizing: border-box;
+}
+#id_text {
+    font-size: 0.6rem;
+    color: #da3f59;
+}
+.gameover-reset {
+    width: 100%;
+    height: 7rem;
+    position: absolute;
+    z-index: 9;
+    background-color: transparent;
+    text-align: center;  
+    top: 2.5rem;  
+    display: none;     
+}
+
+.over-bg {
+    display: inline-block;
+    width: 6.5rem;
+    height: 5.6rem;
+    background: url('../img/img_tbg.png') no-repeat;
+    background-size: 6.5rem 5.6rem;
+}
+
+.gameover-reset .reset-btn {
+    width: 2rem;
+    height: 0.8rem;
+    background: url('../img/reset.png') no-repeat;
+    background-size: 2rem 0.8rem;
+    position: absolute;
+    bottom: 2.5rem;
+    left: 1.5rem;
+
+}
+
+.gameover-reset .zhiyuan-btn {
+    width: 2rem;
+    height: 0.8rem;
+    background: url('../img/zhiyuan.png') no-repeat;
+    background-size: 2rem 0.8rem;
+    position: absolute;
+    bottom: 2.5rem;
+    right: 1.5rem;
+}
+
+.gameover-reset .over-text {
+    width: 6.5rem;
+    height: 1.7rem;
+    position: absolute;
+    top: 2rem;
+    font-size: 0.7rem;
+    line-height: 1.7rem;
+    color: #88400b;
+    text-align: center;
+    font-weight: 700;
+}
+
+.zhiyuan {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 999;  
+    top: 0;
+    left: 0;
+    display: none;  
+    background-color: rgba(0,0,0,0.8);    
+}
+
+.zhiyuan .array{
+    width: 3.2rem;
+    height: 2.28rem;
+    background: url('../img/pop.png') no-repeat;
+    background-size: 3.2rem 2.28rem;
+    position: absolute;
+    top: 0.6rem;
+    right: 0;
+}
+
+.zhiyuan p{
+    color: #fff;
+    font-size: 0.6rem;
+    padding: 0 0.3rem;
+    position: absolute;
+    top: 2.6rem;
+    width: 100%;
+    box-sizing: border-box; 
+    line-height: 1.5;
+}
+ 
+
+/*.share-txt {
+    color: #fff;
+    font-size: 1.6rem;
+    text-align: center;
+    padding-top: 40%;
+    font-family: 'microsoft yahei';
+}
+
+.tips {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8) url("../images/pop.png") right 42px no-repeat;
+    background-size: 50%;
+}
+
+a {
+}
+
+.goTop {
+    position: fixed;
+    top: 60px;
+    display: block;
+    text-decoration: none
+}*/

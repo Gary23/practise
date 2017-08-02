@@ -1,0 +1,36 @@
+ul {
+	font-size: 14px;
+	color: #8f8f94;
+}
+
+.mui-content .mui-btn {
+	padding: 10px;
+	display: block;
+	margin: 30px auto;
+	width: 200px;
+}
+
+.mui-content-padded {
+	padding-top: 60px;
+}
+
+.mui-popup-text .mui-spinner {
+	position: absolute;
+	left: 55px;
+	top: 0;
+}
+
+.mui-popup-text .content {
+	position: absolute;
+	left: 85px;
+	top: 2px;
+}
+
+.mui-popup-text {
+	position: relative;
+	height: 30px;
+}
+
+.mui-popup-input input {
+	margin: 0;
+}

@@ -1,0 +1,122 @@
+.mui-table-view-cell {
+	padding: 10px 10px;
+}
+
+.mui-content-padded {
+	margin: 45px 0 0 0;
+}
+
+.mui-media-body .price em {
+	color: #ff851d;
+	font-style: normal;
+}
+
+.mui-media-body .title {
+	font-size: 1rem;
+	color: #333333;
+}
+
+.mui-table-view .mui-media-object {
+	line-height: 5rem;
+	height: 5rem;
+	max-width: 5rem;
+}
+
+.mui-navigate-right:after,
+.mui-push-right:after {
+	content: '';
+}
+
+.mui-table-view .beizhu {
+	margin: 10px 10px 0 0;
+}
+
+.mui-table-view .mui-media-body {
+	width: 70%;
+}
+
+.mui-content-padded .wait {
+	text-align: center;
+}
+
+.tab-button-1,
+.tab-button-2 {
+	padding: 5px 10px;
+}
+
+#popover {
+	height: 150px;
+}
+
+#popover p {
+	color: #333333;
+	word-break: break-word;
+	padding: 10px 20px;
+}
+
+.mui-content .fixed {
+	position: fixed;
+	top: 44px;
+	z-index: 99;
+	background: #ffffff;
+}
+
+.loading-btn {
+	margin: 0 15px;
+}
+.loading-btn .mui-btn-block {
+	margin: 6px 0;
+	padding: 5px 0;
+}
+
+/*备注信息部分*/
+.mui-popup-inner {
+	/*min-height: 150px;*/
+	max-height: 300px;
+	overflow: hidden;
+}
+
+.mui-popup-text {
+	
+	overflow: hidden;
+}
+
+.mui-scroll-wrapper {
+	position: relative;
+	max-height: 230px;
+	margin-top: 10px;
+}
+
+.mui-scroll {
+	position: relative;
+	overflow: hidden;
+}
+
+.mui-scroll p {
+	word-break: break-word;
+	color: #333333;
+}
+
+
+#backdrop {
+    position: fixed;
+    z-index: 998;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.3);
+    overflow: hidden;
+}
+
+.first-loading {
+	background-color: #efeff4;
+	border: none;
+	position: relative;
+	text-align: center;
+}
+
+.first-loading .text {
+	position: relative;
+	top: -5px;
+}

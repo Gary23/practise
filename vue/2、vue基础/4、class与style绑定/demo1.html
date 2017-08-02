@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绑定HTML Class的对象语法</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<script>
+    /**
+     * 数据绑定一个常见需求是：操作元素的class列表，和他的内联样式。因为他们都是属性所以可以用 v-bind 处理他们
+     * 但是字符串拼接麻烦又易错。因此在 v-bind 用于class和style时，vue专门增强了它。表达式的结果类型除了字符串之外，还可以是对象或数组。表达式结果类型除了字符串之外还可以是对象或数组。
+     */
+</script>
+<div id="app">
+    <!--绑定HTML Class-->
+    <!--这里class是否为active取决于isActive是否为真-->
+    <div v-bind:class="{ active: isActive }"></div>
+
+    <!--也可以在对象中传入更多属性用来动态切换多个class，此外，v-bind:class指令可以与普通的class属性共存-->
+    <div class="static"
+         v-bind:class="{ active: isActive, 'text-danger': hasError }">
+    </div>
+
+    <!--通过一个对象获取class名-->
+    <div v-bind:class="classObject"></div>
+</div>
+
+<div id="app2">
+    <div v-bind:class="classObject"></div>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isActive: true,     // class="active"
+            hasError: false,     // class="static active",如果为true就是class="static active text-danger"
+            classObject: {      // class="active text-danger"
+                active: true,
+                'text-danger': true
+            }
+        },
+        computed:{
+            classObject:function(){
+                return {
+                    active:this.isActive && !this.error,
+                }
+            }
+        }
+    })
+
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            isActive: true,
+            error: null
+        },
+        computed: {
+            classObject: function () {      // class="active"
+                return {
+                    active: this.isActive && !this.error
+                }
+            }
+        }
+    })
+
+    app2.isActive = false;      // class=""
+</script>
+</body>
+</html>

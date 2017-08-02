@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+计算属性
+为什么要有计算属性：模板是为了描述视图的结构，模板中放入太多逻辑，导致模板过重且难以维护。
+
+
+在计算一个计算属性时，vue更新它的依赖列表并缓存结果，只有当其中一个依赖发生了变化，缓存的结果才是无效的。
+展开理解的话就是，计算属性中是需要用到数据的，数据改变时，计算属性才去重新改变
+
+new Vue({
+    ...
+    computed: {
+        length: function(){     // length的值就取决于return的值
+            return xxx;
+        }
+    }
+})
+-->
+</body>
+</html>

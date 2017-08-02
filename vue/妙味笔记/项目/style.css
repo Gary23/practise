@@ -1,0 +1,208 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+img {
+    display: block;
+    border: none;
+}
+
+ul, li, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+label {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.lf {
+    float: left;
+}
+
+.rf {
+    float: right;
+}
+
+.block {
+    display: block;
+}
+
+.none {
+    display: none;
+}
+
+.inline {
+    display: inline;
+}
+
+.inline-b {
+    display: inline-block;
+}
+
+.hidden {
+    overflow: hidden;
+}
+
+.del {
+    color: #ccc;
+    text-decoration: line-through;
+    font-style: italic;
+}
+
+#top {
+    width: 100%;
+    height: 60px;
+    background-color: rgb(255, 144, 116);
+    border-bottom: 1px solid #cccccc;
+}
+
+#top .top-main {
+    width: 800px;
+    margin: 0 auto;
+    height: 60px;
+}
+
+#top .top-main h1 {
+    line-height: 60px;
+    color: #333;
+    font-size: 20px;
+}
+
+#todo {
+    width: 800px;
+    height: auto;
+    margin: 0 auto;
+}
+
+#todo .add-todo {
+    padding:20px 0;
+}
+
+#todo .add-todo textarea {
+    border:1px solid #ccc;
+    color: #666;
+    font-size: 18px;
+    margin-top: 10px;
+    max-width:800px;
+    min-width:800px;
+    height:30px;
+    line-height:30px;
+}
+
+#todo .view-todo {
+    padding: 5px 0;
+}
+
+#todo .view-todo .num {
+    color: rgb(225,30,30);
+    padding-left: 10px;
+}
+
+#todo .view-todo .tab a{
+    color: #666;
+    border:1px solid #666;
+    border-radius: 5px;
+    padding:2px 10px;
+    margin-right:10px;
+    cursor: pointer;
+}
+
+#todo .view-todo .tab a.active {
+    background-color: #333;
+    color: #fff;
+}
+
+#todo .view-todo .tab span:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+#todo .list-todo {
+    margin-top: 20px;
+}
+
+#todo .list-todo ul {
+    margin-top: 20px;
+    background-color: #eee;
+}
+
+#todo .list-todo ul li {
+    padding:15px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #bbb;
+    position: relative;
+}
+
+#todo .list-todo ul li p {
+    width: 600px;
+    /*overflow: hidden;*/
+}
+
+#todo .list-todo ul li span {
+    margin-right: 20px;
+    background-color: rgb(190,35,0);
+    color: #fff;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#todo .list-todo ul li span:hover {
+    background-color: rgb(210,0,0);
+}
+
+
+#todo .list-todo input[type="checkbox"] {
+    margin: 0 15px;
+}
+
+#todo .list-todo .msg {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.edit {
+    position: absolute;
+    height:30px;
+    width: 600px;
+    left:45px;
+    top:50%;
+    margin-top: -15px;
+    font-size: 16px;
+    line-height:16px;
+    color: #333;
+    border: 1px solid #cccccc;
+    display: none;
+}
+
+li.edtor .edit {
+    display: block;
+}
+
+li.edtor input[type="checkbox"],
+li.edtor > p {
+    display: none;
+}
+
+
+
+
+
+
+
+
+

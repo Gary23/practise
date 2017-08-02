@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>插值</title>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+	<div id="app">
+		<!--vue使用了基于html的模板语法，允许开发者声明式的将DOM绑定至底层Vue实例的数据。
+	所有vue的模板都是合法的html，所以能被遵循规范的浏览器和html解析器解析-->
+
+		<!--在底层实现上，vue将模板编译成虚拟DOM渲染函数。结合响应系统，在应用状态改变时，
+	vue能够智能的计算出重新渲染组件的最小代价并应用到DOM操作上。-->
+
+		<!--数据绑定最常见的形式就是使用'Mustache'语法(双大括号)的文本插值：-->
+		<p>{{ msg }}</p>
+
+		<!--通过使用v-once指令，也可以执行一次性插值，当数据改变插值处的内容不会更新-->
+		<p v-once>this will never change: {{ msg }}</p>
+	
+		<!--双大括号会将数据解释为纯文本，而非html，为了输出真正的html，你需要使用v-html命令-->
+		<!--这个div的内容将被替换为属性值rawHtml。-->
+		<!--另外插值容易导致xss攻击，最好只对可信内容使用html插值，绝对不要对用户提供的内容-->
+		<div v-html="rawHtml"></div>
+		
+		<!--在Mustache不能再html属性中使用，但可以使用bind指令-->
+		<div v-bind:id="dynamiced"></div>
+		<input type="text" v-bind:disabled="isButtonDisabled">
+
+		<!--对于所有数据绑定，vue都提供了完全的javascript表达式支持-->
+		<!--但是有个限制就是只能包含单个表达式，一个语句不行-->
+		<div v-bind:id="'list-' + id"></div>
+		<div>{{ number + 1 }}</div>
+		<div>{{ message.split('').reverse().join('') }}</div>
+	</div>
+	<script>
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				msg: '插值',	// 直接设置html文本内容
+				rawHtml: 'rawHtml',	// 通过设置属性的方式设置html内容
+				dynamiced:'box',	// v-bind:id="dynamiced" -> id="box"
+				isButtonDisabled:true,	// 设置为false，button中就没有disabled属性，设置为true就是disabled="disabled"
+				id: 'box',	// v-bind:id="'list-' + id" -> id="list-box"
+				number: 10,		// {{ number + 1 }} -> 11
+				message: '12345678'	   // {{ message.split('').reverse().join('') }} -> 87654321
+			}
+		})
+		// 使用v-once指令的不会再改变
+		vm.msg="插值和属性"
+	</script>
+</body>
+</html>

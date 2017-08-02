@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>缩写</title>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<!--对于常用指令每次在前面加一个v-会感觉比较繁琐
+	因此，vue为两个最常用的指令提供了特别的缩写-->
+
+	<!--正常写法-->
+	<a v-bind:href="url"></a>
+	<a v-on:click="doSomething"></a>
+
+	<!--缩写-->
+	<a :href="url"></a>
+	<a @click="doSomething"></a>
+
+	<script>
+	
+	</script>
+</body>
+</html>

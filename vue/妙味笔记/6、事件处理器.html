@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+通过v-on指令来监听dom事件触发代码
+语法：v-on:eventName="eventHandle"
+简写：@
+事件处理函数在methods中统一处理
+<button v-on:click="addTodo"></button>
+
+new Vue({
+    ...
+    methods: {
+        addTodo: function(event){
+
+        }
+    }
+})
+
+但是要注意，这里如果这样写：
+<button v-on:click="addTodo('123')"></button>
+这样在addTodo里event参数就不是事件对象了
+所以如果传参后扔需要事件对象就这样写
+<button v-on:click="addTodo('123',$event)"></button>
+
+new Vue({
+    ...
+    methods: {
+        addTodo: function(str,event){
+
+        }
+    }
+})
+-->
+
+<!--
+事件修饰符
+事件处理函数只有纯粹的逻辑判断，不处理dom事件的细节，例如：阻止冒泡、取消默认行为、判断按键
+格式：v-on:eventName.修饰符
+修饰符：.stop阻止冒泡 .prevent取消默认行为 .capture .self .once只触发一次
+按键修饰符：.enter .tab  .delete等等，也可以输入键值
+-->
+
+
+</body>
+</html>

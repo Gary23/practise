@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绑定HTML Class的数组语法</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-bind:class="[activeClass,errorClass]"></div>
+        <div v-bind:class="[isActive?activeClass:'',errorClass]"></div>
+        <!--上面这样写起来有点繁琐，也可以写成下面的写法，效果是相同的-->
+        <div v-bind:class="[{ active:isActive },errorClass]"></div>
+    </div>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{      // class="active text-danger"
+                activeClass:'active',
+                errorClass:'text-danger',
+                isActive:false      // 第二个div元素class="text-danger"
+            }
+        })
+    </script>
+</body>
+</html>

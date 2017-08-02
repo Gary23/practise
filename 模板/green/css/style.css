@@ -1,0 +1,132 @@
+img {
+    border: none;
+    display: block;
+}
+#content {
+    width: 100%;
+    overflow: hidden;
+}
+
+/*轮播图部分*/
+#content .slide{
+    width: 1920px;
+    height: 600px;
+    position: relative;
+    left: 50%;
+    margin-left: -960px;
+    overflow: hidden;
+}
+
+#content .slide .slide-pic,
+#content .slide .slide-pic a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#content .slide .slide-pic ul {
+    width: 8000px;
+    height: 100%;
+    position: absolute;
+    /*left: -1920px;*/
+}
+#content .slide .slide-pic li {
+    width: 1920px;
+    height: 600px;
+    float: left;
+}
+#content .slide .tabs {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background-color: rgba(102, 102, 102, 0.6);
+    bottom: 0;
+    z-index: 99;
+    text-align: center;
+}
+
+#content .slide .tabs span {
+    display: inline-block;
+    line-height: 30px;
+    width: 100px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    background-color: rgba(250,250,250,0.6);
+    cursor: pointer;
+}
+
+#content .slide .tabs span.current {
+    background-color: rgba(0,0,0,0.6);
+    color: #ccc;
+}
+
+/*快速导航部分*/
+#content .nav,
+#content .shop {
+    width: 1920px;
+    overflow: hidden;
+    position: relative;
+    left: 50%;
+    margin-left: -960px;
+}
+
+#content .nav .main,
+#content .shop .main {
+    width: 990px;
+    overflow: hidden;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+#content .title {
+    height: 60px;
+    text-align: center;
+    margin: 30px 0;
+    position: relative;
+}
+#content .title h4 {
+    font-size: 40px;
+    line-height: 60px;
+    letter-spacing: 6px;
+}
+#content .title a{
+    position: absolute;
+    font-size: 18px;
+    right: 0px;
+    bottom: 0;
+}
+#content .items a{
+    display: block;
+    width: 323px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#content .items a:nth-child(3n){
+    margin-right: 0;
+    float: right;
+}
+
+#content .big-items a{
+    display: block;
+    width: 490px;
+    margin-bottom: 10px;
+}
+#content .big-items a:nth-child(odd){
+    float: left;
+}
+
+#content .big-items a:nth-child(even){
+    float: right;
+    background: none;
+    cursor: default;
+}
+
+
+
+
+
+
+

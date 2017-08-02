@@ -1,0 +1,566 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="full-screen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+    <title>商品标题</title> <!--网站标题-->
+    <!--<base href="http://m.meiquan8.com/" />-->
+    <link rel=stylesheet type=text/css href="./css/style.css" />
+    <script type="text/javascript" src="./js/index.js"></script>
+    <style>
+        .go_top {
+            width: 45px;
+            height: 45px;
+            background: url(./images/gotop.png) no-repeat 0 0;
+            background-size: cover;
+            display: inline-block;
+            position: fixed;
+            right: 10px;
+            bottom: 65px;
+            z-index: 999;
+            display: none;
+        }
+    </style>
+</head>
+<body><script src="./js/draggabilly.pkgd.min.js"></script>
+<script src="./js/dynamics.min.js"></script>
+<script src="./js/main.js"></script>
+<script src="./js/layer.js"></script>
+<link href="./css/dialog.css" rel="stylesheet" type="text/css"/>
+<style>
+    body{
+        padding-bottom:0
+    }
+    /*#weixincoupon{ position: fixed;	top:0;	left:0;	width:100%;	height:100%;background:rgba(0, 0, 0, 0.7);	display:none;z-index:20000;}*/
+    /*#weixincoupon img {position: fixed;right: 0;top:0;width: 100%;z-index:20001;}*/
+</style>
+<div style="height:100%; padding-bottom:3em;">
+    <!--轮播图区域-->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <!--首张图片-->
+            <div class="swiper-slide"><img data-original="./images/desc_first.jpg" class="lazy" src="./images/lazyload-1.png" style="width:100%;"></div>
+            <div class="swiper-slide"><img  class="lazy" src="./images/desc_second.jpg" style="width:100%;"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <!--返回-->
+        <div class="fanhui_btn" onClick="window.history.go(-1);"><img src="./images/fanhui_btn.png" width="30"></div>
+        <!--回到首页-->
+        <div class="close_btn"><a href="http://m.meiquan8.com"><img src="./images/guanbi_close.png" width="30"></a></div>
+    </div>
+
+    <!--商品的标题、销量部分-->
+    <div class="mid_with">
+        <div class="xq_title">
+            <div class="xq_biaoti">申士商务笔记本日记本定制</div>
+            <!--<div class="xq_laiyuan tianmao">天猫</div>-->
+            <div class="xq_laiyuan tianmao">天猫</div>
+            <div style="clear:both;"></div>
+        </div>
+        <div class="xq_title xiq_prr">
+            <span class="price"><i style="font-size:0.75em">¥</i>8.9</span>
+            <font class="shengyu">领券立减 <i class="red">¥<em class="sprice">3</em></i>，实际仅 <i class="red">¥<em class="sprice">5.9</em></i></font>   <font class="shengyu">已热销12517笔</font>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+
+    <!--小编酷评部分-->
+    <div class="mid_with" style="margin-top:0.5em; border-top:1px solid #e7e7e7;">
+        <div class="xq_title">
+            <span class="xq_biaoti_2">小编酷评：</span>
+            <span class="xq_biaoti_3">月销2万本，4.9分好评，高档莱尼纹精选PU革封面，手感极佳，纹理清晰；线装式装订不掉页，圆角工艺，护眼米黄色内页！</span>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+
+    <!--购物顺序部分-->
+    <div class="mid_with" style="margin-top:0.5em; border-top:1px solid #e7e7e7; ">
+        <div class="xq_title" >
+            <span class="s_tiaoli"><i class="iconfont_wap tiaoli">&#xe8bf;</i>先领独家优惠券</span>
+            <span class="s_tiaoli"><i class="iconfont_wap tiaoli">&#xe8c1;</i>再下单</span>
+            <span class="s_tiaoli"><i class="iconfont_wap tiaoli">&#xe8c0;</i>拿到宝贝</span>
+        </div>
+    </div>
+
+    <!--图文详情-->
+    <div style="margin:0;">
+        <div id="dianji" onclick="view_desc('822801');" class="mid_with" style="margin-top:0.5em; border-top:1px solid #e7e7e7; ">
+            <div class="xq_title" >
+                <span style="font-size:0.875em;">查看图文详情&nbsp;<i class="iconfont_wap">&#xe816;</i></span>
+            </div>
+        </div>
+        <div style="display:inline-block; margin-top:1em; width:100%; line-height:1.5em;">
+            <span id="desc" class="zdm_tb" style="float:left;"></span>
+        </div>
+        <style>
+            .zdm_tb img{
+                width:100%;
+            }
+            #weixindown {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                display: none;
+                z-index: 20000;
+            }
+        </style>
+        <div style="clear:both;"></div>
+    </div>
+</div>
+
+
+<!--底部立即领券部分-->
+<footer class="lq_footer">
+    <a class="footer_left" style="width:40%;">下单即减<font color="#f60" style="font-size:1.25em;">&nbsp;34%</font></a>
+    <!--弹出优惠券淘口令-->
+    <a onClick="tkltip();" class="footer_left fen" style="width:20%; background:#ff9502;"><img src="./images/tkl.png" style="width:45%; margin:0.25em auto 0;" /></a>
+    <!--弹出立即领券-->
+    <a onClick="buy();" class="footer_left fen" style="width:40%;">立刻领券</a>
+</footer>
+
+<!--立即领券的弹窗-->
+<div class="dialog" id="dialog-1">
+    <div class="mover-wrap dialog__content" style="margin:auto;">
+        <div class="dialog__content-inner">
+            <div class="dialog__header">
+                <h2>轻松两步拿优惠</h2>
+                <button class="action action--close">
+                    <i class="icon iconfont_wap">&#xe77c;</i>
+                    <span class="text-hidden">Close dialog</span>
+                </button>
+            </div>
+            <div class="dialog__body">
+                <div class="actions" style="overflow:inherit; padding:1em 0 0;">
+                    <div class="mover__element">
+                        <div class="action--download" style=" height:5em; line-height:2em; margin:1em 0 0 1.5em; display:inline-block; width:100%;">
+                                    <span class="action__title" style="margin-right:-1rem;"><i class="iconfont_wap">&#xe8b0;</i>
+                                    	<p>领取优惠券</p>
+                                    </span>
+                            <span class="action__title mid"><i class="iconfont_wap" style="font-size:1.5em;">&#xe818;</i><p></p></span>
+                            <span class="action__title" style="margin-left:-1rem;"><i class="iconfont_wap">&#xe7e7;</i>
+                                    	<p>去淘宝购买</p>
+                                    </span>
+                        </div>
+                    </div>
+                    <div class="mover__element">
+                        <button class="action action action--download" style="width:50%; float:left;">
+                            <span class="gt_btn_jianb" style="margin-right:-1em;" id="go_buy">前去领券</span>
+                        </button>
+                        <button class="action action action--download" style="width:50%; float:left;">
+                            <span class="gt_btn_jianb" id="no_tip">不再提示</span>
+                        </button>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div class="mover__element" style="background:#eee;">
+                        <div class="action action--download">
+                            <span class="action__subline"><i class="iconfont_wap">&#xe629;</i></span>
+                            <a href="http://m.meiquan8.com/index.php?mod=help&act=wap_help" class="action__subline">购买帮助</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--优惠券淘口令的弹窗-->
+<div class="dialog" id="dialog-2">
+    <div class="mover-wrap dialog__content" style="margin:auto;">
+        <div class="dialog__content-inner">
+            <div class="dialog__header">
+                <h2>轻松两步拿优惠</h2>
+                <button class="action action--close">
+                    <i class="icon iconfont_wap">&#xe77c;</i>
+                    <span class="text-hidden">Close dialog</span>
+                </button>
+            </div>
+            <div class="dialog__body">
+                <div class="actions">
+                    <div class="mover__element" style="color:#606060">
+
+                        <span style="font-weight:bold; width:92%;line-height:2em; margin-top:0.5em;text-align:left;display:inline-block;font-size:0.875em; "><!--一、-->优惠券淘口令</span>
+                        <div style="width:92%; min-height:5.1em; background:url(./images/tkl_caozuo.png) no-repeat; background-size:100%; margin:0 auto; margin-bottom:0.5em;">
+                            <textarea class="action--download" style="text-align:left; margin-top:0.25em; width:92%; float:left; margin-left:0.5em; line-height:1.7em; padding:0.25em; border:0 none; font-size:0.875em; height:3.4em; color:#606060">复制红框内信息打开→手机淘宝←即可领优惠券￥c04UZHF5nUk￥</textarea>
+                        </div>
+                    </div>
+
+                    <div class="mover__element" style="background:#eee;">
+                        <div class="action action--download" style="padding:1em;">
+                            <span class="action__subline">
+                                <!--<p align="left" style="margin-bottom:0.5em;color:#606060">1.复制优惠券淘口令去领取</p>
+                                <p align="left" style="margin-bottom:0.5em;color:#606060">2.复制商品链接淘口令去购买</p>-->
+                                <p align="left">
+                                    <span class="action__subline"><i class="iconfont_wap">&#xe629;</i></span>
+                                    <a class="action__subline" href="http://m.meiquan8.com/index.php?mod=help&act=wechat_help" style="color:#606060">购买帮助</a>
+                                </p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--秒杀的弹框-->
+<div class="dialog" id="dialog-3">
+    <div class="mover-wrap dialog__content" style="margin:auto;">
+        <div class="dialog__content-inner">
+            <div class="dialog__header">
+                <h2>秒杀说明</h2>
+                <button class="action action--close">
+                    <i class="icon iconfont_wap">&#xe77c;</i>
+                    <span class="text-hidden">Close dialog</span>
+                </button>
+            </div>
+            <div class="dialog__body">
+                <div class="actions" style="overflow:inherit; padding:1em 0 0;">
+                    <div class="mover__element">
+                        <div style="width: 90%; margin:0.5em auto; line-height: 1.5em;text-align: center;">
+                            本商品为限量、限时秒杀商品<p>无需领优惠券抵扣。</p>
+                            <br>
+                            <p style="font-size: 0.75em;">注意：尽快下单后请及时付款否则随时可能涨价哦。</p>
+                        </div>
+                    </div>
+                    <div class="mover__element">
+                        <button class="action action action--download" style="width:50%; float:left;">
+                            <a class="footer_left fen" href="http://m.meiquan8.com/index.php?mod=jump&act=index&app=0&a=tb&iid=542188058963&url=http%3A%2F%2Fuland.taobao.com%2Fcoupon%2Fedetail%3FitemId%3D542188058963%26qq-pf-to%3Dpcqq.group%26dx%3D1%26pid%3Dmm_16244182_14744959_57678672%26src%3Dddkj_ctaoke%2526unid%253da4a1a0a0a0%26nowake%3D1" data-itemid="542188058963" target="_blank"><span class="gt_btn_jianb" style="margin-right:-1em;">前去秒杀</span></a>
+                        </button>
+                        <button class="action action action--download" style="width:50%; float:left;">
+                            <span class="gt_btn_jianb" id="no_miaosha">不再提示</span>
+                        </button>
+                        <div style="clear:both;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="dialog" id="dialog-4">
+    <div class="mover-wrap dialog__content" style="margin:auto;">
+        <div class="dialog__content-inner">
+            <div class="dialog__header">
+                <h2>轻松去秒杀</h2>
+                <button class="action action--close">
+                    <i class="icon iconfont_wap">&#xe77c;</i>
+                    <span class="text-hidden">Close dialog</span>
+                </button>
+            </div>
+            <div class="dialog__body">
+                <div class="actions">
+                    <button class="action action action--download" style="width:50%; margin:auto">
+                        <span class="gt_btn_jianb" style="margin-right:-1em;" onclick="browser();">用浏览器购买</span>
+                    </button>
+                    <div class="mover__element" style="color:#606060">
+                        <div style="width: 90%; margin:0.5em auto; line-height: 1.5em;text-align: center;">
+                            本商品为限量、限时秒杀商品<p>无需领优惠券抵扣。</p>
+                            <br>
+                            <p style="font-size: 0.75em;">注意：尽单后请及时付款,随时可能涨价哦。</p>
+                        </div>
+                        <div style="width:92%; min-height:5.1em; background:url(./images/tkl_caozuo.png) no-repeat; background-size:100%; margin:0 auto; margin-bottom:0.5em;">
+                            <textarea class="action--download" style="text-align:left; margin-top:0.25em; width:92%; float:left; margin-left:0.5em; line-height:1.7em; padding:0.25em; border:0 none; font-size:0.875em; height:3.4em;color:#606060">复制红框内信息打开→手机淘宝←购买【申士商务笔记本】￥c04UZHF5nUk￥</textarea>
+                        </div>
+                    </div>
+
+                    <div class="mover__element" style="background:#eee;">
+                        <div class="action action--download" style="padding:1em;">
+                            <span class="action__subline">
+                                <p align="left" style="margin-bottom:0.5em;color:#606060">复制秒杀商品链接淘口令去购买</p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="weixincoupon" onClick="document.getElementById('weixincoupon').style.display='';">
+    <img src="m/template/jrzdm/inc/images/weixincoupon.png">
+</div>
+<div id="weixindown" onClick="document.getElementById('weixindown').style.display='';" style="display:none; height:100%">
+
+    <a href="http://m.meiquan8.com/index.php?mod=app_d&act=index" class="download" id="apple" ><img src="m/template/jrzdm/inc/images/iphone.png" width="100%"></a>
+</div>
+<script>
+    var is_weixin = 0;
+    var is_anzhuo = 0;
+
+    $(function(){
+        var tishi_4=getCookie('tishi_4');
+        if(tishi_4!=1){
+            $('.tishi_4').show();
+        }
+    });
+
+    function close_tishi(t){
+        setCookie('tishi_'+t,1,33971000);
+        $('.down_app').hide();
+    }
+
+    //淘口令的点击执行函数
+    function tkltip(){
+        //url是一个秒杀的链接
+        $.get('http://m.meiquan8.com/index.php?mod=coupon&act=view&buy_log=1&iid='+542188058963,function(data){
+            var dialog = new DialogEl(document.getElementById('dialog-2'), {
+                mainElement : {
+                    minscale : 0.6,
+                    minopacity : 0.5,
+                    rY : 40
+                },
+                innerElements : {tx : 100, ty : 100},
+                outofbounds: {x : 0, y: 0}
+            });
+            dialog.open();
+            return false;
+        });
+    }
+
+    // 立即领券的弹窗
+    function buy(g_tkl,c_tkl){
+        if(is_weixin==1 && is_anzhuo==0){
+
+            $.get('http://m.meiquan8.com/index.php?mod=coupon&act=view&buy_log=1&iid='+542188058963,function(data){
+                var dialog = new DialogEl(document.getElementById('dialog-2'), {
+                    mainElement : {
+                        minscale : 0.6,
+                        minopacity : 0.5,
+                        rY : 40
+                    },
+                    innerElements : {tx : 100, ty : 100},
+                    outofbounds: {x : 0, y: 0}
+                });
+                dialog.open();
+                return false;
+            });
+            /*$('#goods_tkl').val(g_tkl);
+             $('#coupon_tkl').val(c_tkl);*/
+        }else{
+            if(typeof(getCookie('buytip'))=='undefined'){
+                var dialog = new DialogEl(document.getElementById('dialog-1'), {
+                    mainElement : {
+                        minscale : 0.6,
+                        minopacity : 0.5,
+                        rY : 40
+                    },
+                    innerElements : {tx : 100, ty : 100},
+                    outofbounds: {x : 0, y: 0}
+                });
+                dialog.open();
+            }else{
+                location_jump();
+            }
+        }
+    }
+
+    //跳转到淘宝,通过发送ajax确定跳转的页面
+    function location_jump(){
+        /*window.location="http://m.meiquan8.com/index.php?mod=coupon&act=lq"+"&id="+819419;*/
+        $.get('http://m.meiquan8.com/index.php?mod=coupon&act=view&buy_log=1&iid='+542188058963,function(data){
+            window.location="http://uland.taobao.com/coupon/edetail?itemId=542188058963&qq-pf-to=pcqq.group&dx=1&pid=mm_16244182_14744959_57678672&src=ddkj_ctaoke%26unid%3da4a1a0a0a0&nowake=1&activityId=87036a71e69c42e1ae6a255a9debc95f";
+        });
+    }
+
+    // 秒杀的弹窗
+    function miaosha(){
+        if(is_weixin==1 && is_anzhuo==0){
+            var dialog = new DialogEl(document.getElementById('dialog-4'), {
+                mainElement : {
+                    minscale : 0.6,
+                    minopacity : 0.5,
+                    rY : 40
+                },
+                innerElements : {tx : 100, ty : 100},
+                outofbounds: {x : 0, y: 0}
+            });
+            dialog.open();
+            return false;
+        }else{
+            if(typeof(getCookie('miaoshatip'))=='undefined'){
+                var dialog = new DialogEl(document.getElementById('dialog-3'), {
+                    mainElement : {
+                        minscale : 0.6,
+                        minopacity : 0.5,
+                        rY : 40
+                    },
+                    innerElements : {tx : 100, ty : 100},
+                    outofbounds: {x : 0, y: 0}
+                });
+                dialog.open();
+                return false;
+            }else{
+                $('#miaosha_div').click();
+            }
+        }
+    }
+
+    $(function(){
+        $('#weixindown').click(function(){
+            $(this).hide();
+        });
+
+        // 直接去购买
+        $('#go_buy').click(function(){
+            location_jump();
+        });
+        // 不再提示后直接跳转
+        $('#no_tip').click(function(){
+            setCookie('buytip',1,60*60*24*365﻿﻿);
+            location_jump();
+        });
+        // 秒杀购买跳转
+        $('#miaosha_buy').click(function(){
+            window.location=$('#miaosha_div').attr('href');
+        });
+        // 秒杀的不再提示
+        $('#no_miaosha').click(function(){
+            setCookie('miaoshatip',1,60*60*24*365﻿﻿);
+            window.location=$('#miaosha_div').attr('href');
+        });
+        $('.swiper-wrapper img.lazy').lazyload({
+            threshold:20,
+            failure_limit:50
+        });
+    })
+
+    // 图文详情的点击执行函数,这里如果测试时候获取不到那么把上面的id参数换一个(商品有时效)，data回调的就是一些img标签
+    function view_desc(id){
+        $('#dianji').html('<div class="xq_title"><span style="font-size:0.875em;">正在加载中...</span></div>');
+        $.get('http://m.meiquan8.com/index.php?mod=coupon&act=view&desc=1&id='+id,function(data){
+            $('#dianji').hide();
+            $('#desc').html(data);
+        });
+    }
+    function browser(){
+        document.getElementById('weixincoupon').style.display='block';
+    }
+    function browser_download(){
+        document.getElementById('weixindown').style.display='block';
+    }
+
+
+    if((navigator.userAgent.indexOf('Android') > -1 || navigator.userAgent.indexOf('Linux') > -1) && (navigator.userAgent.indexOf('UCBrowser') > -1)) {
+        var a=window.innerHeight;
+        var b=$('.dialog__content-inner').height();
+        $('.dialog__content').css('margin-top',((a-b)/2)+'px');
+    }
+</script>
+<script>
+    // 初始化轮播图
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true
+    });
+
+    /*苹果mac safari 下不打开*/
+    openApp.ini('appcan11527684','goods_id=819419','http://m.meiquan8.com/index.php?mod=app_d&act=index');
+    var is_weixin = 0;
+    function gotoplay(scene) {
+        var gourl = "/act/pengYouQuan/my.php?sv=" + scene;
+        location.href = gourl;
+    }
+    function safetostring(str) {
+        return String(str).replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+    }
+    setTimeout(function () {
+        var cw = $('.list-img').width();
+    }, 0);
+    $(document.body).show();
+
+    function hideActionSheet(weuiActionsheet, mask) {
+        weuiActionsheet.removeClass('weui_actionsheet_toggle');
+        mask.removeClass('weui_fade_toggle');
+        weuiActionsheet.on('transitionend', function () {
+            mask.hide();
+        }).on('webkitTransitionEnd', function () {
+            mask.hide();
+        })
+    }
+    function showActionSheet() {
+        var mask = $('#mask');
+        var weuiActionsheet = $('#weui_actionsheet');
+        weuiActionsheet.addClass('weui_actionsheet_toggle');
+        mask.show().addClass('weui_fade_toggle').click(function () {
+            hideActionSheet(weuiActionsheet, mask);
+        });
+        $('#actionsheet_cancel').click(function () {
+            hideActionSheet(weuiActionsheet, mask);
+        });
+        weuiActionsheet.unbind('transitionend').unbind('webkitTransitionEnd');
+    }
+    $('#list').not(".noplayimg").on('click', function () {
+        showActionSheet();
+    });
+    $('img').not(".noplayimg").on('click', function (e) {
+        if(is_weixin==1){
+            document.getElementById('weixinshare').style.display='block';
+            return false;
+        }
+        showActionSheet();
+    });
+    $('.play_pyq').on('click', function () {
+        var scene = $(this).data("scene");
+        gotoplay(scene);
+    });
+</script>
+
+<script type="text/javascript">
+
+    // 淘宝聚划算
+    (function(win,doc){
+        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
+        if (!win.alimamatk_show) {
+            s.charset = "gbk";
+            s.async = true;
+            s.src = "http://m.meiquan8.com/data/tkapi/tkapi.js";
+            h.insertBefore(s, h.firstChild);
+        };
+        var o = {
+            pid: "mm_16244182_14744959_72850244",
+            appkey: "",
+            unid: "0",
+            type: "click"
+        };
+        win.alimamatk_onload = win.alimamatk_onload || [];
+        win.alimamatk_onload.push(o);
+    })(window,document);
+
+    function get_click_url($t){
+        var url=$t.attr('href');
+        if(typeof url!='undefined' && url!='' && url.indexOf('g.click.taobao.com')>0 && url.indexOf('mod=jump')<0){
+            if(!url.match(/^http/)){
+                url='http:'+url;
+            }
+            var ddhref=$t.attr('dd-href');
+            if(ddhref.indexOf('http')<0){
+                ddhref='http://m.meiquan8.com/m/'+ddhref;
+            }
+            ddhref+=encodeURIComponent(url);
+            $t.attr('href',ddhref);
+        }
+    }
+
+    $(function(){
+        if(jQuery.fn.jquery.match(/^1\.7/)){
+            $('.click_url[isconvert=1]').live('click',function() {
+                get_click_url($(this));
+            });
+        }
+        else{ //为了兼容1.9用on方法
+            $('body').on('click','.click_url[isconvert=1]',function() {
+                get_click_url($(this));
+            });
+        }
+    })
+</script>

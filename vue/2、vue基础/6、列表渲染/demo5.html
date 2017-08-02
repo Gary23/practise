@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>key</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!--当vue用v-for正在更新已渲染过的元素列表时，它默认用'就地复用'策略。如果数据项的顺序被改变，vue将不是移动dom元素来匹配数据项的顺序，而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。-->
+
+<!--为了给vue一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一key属性。理想的Key值是每项都有唯一id。-->
+<div id="app">
+    <div v-for="item in items" v-bind:key="item.id">
+        {{ item.msg }}
+    </div>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            items: [
+                {id: '1',msg:'第一个'},
+                {id: '2',msg:'第二个'},
+                {id: '3',msg:'第三个'}
+            ]
+        }
+    })
+</script>
+</body>
+</html>

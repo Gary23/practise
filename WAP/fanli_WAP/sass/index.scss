@@ -1,0 +1,28 @@
+#rebate-main {
+  background: #efeef4;
+  padding-bottom: 1rem;
+
+  .main li {
+    -webkit-box-shadow: 0 2px 0px #dddddd;
+    -moz-box-shadow: 0 2px 0px #dddddd;
+    box-shadow: 0 2px 0px #dddddd;
+  }
+
+  .banner-img {
+    width: 100%;
+    height: 19.5%;
+    a {
+      display: block;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+  }
+  .banner-text {
+    background: #283144;
+    position: relative;
+    overflow: hidden;
+  }
+}

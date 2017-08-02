@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>坐标与窗体信息的交互</title>
+    <style>
+        body, html, #container {
+
+            margin: 0px;
+        }
+
+        #container {
+            width: 800px;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+<div id="container" tabindex="0"></div>
+<script src="../jquery1.9.1.min.js"></script>
+<script src="data1.js"></script>
+<script src="http://webapi.amap.com/maps?v=1.3&key=d391a96160db59cd2b36058b2acfe3f5"></script>
+<script>
+    var map = new AMap.Map("container", {
+        //resizeEnable: true,
+        center: [120.379857,36.104531],
+        zoom: 13
+    });
+
+    var lnglats = [
+        [120.379600,36.104100],[120.380000,36.104700],
+        [120.379400,36.104800],[120.379999,36.104000]
+    ]
+    // 初始化一个简单的窗体信息
+    var infoWindow = new AMap.InfoWindow();
+
+    for(var i = 0; i < lnglats.length;i++){
+        marker = new AMap.Marker({
+            position:lnglats[i],
+            map:map,
+        })
+        // 这里是普通的给对象增加一个属性，和高德内置的方法没关系
+        marker.content="我是第" + i+ "个信息";
+
+        marker.on('click',markerClick);
+
+        function markerClick(e){
+            // e应该指的是每一个坐标的信息，从这里获取刚才设置的content属性值
+            infoWindow.setContent(e.target.content);
+            // 打开窗体信息的位置
+            infoWindow.open(map,e.target.getPosition());
+        }
+    }
+</script>
+</body>
+</html>

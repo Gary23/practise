@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./jquery1.9.1.min.js">
+    
+  </script>
+  <script src="./jquery.lazyload.js">
+    
+  </script>
+</head>
+<body>
+  <img src="" alt="" class="lazy" width="640" height="480" data-original="./images/1.jpg">
+  <img src="" alt="" class="lazy" width="640" height="480" data-original="./images/1.jpg">
+  <img src="" alt="" class="lazy" width="640" height="480" data-original="./images/1.jpg">
+  <img src="" alt="" class="lazy" width="640" height="480" data-original="./images/2.jpg">
+  <img src="" alt="" class="lazy" width="640" height="480" data-original="./images/2.jpg">
+  <img src="" alt="" class="lazy" width="640" height="480" data-original="./images/2.jpg">
+  <img src="" alt="" class="lazy" width="640" height="480" data-original="./images/2.jpg">
+  <img src="" alt="" class="lazy" width="640" height="480" data-original="./images/3.jpg">
+  <img src="" alt="" class="lazy" width="640" height="480" data-original="./images/3.jpg">
+  <img src="" alt="" class="lazy" width="640" height="480" data-original="./images/3.jpg">
+  <script>
+    $(function(){
+      $("img.lazy").lazyload({
+        effect : "fadeIn" 
+      });
+    })
+
+    // $(window).on('load',function(){
+    //   var timeout = setTimeout(function() {
+    //     $('img.lazy').trigger('sporty')
+    //   },3000);
+    // })
+
+  </script>
+
+</body>
+</html>

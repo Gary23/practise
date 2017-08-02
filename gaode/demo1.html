@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>初始化地图和坐标</title>
+    <style>
+        body, html, #container {
+
+            margin: 0px;
+        }
+
+        #container {
+            width: 800px;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+<div id="container" tabindex="0"></div>
+<script src="../jquery1.9.1.min.js"></script>
+<script src="data1.js"></script>
+<script src="http://webapi.amap.com/maps?v=1.3&key=d391a96160db59cd2b36058b2acfe3f5"></script>
+<script>
+    // 不用所有配置都写在new里边，可以之后再添加，比如：map.setMapStyle("dark");  其他配置也相同。读取配置是map.getMapStyle()
+
+
+
+    // 显示地图,zoom是缩放，center是坐标
+    // mapStyle:'normal默认||dark深色||blue_night夜空蓝||fresh浅色||light清新风格'，是这个地图的预设样式
+    // map.setFeatures("road")  只显示道路，显示多个可以传入数组，bg背景  point兴趣点  road道路  building建筑物
+    var map = new AMap.Map('container', {
+        resizeEnable: true,
+        zoom: 10,
+        center: [120.379857,36.104531]
+    });
+
+
+    // 地图控件，
+    // ToolBar工具条       集成了缩放、平移、定位等功能按钮在内的组合控件
+    // Scale比例尺     展示地图在当前层级和纬度下的比例尺
+    // Geolocation定位        用来获取和展示用户主机所在的经纬度位置
+    // OverView鹰眼       在地图右下角显示地图的缩略图
+    // MapType类别切换      实现默认图层与卫星图、实施交通图层之间切换的控
+    AMap.plugin(['AMap.ToolBar','AMap.Scale','AMap.OverView','AMap.Geolocation'],function(){
+        map.addControl(new AMap.ToolBar());
+        map.addControl(new AMap.Scale());
+        map.addControl(new AMap.OverView());
+        map.addControl(new AMap.Geolocation());
+    })
+
+    //$('.amap-geolocation-con').css('bottom','50px');
+
+
+    // 在地图上绘制坐标点  provinces是上面js文件里的数组
+    // position  是坐标点的坐标位置
+    // title  鼠标滑过的提示名称
+    // map   属性是应用在哪个地图上，直接写变量   也可以这样写marker.setMap(map);
+    // offset  图标距离坐标位置的偏移值  Pixel(-10,-34)
+    // icon  坐标显示的图标  new AMap.Icon({image: '路径',size: new AMap.Size(24, 24)});
+    // content   坐标显示的文字，也可以是dom元素  和icon只能显示其中一个
+    // topWhenClick    点击时marker是否置顶   topWhenMouseOver  移入时是否置顶  都是布尔值
+    // zindex    图标的层级  默认100
+
+    var markers = [];
+    var l = provinces.length;
+    for (var i = 0; i < l; i++) {
+        var marker;
+        marker = new AMap.Marker({
+            position: provinces[i].center.split(','),
+            title: provinces[i].name,
+            map: map
+        })
+    }
+
+</script>
+</body>
+</html>

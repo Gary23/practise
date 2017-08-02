@@ -1,0 +1,439 @@
+body {
+    background-color: #f3f3f3;
+}
+#content {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/*轮播图部分*/
+#content .slide{
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+#content .slide .yinc {
+    position: relative;
+    left: 50%;
+    margin-left: -960px;
+    overflow: hidden;
+    width: 1920px;
+    height: 100%;
+}
+#content .slide .yinc .arrow {
+    display: block;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+    z-index: 99;
+    cursor: pointer;
+    opacity: 0;
+}
+
+#content .slide .yinc .prev{
+    background: url(../image/prev.png);
+    left: 350px;
+}
+
+#content .slide .yinc .prev:hover {
+    background: url(../image/prevhover.png);
+}
+
+#content .slide .yinc .next{
+    background: url(../image/next.png);
+    right: 350px;
+}
+
+#content .slide .yinc .next:hover{
+    background: url(../image/nexthover.png);
+}
+
+#content .slide .yinc .slide-main {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+#content .slide .yinc .slide-main .bg{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+#content .slide .yinc .slide-main .bg a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+#content .slide .yinc .slide-main .bg1 a {
+    background: url("../image/slide1.jpg");
+}
+#content .slide .yinc .slide-main .bg2 a {
+    background: url("../image/slide2.jpg");
+}
+#content .slide .yinc .slide-main .bg3 a {
+    background: url("../image/slide3.jpg");
+}
+#content .slide .yinc .slide-main .bg4 a {
+    background: url("../image/slide4.jpg");
+}
+#content .slide .yinc .slide-main .bg5 a {
+    background: url("../image/slide5.jpg");
+}
+#content .slide .yinc .slide-nav {
+    position: absolute;
+    z-index: 99;
+}
+#content .slide .yinc .slide-nav li {
+    float: left;
+    width: 21px;
+    height: 25px;
+    background: url("../image/point_1.png") no-repeat center center;
+    cursor: pointer;
+}
+
+/*主体部分*/
+#content .main {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    zoom: 1;
+    overflow: visible;
+    background: url("../image/bg.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+/*快速导航部分*/
+#content .nav{
+    width: 1230px;
+    /*height: 300px;*/
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+#content .nav .nav-title,
+#content .hot .hot-title,
+#content .shop .shop-title
+{
+    width: 100%;
+    height: 50px;
+    position: relative;
+    background-color: #fff;
+}
+#content .nav .nav-title .nav-line{
+    height: 2px;
+    width: 100%;
+    background-color: #E31519;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -1px;
+}
+#content .nav .nav-title h4 {
+    position: absolute;
+    padding: 0 20px;
+    height: 30px;
+    line-height: 30px;
+    background: #fff;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    margin-top: -15px;
+    margin-left: -60px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: #E31519;
+}
+#content .nav .nav-main {
+    width: 100%;
+    height: 145px;
+    background: #FFFFFF;
+    padding: 0 15px;
+}
+#content .nav .nav-main .nav-item {
+    width: 240px;
+    height: 135px;
+    float: left;
+}
+
+#content .nav .nav-main .nav-item a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+#content .nav .nav-main .nav-item1 a {
+    background: url("../image/navitem1.jpg");
+}
+#content .nav .nav-main .nav-item2 a {
+    background: url("../image/navitem2.jpg");
+}
+#content .nav .nav-main .nav-item3 a {
+    background: url("../image/navitem3.jpg");
+}
+#content .nav .nav-main .nav-item4 a {
+    background: url("../image/navitem4.jpg");
+}
+#content .nav .nav-main .nav-item5 a {
+    background: url("../image/navitem5.jpg");
+}
+
+/*爆款区域*/
+#content .hot{
+    width: 1230px;
+    /*height: 300px;*/
+    margin-left: auto;
+    margin-right: auto;
+    overflow: visible;
+    margin-top: 20px;
+    background-color: #fff;
+}
+#content .hot .hot-title .hot-line,
+#content .shop .shop-title .shop-line
+{
+    height: 2px;
+    width: 100%;
+    background-color: #E31519;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+#content .hot .hot-title h4,
+#content .shop .shop-title h4
+{
+    position: absolute;
+    padding: 0 20px;
+    height: 30px;
+    line-height: 30px;
+    background: #fff;
+    text-align: center;
+    left: 0;
+    top: 50%;
+    margin-top: -15px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: #E31519;
+}
+#content .hot .hot-title a,
+#content .shop .shop-title a
+{
+    position: absolute;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    background: #fff;
+    text-align: center;
+    right: 0;
+    top: 50%;
+    margin-top: -15px;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: #000;
+}
+#content .hot .hot-main {
+    width: 100%;
+    height: 480px;
+    padding: 15px 15px;
+}
+
+#content .hot .hot-main .hot-item-big {
+    float: left;
+    width: 400px;
+    height: 480px;
+}
+#content .hot .hot-main .hot-item-big a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url("../image/hotitembig.jpg");
+}
+#content .hot .hot-main .hot-item {
+    float: left;
+    width: 400px;
+    height: 240px;
+}
+#content .hot .hot-main .hot-item a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+#content .hot .hot-main .hot-item1 a {
+    background: url("../image/hotitem1.jpg");
+}
+#content .hot .hot-main .hot-item2 a {
+    background: url("../image/hotitem2.jpg");
+}
+#content .hot .hot-main .hot-item3 a {
+    background: url("../image/hotitem3.jpg");
+}
+#content .hot .hot-main .hot-item4 a {
+    background: url("../image/hotitem4.jpg");
+}
+
+
+#content .shop{
+    width: 1230px;
+    /*height: 300px;*/
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    margin-top: 20px;
+    background-color: #fff;
+}
+#content .shop .shop-nav {
+    width: 100%;
+    padding: 12px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#content .shop .shop-nav .shop-tabs {
+    float: right;
+    margin-right: 20px;
+}
+
+#content .shop .shop-nav span {
+    display: inline-block;
+    padding: 2px 6px;
+    border: 1px solid #333333;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#content .shop .shop-nav span.current {
+    background-color: #E31519;
+    color: #fff;
+    border: 1px solid #E31519;
+}
+
+#content .shop .shop-main {
+    width: 100%;
+    padding: 0 15px 15px 15px;
+    overflow: hidden;
+}
+
+#content .shop .shop-main .shop-big {
+    width: 350px;
+    height: 480px;
+    float: left;
+}
+
+#content .shop .shop-main .shop-big a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+#content .shop .shop-main .shop-items {
+    width: 850px;
+    height: 480px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+}
+
+#content .shop .shop-main .shop-items ul {
+    overflow: hidden;
+    width: 5000px;
+    position: absolute;
+    left: 0;
+}
+#content .shop .shop-main .shop-items li {
+    float: left;
+    width: 850px;
+}
+#content .shop .shop-main .shop-items li div {
+    float: left;
+    width: 425px;
+    height: 240px;
+}
+#content .shop .shop-main .shop-items a {
+    display: block;
+	width: 100%;
+	height: 100%;
+}
+#content .shop.first-floor .shop-big a {
+    background: url("../image/firstfloorbig.jpg");
+}
+#content .shop.first-floor .shop-item1 a {
+    background: url("../image/firstfloor1.jpg");
+}
+#content .shop.first-floor .shop-item2 a {
+    background: url("../image/firstfloor2.jpg");
+}
+#content .shop.first-floor .shop-item3 a {
+    background: url("../image/firstfloor3.jpg");
+}
+#content .shop.first-floor .shop-item4 a {
+    background: url("../image/firstfloor4.jpg");
+}
+
+#content .shop.second-floor .shop-big a {
+    background: url("../image/firstfloorbig.jpg");
+}
+#content .shop.second-floor .shop-item1 a {
+    background: url("../image/firstfloor1.jpg");
+}
+#content .shop.second-floor .shop-item2 a {
+    background: url("../image/firstfloor2.jpg");
+}
+#content .shop.second-floor .shop-item3 a {
+    background: url("../image/firstfloor3.jpg");
+}
+
+
+#content .shop.third-floor .shop-big a {
+    background: url("../image/firstfloorbig.jpg");
+}
+#content .shop.third-floor .shop-item1 a {
+    background: url("../image/firstfloor1.jpg");
+}
+#content .shop.third-floor .shop-item2 a {
+    background: url("../image/firstfloor2.jpg");
+}
+#content .shop.third-floor .shop-item3 a {
+    background: url("../image/firstfloor3.jpg");
+}
+
+
+#content .shop.fourth-floor .shop-big a {
+    background: url("../image/firstfloorbig.jpg");
+}
+#content .shop.fourth-floor .shop-item1 a {
+    background: url("../image/firstfloor1.jpg");
+}
+#content .shop.fourth-floor .shop-item2 a {
+    background: url("../image/firstfloor2.jpg");
+}
+#content .shop.fourth-floor .shop-item3 a {
+    background: url("../image/firstfloor3.jpg");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

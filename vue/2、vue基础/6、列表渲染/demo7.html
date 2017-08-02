@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示过滤/排序结果</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!--有时，我们想要显示一个数组的过滤或排序副本，而不实际改变或重置原始数据，在这种情况下，可以创建返回过滤或排序数组的计算属性-->
+<ul id="app">
+    <li v-for="n in eventNumbers">{{ n }}</li>
+</ul>
+
+<!--在计算属性不适用的情况下(例如在嵌套v-for循环中)，可以使用一个methods方法-->
+<ul id="app1">
+    <li v-for="n in even(numbers)">{{ n }}</li>
+</ul>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            numbers: [1,2,3,4,5]
+        },
+        computed: {
+            eventNumbers: function(){       // 不改变number，只产生一个新的数组，最终渲染2和4
+                return this.numbers.filter(function(number){
+                    return number % 2 === 0
+                })
+            }
+        }
+    })
+
+
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+            numbers: [1,2,3,4,5]
+        },
+        methods: {
+            even: function(numbers){
+                return numbers.filter(function(number){
+                    return number % 2 === 0
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

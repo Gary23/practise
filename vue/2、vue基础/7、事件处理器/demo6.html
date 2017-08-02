@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>为什么在html中监听事件</title>
+</head>
+<body>
+<!--
+这种事件监听违背了代码分离的理念，实际上不必担心，因为所有vue事件处理方法和表达式都是严格绑定在当前视图viewModel上，它不会导致任何维护上的困难
+-->
+
+<!--
+用v-on有一下几个好处
+1. 扫一眼html模板便能轻松定位在js代码里对应的方法
+2. 因为你无须在js里手动绑定事件，viewModel代码可以是非常纯粹的逻辑，和dom完全解耦，易于测试
+3. 当一个viewModel被销毁时，所有的事件处理器都会自动被删除，无须担心如何自己清理它们
+-->
+</body>
+</html>

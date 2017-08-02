@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>键值修饰符</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!--在监听键盘事件时，经常需要检测常见的键值，vue允许为v-on在监听键盘事件时添加关键修饰符-->
+<!--只有在keyCode是13时候调用vm.submit()-->
+<input type="text" v-on:keyup.13="submit">
+
+<!--vue改为常用keyCode起了别名-->
+<!--效果同上-->
+<input type="text" v-on:keyup.enter="submit">
+
+<!--缩略写法-->
+<input type="text" @keyup.enter="submit">
+
+<!--全部别名
+.enter
+.tab
+.delete(删除和退格)
+.esc
+.space
+.up
+.down
+.left
+.right
+.ctrl
+.alt
+.shift
+.meta(windows键)
+-->
+
+<!--滑鼠按键修饰符
+.left
+.right
+.middle
+-->
+
+<!--Alt + C-->
+<input type="text" @keyup.alt.67="clear">
+
+<!--Ctrl + Click-->
+<div @click.ctrl="doSomething">Do something</div>
+<!--修饰键和正常键一起用时，事件引发时必须按下正常的按键，如果要引发keyup.ctrl，必须按下ctrl时释放其他的按键，单单释放ctrl不会引发事件-->
+
+
+
+<!--可以通过全局config.keyCode对象定义键值修饰符的别名-->
+<!--Vue.config.keyCode.f1 = 112-->
+</body>
+</html>

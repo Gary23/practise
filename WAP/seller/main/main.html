@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../common/js/mui.min.js"></script>
+		<link href="../common/css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="main.css" />
+		<script src="../common/js/template-native.js"></script>
+	    <script src="main.js"></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="padding-right: 15px;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">XXXX店铺</h1>
+			<a class=" mui-pull-right mui-btn mui-btn-link updata">刷新</a>
+		</header>
+		<div id="" class="mui-content">
+			<div id="segmentedControl" class="mui-segmented-control fixed">
+				<a class="mui-control-item mui-active" href="#item1-mobile" type="button">
+					未消费
+				</a>
+				<a class="mui-control-item" href="#item2-mobile" type="button">
+					已消费
+				</a>
+			</div>
+			<div class="mui-content-padded">
+				<div id="item1-mobile" class="mui-control-content mui-active">
+					<ul class="mui-table-view list-before">
+						<p class="first-loading">
+							<span class="mui-spinner"></span>
+							<span class="text">商品详情加载中...</span>
+						</p>
+						
+						<!--模板部分-->
+						<script type="text/template" id="shop-list-before">
+						   <%for(var i=0; i<before.length; i++){%>
+						   		<li class="mui-table-view-cell mui-media item">
+								<div class="mui-media-body mui-pull-left">
+						   			<h5 class="title mui-ellipsis"><%=before[i].shop_name%></h5>
+						   			<p class='mui-ellipsis price'><em>¥<span><%=before[i].price%></span></em> x <span><%=before[i].num%></xspan></p>
+									<p class="mui-ellipsis order">订单号：<span><%=before[i].order%></span></p>
+									<p class="mui-ellipsis user">会员用户名：<span><%=before[i].user_name%></span></p>
+									<p class="mui-ellipsis date">下单时间：<span><%=before[i].start_time%></span></p>
+								</div>
+								<img class="mui-media-object mui-pull-right" src="<%=before[i].img_url%>">
+								<div class="beizhu mui-pull-right">
+									<a type="button" class="mui-btn mui-btn-primary ">备注</a>
+									<span style="display: none;" class="beizhu-text"><%=before[i].beizhu%></span>
+								</div>
+								</li>
+							<%}%>
+					    </script>
+					</ul>
+					<div class="loading-btn before-load" style="display: none;">
+						<a type="button" class="mui-btn mui-btn-block mui-btn-primary before-loading" data-loading-text="加载中...">点击加载更多</a>
+					</div>
+					
+					<div class="loading-btn before-validation" style="display: none;">
+						<button type="button" class="mui-btn mui-btn-block mui-btn-primary validation"  data-loading-text="正在验证...">立即验证</button>
+					</div>
+				</div>
+				<div id="item2-mobile" class="mui-control-content">
+					<ul class="mui-table-view  list-after">
+						<p class="first-loading">
+							<span class="mui-spinner"></span>
+							<span class="text">商品详情加载中...</span>
+						</p>
+						<!--模板部分-->
+						<script type="text/template" id="shop-list-after">
+						   <%for(var i=0; i<after.length; i++){%>
+						   		<li class="mui-table-view-cell mui-media item">
+								<div class="mui-media-body mui-pull-left">
+						   			<h5 class="title mui-ellipsis"><%=after[i].shop_name%></h5>
+						   			<p class='mui-ellipsis price'><em>¥<span><%=after[i].price%></span></em> x <span><%=after[i].num%></xspan></p>
+									<p class="mui-ellipsis order">订单号：<span><%=after[i].order%></span></p>
+									<p class="mui-ellipsis user">会员用户名：<span><%=after[i].user_name%></span></p>
+									<p class="mui-ellipsis date">下单时间：<span><%=after[i].finsh_time%></span></p>
+								</div>
+								<img class="mui-media-object mui-pull-right" src="<%=after[i].img_url%>">
+								<div class="beizhu mui-pull-right">
+									<a type="button" class="mui-btn mui-btn-primary ">备注</a>
+									<span style="display: none;" class="beizhu-text"><%=after[i].beizhu%></span>
+								</div>
+								</li>
+							<%}%>
+					    </script>
+					</ul>
+					<div class="loading-btn after-load" style="display: none;">
+						<a type="button" class="mui-btn mui-btn-block mui-btn-primary  after-loading"  data-loading-text="加载中...">点击加载更多</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+	</body>
+
+</html>

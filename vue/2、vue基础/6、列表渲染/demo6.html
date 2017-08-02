@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组更新检测</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!--变异方法-->
+<!--vue包含一组观察数组的变异方法，变异方法都会改变原数组，所以它们也将会触发视图更新-->
+<div id="app">
+    <div v-for="item in items" v-bind:key="item.id">
+        {{ item.msg }}
+    </div>
+</div>
+
+<!--非变异方法-->
+<!--不会改变原始数组，但总是返回一个新的数组，当使用非变异方法时，可以用新数组替换旧数组-->
+<div id="app1">
+    <div v-for="item in items">
+        {{ item.msg }}
+    </div>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            items: [
+                {id: '1',msg:'第一个'},
+                {id: '2',msg:'第二个'},
+                {id: '3',msg:'第三个'}
+            ]
+        }
+    })
+    //变异方法：push()、pop()、shift()、unshift()、splice()、sort()、reverse()
+    app.items.push({ id: '4',msg:'BAZ' })
+
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+            items: [
+                {msg:'john'},
+                {msg:'foo'},
+                {msg:'fun'}
+            ]
+        }
+    })
+
+    // 非变异方法：filter(), concat(), slice()。
+    // 这里替换旧数组并不会丢弃原有dom重新渲染整个列表，相反这种替换原来数组的方法是很高效的操作
+    app1.items = app1.items.fliter(function(item){
+        return item.msg.match(/foo/)
+    })
+</script>
+
+<!--由于js的限制，vue不能检测一下变动的数组-->
+<!--1、当利用索引直接设置一个项时，例如 app.items[index] = {...}-->
+<!--2、当你修改数组的长度时，例如：app.items.length = num-->
+<!--当然也有替代的方法，效果相同，同时也将触发状态更新-->
+<!--代替第一个有两种方式-->
+<!--Vue.set(app.items, index , {...})-->
+<!--app.items.splice(index , 1 , {...})-->
+<!--代替第二类问题，可以使用splice-->
+<!--app.items.splice(num)-->
+</body>
+</html>

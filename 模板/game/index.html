@@ -1,0 +1,80 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>据说全世界只有3个人玩到40关！-搭桥技术哪家强 </title>
+	<meta name="Keywords" content="h5小游戏,微信小游戏">
+	<meta name="description" content="全世界只有3个人玩到40关">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+    <link href="css/css.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/base.min.js"></script>
+    <script src="./js/jquery1.9.1.min.js"></script>
+</head>
+<body onload="canvasResize('canvar');">
+<canvas id="canvas" width="640" height="1008" style="width:7.5rem;height:13.34rem;">alternate content</canvas>
+<div class="gameover">
+    <div class="message"> 
+        <img src="./img/erweima.jpg" alt="" class="ewm">
+        <span class="reset-game"></span>
+        <!-- <span class="zhiyuan-game"></span> -->
+        <div class="game-text">
+            <p>满30分凭兑换码扫码下方二维码领取118元大洋</p>
+            <p>兑换码为：<span id="id_text"> 666666 </span></p>
+        </div>
+    </div>
+</div>
+
+<div class="zhiyuan">
+    <div class="array"></div>
+    <p>如果你也觉得好玩， <br> 就果断分享，喊朋友们来PK吧！</p>
+</div>
+
+<div class="gameover-reset">
+    <div class="over-bg">
+        <p class="over-text"></p>
+        <p class="reset-btn"></p>
+        <p class="zhiyuan-btn"></p>
+    </div>
+</div>
+
+<script>
+</script>
+
+<script type="text/javascript" src="js/lib.min.js"></script>
+<script type="text/javascript" src="js/game.min.js"></script>
+<script type="text/javascript">
+    // 第一次获得最高分或者0
+    var bestVal = getCookie("best") || 0;
+    var m_Paramita = new Paramita("canvas", 24, "img/", "201603041410");
+        m_Paramita.bestNumber = bestVal;
+    m_Paramita.overBackCall = function(value){
+        // 游戏结束时的回调，将最高分显示并且更新cookie
+        if(value>bestVal){
+            m_Paramita.bestNumber = value;
+            setCookie("best", value);
+        }
+
+
+
+
+        var wxConfig = {
+            "debug": false,
+            "appId": 'wxf71b6dcc6f11232a',
+            "timestamp": '1491799200',
+            "nonceStr": 'KiPZmZi0HEBVZify',
+            "signature": '52ca5479223ac2ee66271b7cbfe55177715586a9',
+            "title":  "搭桥技术哪家强",
+            "link":   'http://m.yuanmazg.com/game/binghe/', // 分享链接
+            "imgUrl": "http://m.yuanmazg.com/game/binghe/images/ico.jpg", // 分享的小图标
+            "desc":   "尼玛这游戏太好玩了，你也来试试看能玩到多少关。据说只有3个人玩到40关"+value+"座桥啦!",
+        }
+
+        // bindWxEvent(wxConfig);
+    }
+
+</script>
+</body>
+</html>

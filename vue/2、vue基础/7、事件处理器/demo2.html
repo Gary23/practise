@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>方法事件处理器</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!--许多事件处理的逻辑都和很复杂，所以直接把js代码写在v-on里是不行的，因此v-on可以接收一个定义方法来调用-->
+<div id="example2">
+    <button v-on:click="greet">Greet</button>
+</div>
+<script>
+    var example2 = new Vue({
+        el: '#example2',
+        data: {
+            name :'Vue'
+        },
+        // 在methods对象中定义方法
+        methods: {
+            greet: function(event){
+                // this在方法里指当前vue实例
+                alert('hello' + this.name + '!')
+                // event 是原生的dom事件
+                if(event) {
+                    alert(event.target.tagName)
+                }
+            }
+        }
+    })
+
+    // 也可以用js直接调用，这种方式没有event事件对象，因为并不是通过事件调用的
+    example2.greet();
+</script>
+</body>
+</html>

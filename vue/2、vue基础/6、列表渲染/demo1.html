@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <!--v-for指令根据一组数据的选项列表进行渲染，需要以item in tiems形式的特殊写法，items是源数据数组-->
+    <!--这里的'in'也可以改为'of'-->
+    <!--基本用法-->
+    <ul id="example-1">
+        <li v-for="item in items">
+            {{ item.message }}
+        </li>
+    </ul>
+
+    <!--在v-for块中，拥有对父元素作用域属性的完全方位权限-->
+    <ul id="example-2">
+        <li v-for="(item,index) in items">
+            {{ parentMessage }} - {{ index }} - {{ item.message }}
+        </li>
+    </ul>
+    <script>
+        var app = new Vue({
+            el: '#example-1',
+            data:{
+                items:[
+                    {message:'foo'},
+                    {message:'bar'}
+                ]
+            }
+        })
+
+        var app2 = new Vue({
+            el: '#example-2',
+            // 这里parentMessage是message的父级
+            data: {
+                parentMessage: 'Parent',
+                items:[
+                    {message: 'for'},
+                    {message: 'bar'}
+                ]
+            }
+        })
+        // 最终打印 Parent-0-foo   Parent-1-bar
+    </script>
+</body>
+</html>

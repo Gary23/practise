@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>过滤器</title>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+	<div id="app">
+		<!--vue允许自定义过滤器，可被用做一些常见的文本格式化
+		过滤器可以用在两个地方：mustache插值和v-bind表达式。
+		过滤器应该被添加在javascript表达式的尾部，由管道符指示。-->
+		<div>{{ message | capitalize }}</div>
+
+		<!--过滤器可以串联-->
+		<p>{{ message | filterA | filterB }}</p>
+
+		<!--过滤器是javascript函数，因此可以接受参数-->
+		<!--message是第一个参数，这里字符串'arg1'将传给过滤器作为第二个参数，'arg2'表达式的值将被求值然后传给过滤器作为第三个参数-->
+		<p>{{ message | filterC('arg1',arg2) }}</p>
+	</div>
+
+	<script>
+		// 过滤器函数总接受表达式的值作为第一个参数
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				message: 'abc',
+				arg2: 20 + 10
+			},
+			filters: {
+				capitalize: function (value) {		// 自定义过滤器，将message的属性值的首字母转为大写
+					if (!value) return ""
+					value = value.toString();
+					return value.charAt(0).toUpperCase() + value.slice(1);
+				},
+				filterA: function (value) {		// 串联过滤器
+					if (!value) return ""
+					return value.slice(1);
+				},
+				filterB: function (value) {
+					if (!value) return ""
+					return value.length;
+				},
+				filterC: function (value, arg1, arg2) {
+					return value + '  ' + arg1 + '   ' + arg2;
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>

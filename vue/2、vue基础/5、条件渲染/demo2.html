@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用key管理可复用元素</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!--这里虽然可以切换输入用户名和email，但是每次切换之后input输入的内容是不变的，改变的只是placeholder的内容，也就是说这两个input元素并不是相互独立的-->
+<template v-if="loginType === 'username'">
+    <label for="">Username</label>
+    <input type="text" placeholder="Enter your username">
+</template>
+<template v-else>
+    <label for="">Email</label>
+    <input type="text" placeholder="Enter you mail address">
+</template>
+
+<!--有时这样会比较麻烦，所以vue提供了一种方式来声明这两个元素是完全独立的，不要复用他们，只需要添加一个具有唯一的key属性即可-->
+<template v-if="loginType === 'username'">
+    <label for="">Username</label>
+    <input type="text" placeholder="Enter your username" key="username-input">
+</template>
+<template v-else>
+    <label for="">Email</label>
+    <input type="text" placeholder="Enter your email" key="email-input">
+</template>
+</body>
+</html>

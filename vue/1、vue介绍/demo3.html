@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>条件与循环</title>
+	<script src="https://unpkg.com/vue"></script>
+
+</head>
+<body>
+	<!--不仅可以绑定DOM本文到数据，也可以绑定DOM结构到数据-->
+	<div id="app">
+		<p v-if="see">现在是显示的</p>
+	</div>
+	<div id="app2">
+		<ul>
+			<li v-for="todo in todos">
+				{{ todo.text }}
+			</li>
+		</ul>
+	</div>
+	<script>
+		var app = new Vue({
+			el:'#app',
+			data:{
+				see: true
+			}
+		})
+		// 将see属性改为false，p元素就消失了
+		window.setTimeout(function(){
+			app.see = false;
+			app2.todos.push({ text:'学习vue' })
+		},1000)
+		
+		// 循环也可以动态的增加列表项
+		var app2 = new Vue({
+			el:'#app2',
+			data:{
+				todos:[
+					{ text:'学习javascript' },
+					{ text:'学习html' },
+					{ text:'学习css' }
+				]
+			}
+		})
+		
+	</script>
+</body>
+</html>

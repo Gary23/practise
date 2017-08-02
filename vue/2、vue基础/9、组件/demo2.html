@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>局部注册</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<script>
+    // 有时候不必在全局注册每个组件，通过使用组件实例选项注册，可以使组件仅仅在另一个实例/组件的作用域中可用
+    var Child = {
+        template: '<div>A custom component!</div>'
+    }
+
+    var app = new Vue({
+        el: '#app',
+        components: {
+            // <my-component>将只在父模板可调用
+            'my-component': Child
+        }
+    })
+</script>
+</body>
+</html>
