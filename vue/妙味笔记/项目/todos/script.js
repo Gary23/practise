@@ -5,9 +5,26 @@ var store = {
   fetch: function (key) {
     return JSON.parse(localStorage.getItem(key)) || [];
   }
-}
+};
 
 var list = store.fetch('todo');
+
+var filter;
+filter = {
+  all: function (list) {
+    return list;
+  },
+  unfinished: function (list) {
+    return list.filter(function (item) {
+      return !item.isChecked
+    })
+  },
+  finished: function (list) {
+    return list.filter(function (item) {
+      return item.isChecked
+    })
+  }
+};
 
 var vm = new Vue({
   el: '#todo',
@@ -25,7 +42,7 @@ var vm = new Vue({
       this.list.push({
         title: this.todo,
         isChecked: false,
-      })
+      });
       this.todo = '';
     },
     deleteTodo: function (todo) {
@@ -65,21 +82,6 @@ var vm = new Vue({
       }).length
     },
     filterList: function () {
-      var filter = {
-        all: function (list) {
-          return list;
-        },
-        unfinished: function (list) {
-          return list.filter(function (item) {
-            return !item.isChecked
-          })
-        },
-        finished: function (list) {
-          return list.filter(function (item) {
-            return item.isChecked
-          })
-        }
-      }
       return filter[this.visibility] ? filter[this.visibility](list) : list;
     }
   },
@@ -93,13 +95,13 @@ var vm = new Vue({
       deep: true
     }
   }
-})
+});
 
 function watchHash() {
   var hash = window.location.hash.slice(1);
   vm.visibility = hash;
 }
 watchHash();
-window.addEventListener('hashchange', watchHash)
+window.addEventListener('hashchange', watchHash);
 
 

@@ -28,9 +28,9 @@ css需要修改：
         个任务未完成</span>
     </div>
     <div class="tab rf">
-      <a href="#all" class="active">所有任务</a>
-      <a href="#unfinished">未完成的任务</a>
-      <a href="#finished">完成的任务</a>
+      <a href="#all" :class="{ active:visibility === 'all' }">所有任务</a>
+      <a href="#unfinished" :class="{ active:visibility === 'unfinished' }">未完成的任务</a>
+      <a href="#finished" :class="{ active:visibility === 'finished' }">完成的任务</a>
     </div>
   </div>
   <div class="list-todo">

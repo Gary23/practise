@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./vue.js"></script>
+</head>
+<body>
+<!--在这里app这个元素是父组件，内部嵌套的<custom-select>是子组件-->
+<div id="app">
+  <h2>自定义下拉框</h2>
+  <custom-select btn-value="查询"></custom-select>
+  <h2>自定义下拉框2</h2>
+  <custom-select btn-value="搜索"></custom-select>
+  <!--<custom-select>就代表下面的组件里的html部分，以后要重复使用的话就直接用<custom-select>就可以
+  以后所有的弹框、导航等等都可以写成组件
+  -->
+</div>
+
+<script>
+  // 使用组件之前要先注册组件，可以全局注册和局部注册
+
+  // 全局注册使用Vue.component，第一个参数是组件元素的名称，第二个参数是个对象，是对该组件的描述
+
+  // 命名约定：这里第一个参数可以写成custom-select或customSelect都可以，但不论写成什么，html里都是<custom-select>
+
+  // 组件间的通信：虽然组件可以复用了，但是组件间还是会稍有不同，这就好比写好的函数，不同的地方可以通过参数来设置，组件也可以传值。
+  Vue.component("custom-select",{
+    props: ['btnValue'],  // html是btn-value那么这里必须使用驼峰的方式
+    template: '<section class="warp">'+
+    '<div class="searchIpt clearFix">'+
+    '<div class="clearFix">'+
+    '<input type="text" class="keyWord" value="">'+
+//    '<input type="button" value="GO">'+  这是原来写死的
+    '<input type="button" v-bind:value="btnValue">'+   // 这是动态绑定传值,由于是动态绑定，所以要用v-bind
+    '<span></span>'+
+    '</div>'+
+    '<ul class="list">'+
+    '<li>html+css</li>'+
+    '<li>html5+css3</li>'+
+    '<li>javascript</li>'+
+    '<li>angular</li>'+
+    '<li>react</li>'+
+    '<li>vue</li>'+
+    '<li>jquery</li>'+
+    '<li>nodejs</li>'+
+    '</ul>'+
+    '</div>'+
+    '</section>'
+  })
+
+  // 全局注册也可以在局部注册,那么就只能在该实例内部才能使用该组件
+  new Vue({
+    el: "#app",
+    components: {
+      //...
+    }
+  })
+
+</script>
+</body>
+</html>
