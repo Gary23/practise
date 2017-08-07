@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Swiper demo</title>
@@ -11,58 +11,90 @@
 
     <!-- Demo styles -->
     <style>
-    body {
-        background: #eee;
-        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-        font-size: 14px;
-        color:#000;
-        margin: 0;
-        padding: 0;
-    }
-    .swiper-container {
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
 
-    }
-    .swiper-slide {
-        width: 250px;
+        .swiper-container {}
 
-    }
+        .swiper-slide {
+            width: 250px;
+        }
     </style>
 </head>
+
 <body>
-<div id="index_ad"></div>
+    <div id="index_ad"></div>
 
     <!-- Swiper JS -->
     <script src="http://v83.duoduo123.com/js/jquery.js"></script>
 
     <!-- Initialize Swiper -->
-<script type="text/javascript">
-html='';
-var appinfo={'index_ad_pub':'a,a,a','indexads':[{'img':'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3556520661,537702812&fm=26&gp=0.jpg'},{'img':'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3556520661,537702812&fm=26&gp=0.jpg'},{'img':'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1216299933,3335056655&fm=26&gp=0.jpg'},{'img':'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3556520661,537702812&fm=26&gp=0.jpg'},{'img':'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3556520661,537702812&fm=26&gp=0.jpg'}]};
-var htmlArr=[];
-		var n=0;
-		var t=appinfo.index_ad_pub.split('|');
-		for(var i in t){
-			htmlArr.push([]);
-			var k=t[i].split(',');
-			for(var j in k){
-				var l=k[j].length;
-				var str='';
-				for(var m=0;m<l;m++){
-					if(typeof appinfo['indexads'][n]!='undefined'){
-						if(typeof appinfo['indexads'][n]!='undefined' && typeof appinfo['indexads'][n].img!='undefined'){
-							str+='<img src="'+appinfo['indexads'][n].img+'" style="display:block; width:100%" />';	
-						}	
-					}
-					n++;
-				}
-				htmlArr[i].push('<div style="flex:1;">'+str+'</div>');
-			}
-			htmlArr[i]=htmlArr[i].join('');
-		}
-		for(var i in htmlArr){
-			html+='<div style="display:-webkit-flex;-webkit-align-items: center;">'+htmlArr[i]+'</div>';
-		}
-		$('#index_ad').html(html);
-</script>
+    <script type="text/javascript">
+        html = '';
+        var appinfo = {
+            'index_ad_pub': 'a,a|a,aa',
+            'indexads': [{
+                'img': 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3556520661,537702812&fm=26&gp=0.jpg'
+            }, {
+                'img': 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3556520661,537702812&fm=26&gp=0.jpg'
+            }, {
+                'img': 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1216299933,3335056655&fm=26&gp=0.jpg'
+            }, {
+                'img': 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3556520661,537702812&fm=26&gp=0.jpg'
+            }, {
+                'img': 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3556520661,537702812&fm=26&gp=0.jpg'
+            }]
+        };
+        var htmlArr = [];
+        var n = 0;
+        var t = appinfo.index_ad_pub.split('|');   // ['a,a,a','a,aa']
+        // 遍历参数index_ad_pub
+        for (var i in t) {
+            // 在htmlArr中增加一个新的数组
+            htmlArr.push([]);
+            var k = t[i].split(',');   //t=[a,a,a]
+            // 遍历index_ad_pub中的第一个元素
+            for (var j in k) {
+                // 每个元素的长度
+                var l = k[j].length;     //
+                var str = '';
+                // 遍历这个元素
+                for (var m = 0; m < l; m++) {
+                    // 判断indesads数组是否有效
+                    if (typeof appinfo['indexads'][n] != 'undefined') {
+                        // img属性是否有值
+                        if (typeof appinfo['indexads'][n] != 'undefined' && typeof appinfo['indexads'][n].img !=
+                            'undefined') {
+                             // 将第一个图片生成img元素
+                            str += '<img src="' + appinfo['indexads'][n].img + '" style="display:block; width:100%" />';
+                        }
+                        
+                    }
+                    // n增加一个以便下次遍历拿到indesads数组中下一个img属性111111111
+                    n++;
+                }
+                // 将img装进最开始增加的那个数组
+                htmlArr[i].push('<div style="flex:1;">' + str + '</div>');
+            }
+            // 将第一个元素的不同数组组合到一个数组
+            htmlArr[i] = htmlArr[i].join('');
+            console.log(htmlArr)
+        }
+        for (var i in htmlArr) {
+            html += '<div style="display:-webkit-flex;-webkit-align-items: center;">' + htmlArr[i] + '</div>';
+        }
+        $('#index_ad').html(html);
+        
+
+
+        
+    </script>
 </body>
+
 </html>
