@@ -1,38 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>条件渲染 v-if</title>
     <script src="https://unpkg.com/vue"></script>
 </head>
+
 <body>
-<div id="app">
-    <!--在vue中使用v-if实现判断-->
-    <h1 v-if="ok">Yes</h1>
-    <h1 v-else>No</h1>
+    <div id="app">
+        <!--在vue中使用v-if实现判断-->
+        <h1 v-if="ok">Yes</h1>
+        <h1 v-else>No</h1>
 
-    <!--上面这种方式只能给一个元素判断，如果是多个元素可以按照下面的写法，<template>元素当做包装元素，但是最终渲染不会包含这个元素-->
-    <template v-if="ok">
-        <h1>title</h1>
-        <p>paragraph 1</p>
-        <p>paragraph 2</p>
-    </template>
+        <!--上面这种方式只能给一个元素判断，如果是多个元素可以按照下面的写法，<template>元素当做包装元素，但是最终渲染不会包含这个元素-->
+        <template v-if="ok">
+            <h1>title</h1>
+            <p>paragraph 1</p>
+            <p>paragraph 2</p>
+        </template>
 
 
 
-    <!--v-else或者v-else-if必须跟在v-if或者v-else-if的后面-->
-    <div v-if="type === 'A'">
-        A
+        <!--v-else或者v-else-if必须跟在v-if或者v-else-if的后面-->
+        <div v-if="type === 'A'">
+            A
+        </div>
+        <div v-else-if="type === 'B'">
+            B
+        </div>
+        <div v-else-if="type === 'C'">
+            C
+        </div>
+        <div v-else>
+            Not A/B/C
+        </div>
     </div>
-    <div v-else-if="type === 'B'">
-        B
-    </div>
-    <div v-else-if="type === 'C'">
-        C
-    </div>
-    <div v-else>
-        Not A/B/C
-    </div>
-</div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data: {
+                ok: false,
+                type: 'C'
+            }
+        })
+
+    </script>
 </body>
+
 </html>

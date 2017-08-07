@@ -1,10 +1,68 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="utf-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="../dist/css/swiper.min.css">
+
+    <!-- Demo styles -->
+    <style>
+    body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color:#000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper-container {
+
+    }
+    .swiper-slide {
+        width: 250px;
+
+    }
+    </style>
 </head>
 <body>
+<div id="index_ad"></div>
 
+    <!-- Swiper JS -->
+    <script src="http://v83.duoduo123.com/js/jquery.js"></script>
+
+    <!-- Initialize Swiper -->
+<script type="text/javascript">
+html='';
+var appinfo={'index_ad_pub':'a,a,a','indexads':[{'img':'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3556520661,537702812&fm=26&gp=0.jpg'},{'img':'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3556520661,537702812&fm=26&gp=0.jpg'},{'img':'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1216299933,3335056655&fm=26&gp=0.jpg'},{'img':'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3556520661,537702812&fm=26&gp=0.jpg'},{'img':'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3556520661,537702812&fm=26&gp=0.jpg'}]};
+var htmlArr=[];
+		var n=0;
+		var t=appinfo.index_ad_pub.split('|');
+		for(var i in t){
+			htmlArr.push([]);
+			var k=t[i].split(',');
+			for(var j in k){
+				var l=k[j].length;
+				var str='';
+				for(var m=0;m<l;m++){
+					if(typeof appinfo['indexads'][n]!='undefined'){
+						if(typeof appinfo['indexads'][n]!='undefined' && typeof appinfo['indexads'][n].img!='undefined'){
+							str+='<img src="'+appinfo['indexads'][n].img+'" style="display:block; width:100%" />';	
+						}	
+					}
+					n++;
+				}
+				htmlArr[i].push('<div style="flex:1;">'+str+'</div>');
+			}
+			htmlArr[i]=htmlArr[i].join('');
+		}
+		for(var i in htmlArr){
+			html+='<div style="display:-webkit-flex;-webkit-align-items: center;">'+htmlArr[i]+'</div>';
+		}
+		$('#index_ad').html(html);
+</script>
 </body>
 </html>
