@@ -670,6 +670,7 @@
 				</div><span class="text" style="display: block;">下拉即可刷新...</span></div>
 		</div>
 	</div>
+
 </body>
 
 
@@ -697,12 +698,10 @@
 	}
 
 	// 获取订单页当前列表的所有数据
-	function getOrder(elem) {
+	function getOrder(elem,ul) {
 		var order_cur = elem || document;
-		// 获取当前tab栏列表
-		var list_cur = order_cur.querySelector('.order-list');
-		// 获取所有的li元素
-		var lis = order_cur.querySelectorAll('.order-list > li');
+		// 获取当前tab中所有的li元素
+		var lis = order_cur.querySelectorAll(ul);
 		// 获取li元素的数量
 		var lis_len = lis.length;
 
@@ -712,6 +711,7 @@
 		var goods_title = '';
 		var goods_name = '';
 		var goods_len = '';
+		var goods_id = '';
 		var all_data = [];
 
 		// 遍历容器获取id值
@@ -719,7 +719,7 @@
 			// 装载数据
 			var shop_obj = {};
 			shop_obj['shop_id'] = '';
-			shop_obj['goods_name'] = [];
+			shop_obj['goods'] = [];
 			
 			// 获取shopid的链接
 			shop_href = lis[j].querySelector('.o-t-title-shop .contact > a').href.split('=');
@@ -729,12 +729,24 @@
 			shop_obj['shop_id'] = shop_id;
 			// 获取goodsname元素
 			goods_title = lis[j].querySelectorAll('.item-list .item-info .title');
+			goods_href = lis[j].querySelectorAll('.item-list .item-info > a');
 			// 获取goodsname元素数量
 			goods_len = goods_title.length;
 			// 赋值到对象中
 			for(var k = 0; k < goods_len; k++) {
+				var goods_obj = {};
 				goods_name = Trim(goods_title[k].innerHTML);
-				shop_obj['goods_name'].push(goods_name);
+				goods_obj['goods_name'] = goods_name;
+				if(goods_href[k]){
+					goods_id = goods_href[k].href.split('=');
+					goods_obj['goods_id'] = goods_id[goods_id.length - 1];
+				}else{
+					goods_obj['goods_id'] = '';
+				}
+				
+				shop_obj['goods'].push(goods_obj);
+				goods_obj = null;
+				// shop_obj['goods_name'].push(goods_name);
 			}
 			// 将该店铺对象放到数组中
 			all_data.push(shop_obj);
@@ -744,9 +756,50 @@
 		return all_data;
 	}
 
+
+	function getmarket(){
+		var market = [];
+		var market_obj = {};
+		market_obj['goods'] = [];
+
+		var grid_shop = document.querySelector('.grid-shop');
+		var shop_id = grid_shop.getAttribute('data-shop');
+
+		market_obj['shop_id'] = shop_id;
+
+		var grid_goods = document.querySelectorAll('.order-des > h2');
+
+		var goods_len = grid_goods.length;
+
+		for(var i = 0; i < goods_len; i++) {
+			var goods_obj = {};
+			var goods_href = grid_goods[i].href.split('=');
+			goods_obj['goods_id'] = goods_href[goods_href.length - 1];
+
+			goods_obj['goods_name'] = grid_goods[i].innerHTML;
+
+			market_obj['goods'].push(goods_obj);
+
+			goods_obj = null;
+		}
+
+		market.push(market_obj);
+
+	}
+
 	function exec () {
-		var elem = getTab();
-		return getOrder(elem);	
+		var path_name = window.location.pathname;
+		if(path_name.indexOf('olist') != -1){
+			var elem = getTab();
+			return getOrder(elem,'.order-list > li');
+		}
+		if(path_name.indexOf('myCart') != -1){
+
+		}
+		if(path_name.indexOf('cart') != -1){
+			return getOrder(document,'.bundlev2')
+		}
+		
 	}
 
 
