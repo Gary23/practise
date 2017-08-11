@@ -1,112 +1,105 @@
 
     function getData(index) {
-        // 所有的数据
         this.index = index || 0;
-        this.flag = false;
-        this.all_data = [];
+        this.dataAll = [];
         this.init();
     }
 
     getData.prototype = {
         constructor: getData,
-        init: function () {
+        init: function () {     // 初始化方法
             this.path = window.location.pathname;
             if (this.path.indexOf('olist') != -1) {
-                this.isolist = true;
+                this.isolist = true;    // 在订单页
             } else if (this.path.indexOf('myCart') != -1) {
-                this.ismyCart = true;
+                this.ismyCart = true;   // 在超市购物车页
             } else if (this.path.indexOf('cart') != -1) {
-                this.iscart = true;
+                this.iscart = true;     // 在普通购物车页
             } else {
-                return false;
+                return false;       // 不在这三个页面就跳出
             }
             this.exec();
         },
-        Trim: function (str) {
+        Trim: function (str) {      // 字符串祛首尾空格
             return str.replace(/(^\s*)|(\s*$)/g, '');
         },
-        getId: function (str) {
-            if(str.indexOf('=') != -1) {
+        getId: function (str) {     // 获取商品和店铺id
+            if(str.indexOf('=') != -1) {        // 普通id获取
                 var arr = str.split('=');
-                return arr[arr.length - 1];            
-            }else{
+                return arr[arr.length - 1];
+            }else if(str.indexOf('chaoshi') != -1){     // 普通购物车天猫超市id
+                return '725677994';
+            }else if(/i[\d]+./.test(str)){      // 普通购物车非天猫超市商品id
+                var arr = str.match(/i[\d]+./);
+                return arr[0].replace(/(^i)|(.$)/g,'');
+            }else{      // 其他情况
                 return str;
             }
         },
-        getElem: function (str, parent) {
+        getElem: function (str, parent) {       // 获取单一元素
             parent = parent || document;
             return parent.querySelector(str);
         },
-        getElems: function (str, parent) {
+        getElems: function (str, parent) {      // 获取多个元素
             parent = parent || document;
             return parent.querySelectorAll(str);
         },
-        getTab: function () {
+        getTab: function () {       // 返回订单页当前的tab选项下的列表
             return this.getElems('.order-cont')[this.index];
         },
-        getOrder: function (ul, elem) {
-            // console.log(elem)
-            var parent = elem || document;
-            // 获取当前tab中所有的li元素
-            this.lis = this.getElems(ul, parent);
-            // 获取li元素的数量
-            var lis_len = this.lis.length;
+        getOrder: function (ul, elem) {     // 获取所有数据的方法
+            var parent = elem || document;      // 确定列表的容器
+            this.lis = this.getElems(ul, parent);   // 获取显示的所有列表项
+            var lis_len = this.lis.length;      // 列表数量
 
-            var goods_e = '',
+            var goods_e = '',       // 初始化变量
                 goods_a = '',
                 goods_l = '',
                 goods_n = '',
-                shop_e = '';
-            // 遍历容器获取id值
-            for (var j = 0; j < lis_len; j++) {
-                // 装载数据
-                var shop_obj = {};
-
-                if (this.isolist || this.iscart) {
-                    // 获取店铺元素
-                    shop_e = this.getElem('.o-t-title-shop .contact > a', this.lis[j])
-                    // 获取商品元素
-                    goods_e = this.getElems('.item-list .item-info .title', this.lis[j]);
-                    goods_a = this.getElems('.item-list .item-info > a', this.lis[j]);
-
-                    shop_obj['shop_id'] = this.getId(shop_e.href);
-                } else if (this.ismyCart) {
-                    // 获取店铺元素
-                    shop_e = this.lis[j];
-                    // 获取商品元素
-                    goods_e = document.querySelectorAll('.order-des > h2');
-
-                    shop_obj['shop_id'] = shop_e.getAttribute('data-shop');
-                } else {
-                    return false;
-                }
-                // 获取goodsname元素数量
-                goods_l = goods_e.length;
-
-                shop_obj['goods'] = [];
-                for (var k = 0; k < goods_l; k++) {
-                    var goods_obj = {};
-                    goods_n = this.Trim(goods_e[k].innerHTML);
-                    goods_obj['goods_name'] = goods_n;
-
-                    if (this.iscart) {
-                        goods_obj['goods_id'] = this.getId(goods_a[k].href);
-                    } else if (this.ismyCart) {
-                        goods_obj['goods_id'] = this.getId(goods_e[k].getAttribute('href'));
-                    } else {
-                        goods_obj['goods_id'] = '';
+                shop_e = '',
+                lis_text = '';
+            
+            for (var j = 0; j < lis_len; j++) {     // 遍历所有列表
+                if (this.isolist) {
+                    lis_text = this.getElem('.state-cont .h',this.lis[j]).innerHTML
+                    if(lis_text.indexOf('交易关闭') !== -1){    // 判断如果有交易关闭的就跳出
+                        continue; 
                     }
-
-                    shop_obj['goods'].push(goods_obj);
-                    goods_obj = null;
                 }
-                // 将该店铺对象放到数组中
-                this.all_data.push(shop_obj);
-                // 销毁对象
-                shop_obj = null;
+                if (this.isolist || this.iscart) {      // 在订单页或普通购物车页
+                    shop_e = this.getElem('.o-t-title-shop .contact > a', this.lis[j]) || this.getElem('.invalid-title', this.lis[j]);      // 获取店铺的容器，'.invalid-title'是失效商品的
+                    goods_e = this.getElems('.item-list .item-info .title', this.lis[j]);   // 商品名容器
+                    goods_a = this.getElems('.item-list .item-info > a', this.lis[j]);   // 普通购物车页的商品id容器，订单页没有这个元素
+
+                } else if (this.ismyCart) {     // 在超市购物车页，因为结构和其他页面不同所以单独判断
+                    shop_e = this.lis[j];    // 获取店铺的容器
+                    goods_e = document.querySelectorAll('.order-des > h2');     // 获取商品名的容器
+                } else {
+                    return false;       // 其他页面就不执行后面的代码，防止报错
+                }
+                
+                goods_l = goods_e.length;   // 获取商品的数量
+                for (var k = 0; k < goods_l; k++) {     // 遍历当前店铺的商品
+                    var goods_obj = {};
+                    goods_n = this.Trim(goods_e[k].innerHTML);    // 获取商品名
+                    goods_obj['goods_name'] = goods_n;  
+
+                    if (this.iscart) {    // 普通购物车页获取商品id
+                        goods_obj['goods_id'] = this.getId(goods_a[k].href);
+                        goods_obj['shop_id'] = !shop_e.href ? '' : this.getId(shop_e.href);
+                    } else if (this.ismyCart) {     // 超市购物车页获取商品id
+                        goods_obj['goods_id'] = this.getId(goods_e[k].getAttribute('href'));
+                        goods_obj['shop_id'] = shop_e.getAttribute('data-shop');
+                    } else {    // 订单页，没有id，直接为空
+                        goods_obj['goods_id'] = '';
+                        goods_obj['shop_id'] = !shop_e.href ? '' : this.getId(shop_e.href);
+                    }
+                    this.dataAll.push(goods_obj);
+                    goods_obj = null;    // 销毁临时对象
+                }
             }
         },
-        exec: function () {
+        exec: function () {     // 整个对象的执行处理
             if (this.isolist) {
                 this.order_cur = this.getTab();
                 this.getOrder('.order-list > li', this.order_cur);
@@ -119,37 +112,45 @@
     }
 
 
+    // 如果是测试时，为了方便可以取消DOMContentLoaded事件
+    window.addEventListener('DOMContentLoaded',function(){
+        var result = ''
+        if(new getData().isolist){    // 以下是在订单页遇到的事件
+            var tab_elem = document.querySelectorAll('.nav-tab-top ul > li');     // 获取所有tab
+            var tab_len = tab_elem.length;    // tab的长度
 
-
-
-    var data_all = new getData().all_data;
-
-    // 切换tab栏的时候获取数据
-    if(new getData().isolist){
-        var tab_elem = document.querySelectorAll('.nav-tab-top ul > li');
-        var tab_len = tab_elem.length;
-        // 遍历获取的tab栏添加点击事件
-        tab_elem.forEach(function(e,i){
-            e.addEventListener('click',function(){
-                window.setTimeout(function(){
-                    data_all = new getData(i).all_data
-                },1000)
-            })
-        });
-
-
-        // 获取容器高度
-        var scroll_e = document.querySelector('.scroll-content');
-        var scroll_h = parseInt(scroll_e.style.height);
-        var cur_h = '';
-        window.addEventListener('touchmove', function () {
-            // 当加载后height值会变大，如果比原来大则执行exec()
-            cur_h = parseInt(scroll_e.style.height);
-            if (cur_h > scroll_h) {
-                data_all = new getData().all_data;
-                scroll_h = cur_h;
+            var tab_arr = []    // 由于tab_elem是伪数组，所以要在这里改为真数组使用foreach
+            for(var i = 0; i < tab_len; i++){
+                tab_arr.push(tab_elem[i]);
             }
-        })
-    }
 
-    console.log(data_all)
+            tab_arr.forEach(function(e,i){    // 遍历获取的tab栏添加点击事件
+                if(e.classList.value == 'cur'){
+                    result = new getData(i).dataAll     // 订单页首次获取数据
+                }
+                e.addEventListener('click',function(){
+                    window.setTimeout(function(){   // 淘宝切换tab时，状态切换的比较慢，直接获取不到，只能延迟一点再获取。
+                        result = new getData(i).dataAll
+                        console.log(result);       // 点击tab栏获取数据
+                    },1000)
+                })
+            });
+
+            // 获取容器高度
+            var scroll_e = document.querySelector('.scroll-content');   // 获取列表的容器的高度，可以理解为ul元素
+            var scroll_h = parseInt(scroll_e.style.height);     // 当前容器的高度
+            var cur_h = '';
+            window.addEventListener('touchstart', function () {    
+                cur_h = parseInt(scroll_e.style.height);    
+                if (cur_h > scroll_h) {     // 当刷新出新数据后容器高度会变大，如果变大就重新获取。
+                    result = new getData().dataAll;
+                    console.log(result);    // 加载更多数据获取数据
+                    scroll_h = cur_h;    // 保存新高度下次计算
+                }
+            })
+        }else {
+            result = new getData().dataAll;     // 非订单页首次获取数据
+        }
+        console.log(result)
+        
+    })
