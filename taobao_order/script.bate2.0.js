@@ -117,8 +117,13 @@
     }
 
 
+    function dataAjax() {
+
+    }
+
+
     // 如果是测试时，为了方便可以取消DOMContentLoaded事件
-    window.addEventListener('DOMContentLoaded',function(){
+    // window.addEventListener('DOMContentLoaded',function(){
         var result = ''
         if(new getData().isolist){    // 以下是在订单页遇到的事件
             var tab_elem = document.querySelectorAll('.nav-tab-top ul > li');     // 获取所有tab
@@ -157,5 +162,77 @@
             result = new getData().dataAll;     // 非订单页首次获取数据
         }
         console.log(result)
+        var result_l = result.length;
+        var p = '';
+        var uid = '';
+        for(var i = 0; i < result_l; i++){
+            q = result[i]['goods_name'];
+            uid = result[i]['shop_id'];
+            dataAjax({
+                url: 'http://mall.aili88.cn/tb-rebate-amount.html',
+                data: {
+                    'q': q,
+                    'uid': uid
+                },
+                method: 'get',
+                async: true,
+                success: function(data){
+                    console.log(data)
+                }
+            })
+
+        }
+
+
+
+
+        function dataAjax(obj){
+            var xhr = new window.XMLHttpRequest();
+
+            obj.url = obj.url;
+
+            obj.data = (function(data) {
+                var arr = [];
+                for(var i in data) {
+                    arr.push(encodeURIComponent(i) + '=' + encodeURIComponent(data[i]))
+                }
+                return arr.join('&');
+            })(obj.data)
+
+            if(obj.method == 'get') {
+                obj.url += obj.url.indexOf('?') == -1 ? '?' + obj.data : '&' + obj.data;
+            }
+
+            if(obj.async === true) {
+                xhr.onreadystatechange = function() {
+                    if(xhr.readyState == 4) {
+                        callback();
+                    }
+                };
+            }
+
+            xhr.open(obj.method, obj.url, obj.async);
+            
+            if(obj.method == 'post') {
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send(obj.data);
+            } else {
+                xhr.send(null);
+            }
+            if(obj.async === false) {
+                callback();
+            }
+
+
+
+            function callback() {
+                if(xhr.status >= 200 && xhr.status < 300) {
+                    obj.success(xhr.responseText);
+                } else {
+                    console.log('获取数据错误！错误代号：' + xhr.status + '，错误信息：' + xhr.statusText);
+                }
+            }
+        }
+
         
-    })
+    // })
