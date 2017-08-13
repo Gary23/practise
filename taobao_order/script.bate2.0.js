@@ -73,6 +73,11 @@
                 }
                 if (this.isolist || this.iscart) {      // 在订单页或普通购物车页
                     shop_e = this.getElem('.o-t-title-shop .contact > a', this.lis[j]) || this.getElem('.invalid-title', this.lis[j]);      // 获取店铺的容器，'.invalid-title'是失效商品的
+
+                    if(!shop_e.href && this.isolist){    // 2.0 排除订单页下没有店铺名的(例如淘票票订单)
+                        continue;
+                    }
+
                     goods_e = this.getElems('.item-list .item-info .title', this.lis[j]);   // 商品名容器
                     goods_a = this.getElems('.item-list .item-info > a', this.lis[j]);   // 普通购物车页的商品id容器，订单页没有这个元素
 
@@ -87,6 +92,11 @@
                 for (var k = 0; k < goods_l; k++) {     // 遍历当前店铺的商品
                     var goods_obj = {};
                     goods_n = this.Trim(goods_e[k].innerHTML);    // 获取商品名
+
+                    if(goods_n.indexOf('保险服务') !== -1) {    // 2.0 排除运费险
+                        continue;
+                    }
+
                     goods_obj['goods_name'] = goods_n;  
 
                     if (this.iscart) {    // 普通购物车页获取商品id
@@ -117,10 +127,6 @@
     }
 
 
-    function dataAjax() {
-
-    }
-
 
     // 如果是测试时，为了方便可以取消DOMContentLoaded事件
     // window.addEventListener('DOMContentLoaded',function(){
@@ -142,6 +148,7 @@
                     window.setTimeout(function(){   // 淘宝切换tab时，状态切换的比较慢，直接获取不到，只能延迟一点再获取。
                         result = new getData(i).dataAll
                         console.log(result);       // 点击tab栏获取数据
+                        getfanli(result);
                     },1000)
                 })
             });
@@ -155,6 +162,7 @@
                 if (cur_h > scroll_h) {     // 当刷新出新数据后容器高度会变大，如果变大就重新获取。
                     result = new getData().dataAll;
                     console.log(result);    // 加载更多数据获取数据
+                    getfanli(result);
                     scroll_h = cur_h;    // 保存新高度下次计算
                 }
             })
@@ -162,77 +170,84 @@
             result = new getData().dataAll;     // 非订单页首次获取数据
         }
         console.log(result)
-        var result_l = result.length;
-        var p = '';
-        var uid = '';
-        for(var i = 0; i < result_l; i++){
-            q = result[i]['goods_name'];
-            uid = result[i]['shop_id'];
-            dataAjax({
-                url: 'http://mall.aili88.cn/tb-rebate-amount.html',
-                data: {
-                    'q': q,
-                    'uid': uid
-                },
-                method: 'get',
-                async: true,
-                success: function(data){
-                    console.log(data)
-                }
-            })
-
-        }
+        getfanli(result);
 
 
 
-
-        function dataAjax(obj){
-            var xhr = new window.XMLHttpRequest();
-
-            obj.url = obj.url;
-
-            obj.data = (function(data) {
-                var arr = [];
-                for(var i in data) {
-                    arr.push(encodeURIComponent(i) + '=' + encodeURIComponent(data[i]))
-                }
-                return arr.join('&');
-            })(obj.data)
-
-            if(obj.method == 'get') {
-                obj.url += obj.url.indexOf('?') == -1 ? '?' + obj.data : '&' + obj.data;
-            }
-
-            if(obj.async === true) {
-                xhr.onreadystatechange = function() {
-                    if(xhr.readyState == 4) {
-                        callback();
-                    }
-                };
-            }
-
-            xhr.open(obj.method, obj.url, obj.async);
-            
-            if(obj.method == 'post') {
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.send(obj.data);
-            } else {
-                xhr.send(null);
-            }
-            if(obj.async === false) {
-                callback();
-            }
-
-
-
-            function callback() {
-                if(xhr.status >= 200 && xhr.status < 300) {
-                    obj.success(xhr.responseText);
-                } else {
-                    console.log('获取数据错误！错误代号：' + xhr.status + '，错误信息：' + xhr.statusText);
-                }
-            }
-        }
-
-        
     // })
+
+
+        function formatData (data){
+            var k,
+                ret = [];
+            for(k in data){
+                ret.push(window.encodeURIComponent(k) + '=' +
+                        window.encodeURIComponent(data[k]));
+            }
+            ret.push(('_=' + Math.random()).replace('.',''));
+            return ret.join('&');
+        }
+
+
+        function jsonp (options){
+            var scriptElem,
+                headElem,
+                callbackName,
+                url;
+            
+            // 动态创建一个script标签,将script标签添加到head标签下
+            scriptElem = document.createElement('script');
+            headElem = document.getElementsByTagName('head')[0];
+            headElem.appendChild(scriptElem);
+
+            // 创建一个全局的回调函数
+            callbackName = ('jsonp_' + Math.random()).replace('.', '');
+            options.data = options.data || {};
+            options.data[options.callback] = callbackName;
+            window[callbackName] = function(data){
+                window.clearTimeout(scriptElem.timerId);
+                headElem.removeChild(scriptElem);
+                delete window[callbackName];
+                options.success && options.success(data);
+            }
+
+            options.data = formatData(options.data);
+            url = options.url + '?' + options.data;
+
+            scriptElem.src = url;
+        }
+
+
+        function getfanli(result){
+            var result_l = result.length;
+            var q = '';
+            var uid = '';
+            var num = 0;
+            var count = 0;
+            if(result_l == 0){
+                console.log(0);
+                return false;
+            }
+            for(var i = 0; i < result_l; i++){
+                q = result[i]['goods_name'];
+                uid = result[i]['shop_id'];
+                jsonp({
+                    url: '//mall.aili88.cn/tb-rebate-amount.html',
+                    data: {
+                        'q': q,
+                        'uid': uid,
+                    },
+                    callback: 'callback',
+                    success: function(data){
+                        if(data){
+                            num += data['flje'] * 100;
+                            count++;
+                        }
+                        if(count === result_l){
+                            num = (num / 100)
+                            console.log(num);
+                        }
+                    }
+                })
+            }
+        }
