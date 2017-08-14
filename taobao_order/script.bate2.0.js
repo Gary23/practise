@@ -149,6 +149,7 @@
                         result = new getData(i).dataAll
                         console.log(result);       // 点击tab栏获取数据
                         getfanli(result);
+                        scroll_h = parseInt(scroll_e.style.height);     // 重新获取滚动区域的高度，用于滚动
                     },1000)
                 })
             });
@@ -177,19 +178,19 @@
     // })
 
 
-        function formatData (data){
+        function formatData (data){   // 格式化数据
             var k,
                 ret = [];
             for(k in data){
                 ret.push(window.encodeURIComponent(k) + '=' +
                         window.encodeURIComponent(data[k]));
             }
-            ret.push(('_=' + Math.random()).replace('.',''));
+            // ret.push(('_=' + Math.random()).replace('.',''));
             return ret.join('&');
         }
 
 
-        function jsonp (options){
+        function jsonp (options){    // 跨域获取数据
             var scriptElem,
                 headElem,
                 callbackName,
@@ -222,10 +223,11 @@
             var result_l = result.length;
             var q = '';
             var uid = '';
+            var tid = '';
             var num = 0;
             var count = 0;
             if(result_l == 0){
-                console.log(0);
+                //console.log(0);
                 return false;
             }
             for(var i = 0; i < result_l; i++){
@@ -235,7 +237,7 @@
                     url: '//mall.aili88.cn/tb-rebate-amount.html',
                     data: {
                         'q': q,
-                        'uid': uid,
+                        'uid': uid
                     },
                     callback: 'callback',
                     success: function(data){
