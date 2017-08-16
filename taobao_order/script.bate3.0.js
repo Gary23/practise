@@ -7,7 +7,8 @@ function getData(index) {
 
 getData.prototype = {
     constructor: getData,
-    init: function () { // 初始化方法
+	init: function () { // 初始化方法
+		alert('进入获取商品数组的方法')
         this.path = window.location.pathname;
         if (this.path.indexOf('olist') != -1) {
             this.isolist = true; // 在订单页
@@ -60,12 +61,12 @@ getData.prototype = {
             lis_text = '';
 
         for (var j = 0; j < lis_len; j++) { // 遍历所有列表
-            if (this.isolist) {
-                lis_text = this.getElem('.state-cont .h', this.lis[j]).innerHTML
-                if (lis_text.indexOf('交易关闭') !== -1) { // 判断如果有交易关闭的就跳出
-                    continue;
-                }
-            }
+            // if (this.isolist) {
+            //     lis_text = this.getElem('.state-cont .h', this.lis[j]).innerHTML
+            //     if (lis_text.indexOf('交易关闭') !== -1) { // 判断如果有交易关闭的就跳出
+            //         continue;
+            //     }
+            // }
             if (this.isolist || this.iscart) { // 在订单页或普通购物车页
                 shop_e = this.getElem('.o-t-title-shop .contact > a', this.lis[j]) || this.getElem('.invalid-title', this.lis[j]); // 获取店铺的容器，'.invalid-title'是失效商品的
 
@@ -120,66 +121,50 @@ getData.prototype = {
         }else {
             return false;
         }
-    }
-}
-
-// 格式化数据
-function formatData(data) { // 格式化数据
+    },
+};
+function formatData(data) {
     var k,
         ret = [];
     for (k in data) {
         ret.push(window.encodeURIComponent(k) + '=' +
             window.encodeURIComponent(data[k]));
     }
-    // ret.push(('_=' + Math.random()).replace('.',''));
     return ret.join('&');
-}
-
-// 跨域
-function jsonp(options) { // 跨域获取数据
+};
+function jsonp(options) {
+    alert('发送跨域请求')
+createElem()
     var scriptElem,
         headElem,
         callbackName,
         url;
-
-    // 动态创建一个script标签,将script标签添加到head标签下
     scriptElem = document.createElement('script');
     headElem = document.getElementsByTagName('head')[0];
     headElem.appendChild(scriptElem);
-
-    // 创建一个全局的回调函数
     callbackName = ('jsonp_' + Math.random()).replace('.', '');
     options.data = options.data || {};
     options.data[options.callback] = callbackName;
     window[callbackName] = function (data) {
         window.clearTimeout(scriptElem.timerId);
         headElem.removeChild(scriptElem);
-        delete window[callbackName];
+		delete window[callbackName];
+		noneElem();
         options.success && options.success(data);
     }
-
     options.data = formatData(options.data);
     url = options.url + '?' + options.data;
-
     scriptElem.src = url;
-}
-
-// 打印返利
+};
 function clfabli(res) {
-    console.log(res)
-}
-
-// 获取缓存
+	alert('打印返利' + res);
+};
 function getL(key) {
     return window.sessionStorage.getItem(key);
-}
-
-// 读取缓存
+};
 function setL(key,val) {
     return window.sessionStorage.setItem(key,val);
-}
-
-// 获取返利的ajax
+};
 function getfanli(result,tab) {
     var result_l = result.length;
     var q = '';
@@ -193,7 +178,6 @@ function getfanli(result,tab) {
     }
     if(getL(tab)){
         var tabLen = getL(tab + 'Len') ? +getL(tab + 'Len') : result_l;
-        // setL(tab + 'Len', result_l);     // 第一次记录长度
         if(result_l > tabLen){
             setL(tab + 'Len',result_l);
             result.splice(0,tabLen);
@@ -205,13 +189,10 @@ function getfanli(result,tab) {
     }else{
         setL(tab + 'Len', result_l);
     }
-    
-
     var max = Math.ceil(result_l / 20);
-
     function getData5(count) {
         var arr = [];
-        var j = count * 20
+        var j = count * 20;
         for (var i = j; i < j + 20; i++) {
             if (i > result_l - 1) {
                 break;
@@ -223,13 +204,12 @@ function getfanli(result,tab) {
             obj = null;
         }
         return JSON.stringify(arr);
-    }
-    
+    };
     var array = getData5(0);
     jsonp({
         url: '//mall.aili88.cn/tb-rebate-amount.html',
         data: {
-            'array': array
+            'array': array,
         },
         callback: 'callback',
         success: function (data) {
@@ -242,8 +222,8 @@ function getfanli(result,tab) {
             }else{
                 var res = ajaxSuccess(data, count, num);
             }
-        }
-    })
+        },
+    });
     function ajaxSuccess(data, count, num) {
         if (data) {
             count++;
@@ -251,7 +231,7 @@ function getfanli(result,tab) {
             jsonp({
                 url: '//mall.aili88.cn/tb-rebate-amount.html',
                 data: {
-                    'array': array
+                    'array': array,
                 },
                 callback: 'callback',
                 success: function (data) {
@@ -263,75 +243,93 @@ function getfanli(result,tab) {
                         return res;
                     }
                     ajaxSuccess(data, count, num);
-                }
-            })
+                },
+            });
         }
-    }
+    };
+};
+
+function createElem() {
+    var parent = document.createElement('div');
+    var body = document.querySelector('body');
+	body.appendChild(parent)
+	parent.className = 'lock_aili';
+    parent.style.backgroundColor = 'rgba(0,0,0,0.6)';
+    parent.style.color = 'rgb(255,255,255)';
+    parent.style.height = '1.5rem';
+    parent.style.width = '6rem';
+    parent.style.marginLeft = '50%';
+    parent.style.position = 'fixed';
+    parent.style.lineHeight = '1.5rem';
+    parent.style.bottom = '7.5rem';
+    parent.style.left = '-3rem';
+    parent.style.zIndex = '99999999999999999';
+    parent.style.fontSize = '0.42rem';
+    parent.style.textAlign = 'center';
+    parent.style.display = 'block';
+    parent.style.borderRadius = '0.2rem';
+    parent.innerHTML = '正在加载返利，请稍后...';
+};
+
+function noneElem() {
+	var elem = document.querySelectorAll('.lock_aili');
+	var body = document.querySelector('body');
+	var len = elem.length;
+	if(len == 0){
+		return false;
+	}
+	for(var i = 0; i < len; i++){
+		body.removeChild(elem[i]);
+	}
 }
 
-window.sessionStorage.clear();      // 刷新后先清除缓存
-// 如果是测试时，为了方便可以取消DOMContentLoaded事件
-// window.addEventListener('DOMContentLoaded',function(){
-var result = ''
-if (new getData().isolist) { // 以下是在订单页遇到的事件
-    var tab_elem = document.querySelectorAll('.nav-tab-top ul > li'); // 获取所有tab
-    var tab_len = tab_elem.length; // tab的长度
-    var tab_name = '';
-    var index = 0;
-
-    var tab_arr = [] // 由于tab_elem是伪数组，所以要在这里改为真数组使用foreach
-    for (var i = 0; i < tab_len; i++) {
-        tab_arr.push(tab_elem[i]);
-    }
-
-    tab_arr.forEach(function (e, i) { // 遍历获取的tab栏添加点击事件
-        if (e.classList.value == 'cur') {
-            index = i;
-            result = new getData(i).dataAll // 订单页首次获取数据
-            //console.log(result)
-            tab_name = e.getAttribute('data-code');
-            getfanli(result,tab_name);
+window.sessionStorage.clear();
+var result = '';
+if (new getData().isolist) {
+    alert('进入订单页，登录未知')
+    var tab_elem = document.querySelectorAll('.nav-tab-top ul > li');
+    var tab_len = tab_elem.length;
+    if(tab_len > 0){
+        alert('进入订单页,已经登录');
+        var tab_name = '';
+        var index = 0;
+        var tab_arr = [];
+        for (var i = 0; i < tab_len; i++) {
+            tab_arr.push(tab_elem[i]);
         }
-        e.addEventListener('click', function(){
-            window.setTimeout(function () { // 淘宝切换tab时，状态切换的比较慢，直接获取不到，只能延迟一点再获取。
+        tab_arr.forEach(function (e, i) {
+            if (e.classList.value == 'cur') {
                 index = i;
-                result = new getData(i).dataAll
-                //console.log(result); // 点击tab栏获取数据
+                result = new getData(i).dataAll;
                 tab_name = e.getAttribute('data-code');
+                alert('订单页第一次获取返利')
                 getfanli(result,tab_name);
-                scroll_h = parseInt(scroll_e.style.height); // 重新获取滚动区域的高度，用于滚动
-            }, 1000)
+            }
+            e.addEventListener('click', function(){
+                alert('点击tab页');
+                window.setTimeout(function () {
+                    index = i;
+                    result = new getData(i).dataAll;
+                    tab_name = e.getAttribute('data-code');
+                    getfanli(result,tab_name);
+                    scroll_h = parseInt(scroll_e.style.height);
+                }, 1000);
+            });
         });
-    });
-
-    // 获取容器高度
-    var scroll_e = document.querySelector('.scroll-content'); // 获取列表的容器的高度，可以理解为ul元素
-    var scroll_h = parseInt(scroll_e.style.height); // 当前容器的高度
-    var cur_h = '';
-    window.addEventListener('touchstart', function () {
-        cur_h = parseInt(scroll_e.style.height);
-        if (cur_h > scroll_h) { // 当刷新出新数据后容器高度会变大，如果变大就重新获取。
-            result = new getData(index).dataAll;
-            //console.log(result); // 加载更多数据获取数据
-            getfanli(result,tab_name);
-            scroll_h = cur_h; // 保存新高度下次计算
-        }
-    })
+        var scroll_e = document.querySelector('.scroll-content');
+        var scroll_h = parseInt(scroll_e.style.height);
+        var cur_h = '';
+        window.addEventListener('touchstart', function () {
+            cur_h = parseInt(scroll_e.style.height);
+            if (cur_h > scroll_h){
+                alert('加载更多商品')
+                result = new getData(index).dataAll;
+                getfanli(result,tab_name);
+                scroll_h = cur_h;
+            }
+        });
+    }
 } else {
-    result = new getData().dataAll; // 非订单页首次获取数据
-    //console.log(result)
+    result = new getData().dataAll;
     getfanli(result);
 }
-
-
-
-
-// })
-
-
-
-
-
-
-
-
