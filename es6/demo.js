@@ -84,13 +84,15 @@
 // }
 
 
-function f() { console.log('outside'); }
-(function(){
-    if(false){
-        // 重复外层的声明
-        function f() { console.log('inside');}
-    }
-    f();
+function f() { console.log('I am outside!'); }
+
+(function () {
+  if (false) {
+    // 重复声明一次函数f
+    function f() { console.log('I am inside!'); }
+  }
+
+  f();
 }());
 
 
