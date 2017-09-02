@@ -74,8 +74,10 @@
 
 <section id="upload_photo" class="container <{if $app_status}>no-header<{/if}>">
 	<!-- <div class="photo-box">
+        
 
-	</div> -->
+    </div> -->
+    <img id="source" src="" style="display: none;">
 	<div class="photo-box">
 		<canvas id="captureCanvas2" class="car-img car-canvas"></canvas>
 		<div class="crop"></div>
@@ -122,6 +124,11 @@
         this.size = this.canvas.getBoundingClientRect();//画布的尺寸参数,包含宽高和定位位置
         this.context = this.canvas.getContext('2d');//画布上下文
         this.image = opts.image;//图片
+
+        // if(this.image.width > 2000 || this.image.height > 2000) {
+        //     alert('图片过大，请上传2000像素之内的图片');
+        //     return false;
+        // }
 
         //设置画布的宽高
         this.canvas.width = this.size.width;
@@ -191,7 +198,6 @@
      * 绑定事件
      */
 	 veImagePrototype._bind = function() {
-		 console.log(this)
         this.canvas.addEventListener(events.start, this);
         this.canvas.addEventListener(events.move, this);
         this.canvas.addEventListener(events.end, this);
@@ -305,7 +311,6 @@
 		var h = crop.height();
 		var l = crop.offset().left;
 		var t = crop.offset().top;
-		console.log('canshu' + l + '  ' + t)
 		this.result = this.crop(w,h,l,t);
     };
 
@@ -332,38 +337,72 @@
             x, y, canvas.width, canvas.height,
             0, 0, canvas.width, canvas.height
         );
-        return canvas.toDataURL();
+        return canvas.toDataURL('image/jpeg', 0.5);
     };
 
 
 //http://doc.okbase.net/strick/archive/262144.html
 
 
+
 $(function(){
 	var imgEdit2;
 	var img = new Image();
+    var img2 = new Image();
 	$('#upload-file').on('change', function(){
 		var fileList = this.files;
 		var imgUrl = window.URL.createObjectURL(fileList[0]);
 
 		var reader = new FileReader();
 		reader.onload = function(e) {
+            console.log(e)
 			imgSrc = e.target.result;	// 这里打印base64
 			img.src = imgSrc;
-			
 		}
 		// console.log(cropper)
 		reader.readAsDataURL(this.files[0]);
 	})
 	
 	img.onload = function() {
-		imgEdit2 = new veImage({canvas:$('#captureCanvas2')[0], image:this});
-		
+        imgRAR(this);
+		// imgEdit2 = new veImage({canvas:$('#captureCanvas2')[0], image:this});
 	};
 
 	$('#btn').click(function(){
 		$('.result img').prop('src',imgEdit2.result);
 	})
+
+
+    function imgRAR(source) {
+        var width = source.width;
+        var height = source.height;
+        var canvas = document.createElement('canvas');
+        var context = canvas.getContext('2d');
+
+        // draw image params
+        var sx = 0;
+        var sy = 0;
+        var sWidth = width;
+        var sHeight = height;
+        var dx = 0;
+        var dy = 0;
+        var dWidth = width;
+        var dHeight = height;
+        var quality = 0.2;
+
+        canvas.width = width;
+        canvas.height = height;
+
+        context.drawImage(source, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+
+        var dataUrl = canvas.toDataURL('image/jpeg', quality);
+
+        img2.src = dataUrl;
+        img2.onload = function(){
+            imgEdit2 = new veImage({canvas:$('#captureCanvas2')[0], image:img2});
+        }
+
+    }
 })
 
 </script>
