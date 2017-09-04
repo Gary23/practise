@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	
+
+
+<script>
+(function (doc, win) {
+	var docEl = doc.documentElement,
+		resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+		recalc = function () {
+			var clientWidth = docEl.clientWidth;
+			if (!clientWidth) return;
+			if (clientWidth >= 750) {
+				docEl.style.fontSize = '100px';
+			} else {
+				docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+			}
+		};
+	if (!doc.addEventListener) return;
+	recalc();
+	win.addEventListener(resizeEvt, recalc, false);
+	doc.addEventListener('DOMContentLoaded', recalc, false);
+})(document, window);
+</script>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	#photo-box {
+		width: 100%;
+		height: 7.5rem;
+		background-color: rgb(0,0,0);
+		overflow: hidden;
+		background-repeat: no-repeat;
+		cursor: move;
+		box-shadow: 4px 4px 12px #B0B0B0;
+		position: relative;
+
+	}
+	#captureCanvas2{
+		width: 100%;
+		height: 100%;
+        position: relative;
+        z-index: 9;
+	}
+	.result {
+		width: 2.0rem;
+		height: 2.0rem;
+		margin: 0 auto;
+	}
+	.result img {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+	#crop {
+		position: absolute;
+		width: 2rem;
+		height: 2rem;
+		top: 2.75rem;
+		left: 2.75rem;
+        z-index: 999;
+	}
+    #lock {
+        position: absolute;
+        z-index: 99;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(0,0,0,0.5);
+    }
+    #captureCanvas1 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+    #crop div {
+        position: absolute;
+        height: 0.4rem;
+        width: 0.4rem;
+    }
+    .border1 {
+        top: -4px;
+        left: -4px;
+        border-top: 4px solid orange;
+        border-left: 4px solid orange;
+    }
+    .border2 {
+        top: -4px;
+        right: -4px;
+        border-top: 4px solid orange;
+        border-right: 4px solid orange;
+    }
+    .border3 {
+        bottom: -4px;
+        left: -4px;
+        border-bottom: 4px solid orange;
+        border-left: 4px solid orange;
+    }
+    .border4 {
+        bottom: -4px;
+        right: -4px;
+        border-right: 4px solid orange;
+        border-bottom: 4px solid orange;
+    }
+</style>
+
+<section id="upload_photo" class="container <{if $app_status}>no-header<{/if}>">
+
+	<div id="photo-box">
+        <canvas id="captureCanvas2"></canvas>
+        <div id="lock"></div>
+        <div id="crop">
+            <canvas id="captureCanvas1"></canvas>
+            <div class="border1"></div>
+            <div class="border2"></div>
+            <div class="border3"></div>
+            <div class="border4"></div>
+        </div>
+	</div>
+
+	<input type="file" name="userphoto" id="upload-file">
+	<!-- <div class="result">
+		<img src="" alt="">
+	</div> -->
+
+</section>
+<script src="./jquery1.9.1.min.js"></script>
+<script>
+
+
+	//绑定的事件 目前只适用于webkit内核浏览器
+	var events = {start:'touchstart', move:'touchmove', end:'touchend'};
+
+    /**
+     * 简单的数组合并
+     */
+	 function extend(source, target) {
+        for(var key in source) {
+            if(source.hasOwnProperty(key))
+                target[key] = source[key];
+        }
+        return target;
+    }
+
+   /**
+    *  初始化参数和画布
+    */
+    function veImage(opts) {
+		var defaults = {
+			canvas: null,//画布
+			image: null,//图片
+			relativeWidth: 750 //相对宽度，裁剪的时候可计算比率
+		};
+
+        if(!opts.canvas || !opts.image) {
+            throw new Error('请传入正确的画布或图片');
+        }
+
+        this.opts = extend(opts, defaults); //默认参数与传入参数合并
+        
+        this.canvas = document.querySelector(this.opts.canvas);  //画布
+        
+        this.el = $(this.opts.el);   // 焦点元素
+        this.el_w = this.el.width();   
+        this.el_h = this.el.height();
+        this.el_l = this.el.position().left;
+        this.el_t = this.el.position().top;
+        this.parent = $(this.opts.parent);    // 画布的容器
+        this.parent_w = this.parent.width();
+        this.parent_h = this.parent.height();
+        this.size = this.canvas.getBoundingClientRect();//画布的尺寸参数,包含宽高和定位位置
+        this.context = this.canvas.getContext('2d');//画布上下文
+        this.image = opts.image;//图片
+        this.result = $(this.opts.result);
+        console.log(this.el_l + '     ' + this.el_t)
+        //设置画布的宽高
+        this.canvas.width = this.size.width;
+        this.canvas.height = this.size.height;
+
+        //将图片用合适的尺寸放入到画布中
+        var rateWidth = this.canvas.width / this.image.width,//画布与图片的宽比
+            rateHeight = this.canvas.height / this.image.height,//画布与图片的高比
+            rate = rateWidth > rateHeight ? rateHeight : rateWidth;//取小的比率
+
+        //设置目标宽高 也就是缩放后的宽高
+        this.dWidth = this.image.width * rate;
+        this.dHeight = this.image.height * rate;
+
+        //将画布的中心点 作为起始坐标 缩放的时候会从中间开始放大，效果更佳，图片也能画在正中间
+        this.origin = {
+            x: Math.floor(this.canvas.width / 2),
+            y: Math.floor(this.canvas.height / 2)
+        };
+
+        this._draw();//画图
+        this._bind(); //绑定手指事件
+    }
+	var veImagePrototype = veImage.prototype;
+
+	/**
+     * 画图
+     * @param dx X轴偏移量
+     * @param dy Y轴偏移量
+     * @param zoomWidth 宽度缩放比
+     * @param zoomHeight 高度缩放比
+     * @private
+     */
+	veImagePrototype._draw = function() {
+        //清空画布 擦除之前绘制的所有内容 不清空的话会显示各个步骤的画布
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.context.save();//保存状态
+
+        //计算偏移
+        this.context.translate(this.origin.x, this.origin.y);//位移
+
+        //计算缩放
+        var zoom = 1 //统一按一个比例做缩放
+        this.dWidth *= zoom;//宽度缩放
+        this.dHeight *= zoom;//高度缩放
+
+        //画图
+        this.context.drawImage(
+            this.image,
+            0, 0, this.image.width, this.image.height,
+            -this.dWidth / 2, -this.dHeight / 2, this.dWidth, this.dHeight);//目标画布的中心点
+        
+        this.image = null;
+        // 绘制新的头像
+        this.crop(this.el_w,this.el_h,this.el_l,this.el_t)
+        
+        //还原到上一个状态 也就是空画布的时候
+        this.context.restore();
+    };
+
+
+    /**
+     * 绑定事件
+     */
+	 veImagePrototype._bind = function() {
+        var _this = this;
+        this.parent.on(events.start,function(e){
+            _this.startEvt(e);
+        }) 
+        this.parent.on(events.move,function(e){
+            _this.moveEvt(e);
+        }) 
+        this.parent.on(events.end,function(e){
+            _this.endEvt(e);
+        }) 
+    };
+
+    /**
+     * 记录手指的坐标
+     * @param touches
+     * @private
+     */
+     veImagePrototype._finger = function(touches) {
+        var coordinate = [],
+            len = touches.length;
+        for(var i=0; i<len; i++) {//TouchList类型 不能用forEach
+            coordinate.push({x:touches[i].clientX, y:touches[i].clientY})
+        }
+        
+        return coordinate;
+    }
+
+    /**
+     * 模式判断
+     */
+     veImagePrototype._mode = function(fingers) {
+        if(fingers.length == 1) {
+            this.mode = 1;//位移模式
+        }else if(fingers.length > 1) {
+            this.mode = 2;//缩放模式
+        }
+    };
+
+    /**
+     * 绑定开始事件
+     */
+    veImagePrototype.startEvt = function(e) {
+        this.start = this._finger(e.originalEvent.touches);//记录开始的坐标
+        this._mode(e.originalEvent.touches);//模式初始化(位移或缩放)
+    };
+
+    /**
+     * 绑定手指移动事件
+     */
+    veImagePrototype.moveEvt = function(e) {
+        e.preventDefault();//禁止滚动
+
+        var fingers = this._finger(e.originalEvent.touches);//记录移动中的坐标
+
+        //不能仅仅通过手指数量来判断 因为当缩放后，移除手指的时候，会出现一个手指还停留在页面上，导致位移
+        if(this.mode == 1) {//位移
+            this._translate(fingers);
+        }else if(this.mode == 2) {//缩放
+            this._zoom(fingers);
+        }
+        //将start的坐标复为移动中的坐标 时时计算偏移值，不然会变得非常大，图片在移动中会飞出画面
+        this.start = fingers;
+    };
+
+    /**
+     * 缩放
+     */
+    veImagePrototype._zoom = function(fingers){
+        // 计算缩放比例
+        var lastOffset = {
+            x : Math.abs(this.start[0].x - this.start[1].x),
+            y : Math.abs(this.start[0].y - this.start[1].y)
+        };
+        if(lastOffset.x == 0 || lastOffset.y == 0) {//防止分母是0
+            return;
+        }
+
+        // 焦点框的宽高
+        this.el_h = this.el_w = this.el_w * Math.abs(fingers[0].x - fingers[1].x) / lastOffset.x;
+
+        // 绘制新的头像
+        this.crop(this.el_w,this.el_h,this.el_l,this.el_t)
+
+        // 设定焦点框的宽高
+        this.el.css({
+            'width': this.el_w + 'px',
+            'height': this.el_h + 'px'
+        })
+    };
+
+    /**
+     * 位移
+     */   
+    veImagePrototype._translate = function(fingers){
+        // 焦点框移动时初始的left和top
+        this.el_l = this.el_l + (fingers[0].x - this.start[0].x);
+        this.el_t = this.el_t + (fingers[0].y - this.start[0].y);
+        
+        // 焦点框超出左和上的处理
+        this.el_l = this.el_l < 0 ? 0 : this.el_l;
+        this.el_t = this.el_t < 0 ? 0 : this.el_t;
+
+        // 焦点框超出右和下的处理
+        this.el_l = this.el_l > this.parent_w - this.el_w ? this.parent_w - this.el_w : this.el_l;
+        this.el_t = this.el_t > this.parent_h - this.el_h ? this.parent_h - this.el_h : this.el_t;
+
+        // 绘制新的头像
+        this.crop(this.el_w,this.el_h,this.el_l,this.el_t)
+        
+        // 设置焦点框的left和top
+        this.el.css({
+            'left': this.el_l + 'px',
+            'top' : this.el_t + 'px'
+        });
+    };
+
+
+    /**
+     * 绑定结束事件
+     */
+    veImagePrototype.endEvt = function(e) {
+        // 绘制新的头像
+        this.crop(this.el_w,this.el_h,this.el_l,this.el_t)
+    };
+
+    /**
+     * 裁剪
+     * @param w 裁剪的宽度
+     * @param h 裁剪的高度
+     * @param x 开始裁剪的X轴坐标
+     * @param y 开始裁剪的Y轴坐标
+     * @returns {string}
+     */
+    veImagePrototype.crop = function(w,h,x,y) {
+        var result = this.result[0],
+            context = result.getContext('2d'),
+            rate = 1;//当前画布的宽度与设置的相对宽度 计算比率
+
+        x *= rate;
+        y *= rate;
+
+        result.width = w*rate;
+        result.height = h*rate;
+
+        context.drawImage(
+            this.canvas,
+            x, y, result.width, result.height,
+            0, 0, result.width, result.height
+        );
+        this.base64 = result.toDataURL('image/jpeg', 1);
+        canvas = null;
+    };
+
+
+//http://doc.okbase.net/strick/archive/262144.html
+
+
+
+$(function(){
+	var imgEdit2;
+	var img = new Image();
+	$('#upload-file').on('change', function(){
+		var fileList = this.files;
+		var imgUrl = window.URL.createObjectURL(fileList[0]);
+
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			imgSrc = e.target.result;	// 这里打印base64
+			img.src = imgSrc;
+		}
+		reader.readAsDataURL(this.files[0]);
+	})
+	
+	img.onload = function() {
+		imgEdit2 = new veImage({
+            canvas:'#captureCanvas2', 
+            image:this, 
+            el: '#crop', 
+            parent: '#photo-box',
+            result: '#captureCanvas1'
+        });
+	};
+})
+
+</script>
+
+</body>
+</html>
