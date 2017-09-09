@@ -1,0 +1,60 @@
+/* 基本样式 */
+/* @media (max-width: 320px) {
+	.pop-bottom {
+		font-size:16px; 
+	}
+} */
+/* 弹窗popBottom方法的css部分 */
+/* body.lock, html.lock {
+	width: 100%;
+	position: fixed;
+  }
+  .pop-bottom {
+	display: none;
+  } */
+  /* .shade-lock {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 999999;
+	background-color: rgba(0,0,0,0.4);
+  } */
+  /* .pop-content {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 99999999999;
+	padding: 0.2rem 0.25rem;
+	width: 100%;
+  } */
+  /* .pop-items {
+	margin-bottom: 0.2rem;
+  } */
+  /* .pop-cancel {
+	border-radius: 0.08rem;
+  } */
+  /* .pop-item,.pop-cancel {
+	height: 0.8rem;
+	line-height: 0.8rem;
+	width: 7rem;
+	background-color: #fff;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 0.32rem;
+	color: #007aff;
+	border-bottom: 1px solid #f0f0f0;
+  } */
+  /* .pop-item a{
+	color: #007aff;
+  } */
+  /* .pop-item:first-child {
+	border-radius: 0.08rem 0.08rem 0 0;
+  }
+  .pop-item:last-child {
+	border-radius: 0 0 0.08rem 0.08rem;
+	border-bottom: none;
+  }
+  .pop-item:active {
+	background-color: #f8f8f8;
+  } */
+  /* 底部弹框部分结束 */
