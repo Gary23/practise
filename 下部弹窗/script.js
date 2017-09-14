@@ -13,8 +13,6 @@
 / */
 
 function popBottom(option){
-    if(!option) return fasle;
-    this.option = option;
     this.scrollTop = 0;
 	// 获取窗口宽高
 	var w = document.documentElement.clientWidth;
@@ -28,23 +26,13 @@ function popBottom(option){
     } else {
         this.fontSize = 100 * (w / 750) + 'px';
     }
+    
+    var pop_items = $('<div class="pop-items"></div>');
 
-    var fs = this.fontSize;
-    var item_h = 140;
+    if(option){
+        this.setItems(option, pop_items);
+    }
 
-	var pop_items = $('<div class="pop-items"></div>');
-    var link,fun;
-
-	$.each(this.option,function(index,item){
-        item_h += 80;
-		if(item['link']){
-			link = item['link'];
-		}else{
-			link = 'javascript:;'
-		}
-		var item = $('<div class="pop-item item' + (index + 1) + '"><a href="' + link + '">' + item['title'] + '</a></div>');
-		pop_items.append(item)
-	})
 	var pop_content = $('<div class="pop-content"></div>').append(pop_items).append($('<div class="pop-cancel">取消</div>'));
     var pop_bottom = $('<div class="pop-bottom"></div>').append($('<div class="shade-lock"></div>')).append(pop_content);
     
@@ -55,14 +43,13 @@ function popBottom(option){
 		'height': h + 'px'
     })
     
-    this.item_h = item_h / 100 * fs;
     this.init();
 }
 
 popBottom.prototype = {
     constructor: popBottom,
     init: function(){
-        this.screen();
+        this.createElem();
         this.onEvent();
         this.style();
         this.pop = $('.pop-bottom');
@@ -70,13 +57,67 @@ popBottom.prototype = {
         this.content = $('.pop-content');
         this.pop.hide();
     },
+    setItems: function(option, parent){
+        var link,fun;
+        var item_h = 140;
+        var ft = parseFloat(this.fontSize);
+        parent = parent || $('.pop-items');
+        this.option = option;
+        $.each(this.option,function(index,item){
+            item_h += 80;
+            if(item['link']){
+                link = item['link'];
+            }else{
+                link = 'javascript:;'
+            }
+            var item = $('<div class="pop-item pop-btn' + (index + 1) + '"><a href="' + link + '">' + item['title'] + '</a></div>');
+            parent.append(item)
+        })
+        this.item_h = item_h / 100 * ft;
+
+        $('.pop-item:first-child').css({
+            'borderRadius': 0.1 * ft + 'px ' + 0.1 * ft + 'px' + ' 0 0',
+        });
+
+        $('.pop-item:last-child').css({
+            'borderRadius': '0 0 ' + 0.1 * ft + 'px ' + 0.1 * ft + 'px',
+            'borderBottom': 'none',
+        })
+
+        $('.pop-item:active').css({
+            'backgroundColor': '#f8f8f8',
+        })
+
+        $('.pop-items').css({
+            'margin-bottom': 0.2 * ft + 'px',
+        })
+
+        $('.pop-item').css({
+            'height': 0.8 * ft + 'px',
+            'lineHeight': 0.8 * ft + 'px',
+            'width': '85%',
+            'backgroundColor': '#fff',
+            'margin': '0 auto',
+            'textAlign': 'center',
+            'fontSize': 0.32 * ft + 'px',
+            'borderBottom': '1px solid #e0e0e0',
+        });
+
+        $('.pop-item a').css({
+            'color': '#007aff',
+            'display': 'block',
+            'width': '100%',
+            'height': '100%',
+        })
+    },
     style: function(){
+        var ft = parseFloat(this.fontSize);
         $('body.lock, html.lock').css({
             'width': '100%',
             'position': 'fixed'
         });
 
-        $('.shade-lock, .pop-content').css({
+        $('.shade-lock, .pop-content, .pop-bottom').css({
             'position': 'fixed',
             'bottom': '0',
             'left': '0',
@@ -86,40 +127,27 @@ popBottom.prototype = {
         $('.shade-lock').css({
             'backgroundColor': 'rgba(0,0,0,0.4)',
         });
-        
+
         $('.pop-content').css({
-            'padding': 0.2 * this.fontSize + 'px ' + 0.25 * this.fontSize + 'px',
+            'padding': 0.2 * ft + 'px ' + '0',
             'width': '100%',
         });
 
         $('.pop-cancel').css({
-            'borderRadius': 0.08 * this.fontSize + 'px',
+            'borderRadius': 0.1 * ft + 'px',
         });
 
-        $('.pop-item, .pop-cancel').css({
-            'height': 0.8 * this.fontSize + 'px',
-            'lineHeight': 0.8 * this.fontSize + 'px',
-            'width': 7 * this.fontSize + 'px',
+        $('.pop-cancel').css({
+            'height': 0.8 * ft + 'px',
+            'lineHeight': 0.8 * ft + 'px',
+            'width': '85%',
             'backgroundColor': '#fff',
             'margin': '0 auto',
             'textAlign': 'center',
-            'fontSize': 0.32 * this.fontSize + 'px',
+            'fontSize': 0.32 * ft + 'px',
             'color': '#007aff',
-            'borderBottom': '1px solid #f0f0f0',
+            'borderBottom': '1px solid #e0e0e0',
         });
-
-        $('.pop-item:first-child').css({
-            'borderRadius': 0.08 * this.fontSize + 'px ' + 0.08 * this.fontSize + 'px' + ' 0 0',
-        });
-
-        $('.pop-item:last-child').css({
-            'borderRadius': '0 0 ' + 0.08 * this.fontSize + 'px ' + 0.08 * this.fontSize + 'px',
-            'borderBottom': 'none',
-        })
-
-        $('.pop-item:active').css({
-            'backgroundColor': '#f8f8f8',
-        })
     },
     popup: function(){
         var _this = this;
