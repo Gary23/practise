@@ -2,98 +2,157 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Swiper demo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-
-    <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="../dist/css/swiper.min.css">
-
-    <!-- Demo styles -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
     <style>
-        body {
-            background: #eee;
-            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-            font-size: 14px;
-            color: #000;
-            margin: 0;
-            padding: 0;
-        }
-
-        .swiper-container {}
-
-        .swiper-slide {
-            width: 250px;
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
         }
     </style>
+    <script src="./jquery1.9.1.min.js"></script>
 </head>
 
 <body>
-    <div id="index_ad"></div>
 
-    <!-- Swiper JS -->
-    <script src="http://v83.duoduo123.com/js/jquery.js"></script>
+    <!-- <div style="text-align: center;">
+    <img src="http://testmall.aili88.cn/images/23/13/5c/e4d37fb3bdc1757d4a315648c14c6b958296d57a.png" style="line-height: 1.42857;">
+    <img src="http://testmall.aili88.cn/images/f0/e6/3f/eb7ab3274fb9778e4e92e5d72cf33b2aa5b0d7a3.png" style="line-height: 1.42857;">
+    <img src="http://testmall.aili88.cn/images/ce/97/50/365d3b4ccd252233cb133385eb94981cf22b0d02.png" style="line-height: 1.42857;">
+</div>
 
-    <!-- Initialize Swiper -->
-    <script type="text/javascript">
-        html = '';
-        var appinfo = {
-            'index_ad_pub': 'a,a|a,aa',
-            'indexads': [{
-                'img': 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3556520661,537702812&fm=26&gp=0.jpg'
-            }, {
-                'img': 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3556520661,537702812&fm=26&gp=0.jpg'
-            }, {
-                'img': 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1216299933,3335056655&fm=26&gp=0.jpg'
-            }, {
-                'img': 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3556520661,537702812&fm=26&gp=0.jpg'
-            }, {
-                'img': 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3556520661,537702812&fm=26&gp=0.jpg'
-            }]
-        };
-        var htmlArr = [];
-        var n = 0;
-        var t = appinfo.index_ad_pub.split('|');   // ['a,a,a','a,aa']
-        // 遍历参数index_ad_pub
-        for (var i in t) {
-            // 在htmlArr中增加一个新的数组
-            htmlArr.push([]);
-            var k = t[i].split(',');   //t=[a,a,a]
-            // 遍历index_ad_pub中的第一个元素
-            for (var j in k) {
-                // 每个元素的长度
-                var l = k[j].length;     //
-                var str = '';
-                // 遍历这个元素
-                for (var m = 0; m < l; m++) {
-                    // 判断indesads数组是否有效
-                    if (typeof appinfo['indexads'][n] != 'undefined') {
-                        // img属性是否有值
-                        if (typeof appinfo['indexads'][n] != 'undefined' && typeof appinfo['indexads'][n].img !=
-                            'undefined') {
-                             // 将第一个图片生成img元素
-                            str += '<img src="' + appinfo['indexads'][n].img + '" style="display:block; width:100%" />';
-                        }
-                        
-                    }
-                    // n增加一个以便下次遍历拿到indesads数组中下一个img属性111111111
-                    n++;
+
+
+<div style="text-align: center;">
+    <img src="http://testmall.aili88.cn/images/26/8b/fb/a0ad66b580aacc77669ee51e751e0337bbf64d70.png" style="line-height: 1.42857;">
+    <img src="http://testmall.aili88.cn/images/45/8d/76/f6874e87342982bbb46dd31bde664a90e2a57f9f.png" style="line-height: 1.42857;">
+    <img src="http://testmall.aili88.cn/images/26/8b/fb/a0ad66b580aacc77669ee51e751e0337bbf64d70.png" style="line-height: 1.42857;">
+    <img src="http://testmall.aili88.cn/images/03/25/d5/1740f97fe151d00ad7df24b1b9a2584bd81b20d7.png" style="line-height: 1.42857;">
+    <img src="http://testmall.aili88.cn/images/26/8b/fb/a0ad66b580aacc77669ee51e751e0337bbf64d70.png" style="line-height: 1.42857;">
+    <img src="http://testmall.aili88.cn/images/0a/ce/1f/f327aaaaaf9c8e1d3d65dc7d512ed9e7160f3cbd.png" style="line-height: 1.42857;">
+    <img src="http://testmall.aili88.cn/images/26/8b/fb/a0ad66b580aacc77669ee51e751e0337bbf64d70.png" style="line-height: 1.42857;">
+    <img src="http://testmall.aili88.cn/images/92/0b/f3/c46eaaa3616538320fa98173c6a4b15d8c245219.png" style="line-height: 1.42857;">
+</div> -->
+
+
+    <div style="text-align: center;">
+        <p><img src="http://testmall.aili88.cn/images/23/13/5c/e4d37fb3bdc1757d4a315648c14c6b958296d57a.png" style="line-height: 1.42857;"></p>
+        <p style="overflow: hidden; position: relative;"><a href="http://mall.aili88.cn/item.html?item_id=401782" style="position: absolute; left: 0; width: 50%; height: 100%;" target="_blank"></a><a href="http://mall.aili88.cn/item.html?item_id=401783" style="position: absolute; left: 50%; width: 50%; height: 100%;" target="_blank"></a><img src="http://testmall.aili88.cn/images/f0/e6/3f/eb7ab3274fb9778e4e92e5d72cf33b2aa5b0d7a3.png" style="line-height: 1.42857;"></p>
+        <p style="overflow: hidden; position: relative;"><a href="http://mall.aili88.cn/item.html?item_id=401774" style="position: absolute; left: 0; width: 50%; height: 100%;" target="_blank"></a><a href="http://mall.aili88.cn/item.html?item_id=401772" style="position: absolute; left: 50%; width: 50%; height: 100%;" target="_blank"></a><img src="http://testmall.aili88.cn/images/ce/97/50/365d3b4ccd252233cb133385eb94981cf22b0d02.png" style="line-height: 1.42857;"></p>
+    </div>
+
+
+
+    <div style="text-align: center;">
+        <p><img src="http://testmall.aili88.cn/images/26/8b/fb/a0ad66b580aacc77669ee51e751e0337bbf64d70.png" style="line-height: 1.42857;"></p>
+        <p><img src="http://testmall.aili88.cn/images/45/8d/76/f6874e87342982bbb46dd31bde664a90e2a57f9f.png" style="line-height: 1.42857;"></p>
+        <p><img src="http://testmall.aili88.cn/images/26/8b/fb/a0ad66b580aacc77669ee51e751e0337bbf64d70.png" style="line-height: 1.42857;"></p>
+        <p><img src="http://testmall.aili88.cn/images/03/25/d5/1740f97fe151d00ad7df24b1b9a2584bd81b20d7.png" style="line-height: 1.42857;"></p>
+        <p><img src="http://testmall.aili88.cn/images/26/8b/fb/a0ad66b580aacc77669ee51e751e0337bbf64d70.png" style="line-height: 1.42857;"></p>
+        <p><img src="http://testmall.aili88.cn/images/0a/ce/1f/f327aaaaaf9c8e1d3d65dc7d512ed9e7160f3cbd.png" style="line-height: 1.42857;"></p>
+        <p><img src="http://testmall.aili88.cn/images/26/8b/fb/a0ad66b580aacc77669ee51e751e0337bbf64d70.png" style="line-height: 1.42857;"></p>
+        <p><img src="http://testmall.aili88.cn/images/92/0b/f3/c46eaaa3616538320fa98173c6a4b15d8c245219.png" style="line-height: 1.42857;"></p>
+    </div>
+
+
+    <div id="box"></div>
+
+    <script>
+        //双dom9点定位
+        $.fn.locate = function (options) {
+            options = $.extend({
+                relative: document.body, // 应该是父元素
+                x: 'center', //left center right
+                y: 'center',
+                pos: 'absolute', // 定位方式
+                //top center bottom
+                offset: { //偏移量
+                    x: 0,
+                    y: 0
                 }
-                // 将img装进最开始增加的那个数组
-                htmlArr[i].push('<div style="flex:1;">' + str + '</div>');
+            }, options);
+
+            var left,
+                top,
+                x,
+                y,
+                offset = options.offset,
+                el = $(options.relative),
+                $this = $(this).css('position', options.pos),
+                h = $this.height(),
+                w = $this.width(),
+                elH = (el.is('body') ? $(window) : el).innerHeight(),
+                elW = el.innerWidth();
+
+            if (options.pos === 'absolute') {
+                switch (options.x) { //left定位
+                    case 0:
+                    case 'left':
+                        x = 0;
+                        break;
+                    case 'right':
+                        x = elW - w;
+                        break;
+                    default:
+                        x = parseInt((elW - w) / 2); // 默认居中
+                        break;
+                }
+
+                switch (options.y) { // top定位
+                    case 0:
+                    case 'top':
+                        y = 0;
+                        break;
+                    case 'bottom':
+                        y = elH - h;
+                        break;
+                    default:
+                        y = parseInt((elH - h) / 2);
+                        break;
+                }
+                // 定位的数值加上父元素的边距
+                left = Math.max(0, Math.floor(x + (el.offset() ? el.offset().left : 0) + el.scrollLeft()));
+
+                top = Math.max(0, Math.floor(y + (el.offset() ? el.offset().top : 0) + el.scrollTop()));
+
+                if (typeof offset === 'string') {
+                    if (offset == 'top') {
+                        top -= h;
+                    } else if (offset == 'left') {
+                        left -= w;
+                    } else if (offset == 'bottom') {
+                        top += elH;
+                    } else if (offset == 'right') {
+                        left += elW;
+                    }
+                } else if ($.isPlainObject(offset)) {
+                    left += offset.x || 0;
+                    top += offset.y || 0;
+                }
+
+                $this.css({
+                    left: left,
+                    top: top
+                });
+            } else if (options.pos === 'fixed') {
+                left = '50%';
+                top = '50%';
+
+                $this.css({
+                    left: left,
+                    top: top,
+                    marginLeft: -w / 2,
+                    marginTop: -h / 2
+                });
             }
-            // 将第一个元素的不同数组组合到一个数组
-            htmlArr[i] = htmlArr[i].join('');
-            console.log(htmlArr)
-        }
-        for (var i in htmlArr) {
-            html += '<div style="display:-webkit-flex;-webkit-align-items: center;">' + htmlArr[i] + '</div>';
-        }
-        $('#index_ad').html(html);
-        
 
+            return this;
+        };
 
-        
+        $('#box').locate();
     </script>
 </body>
 
