@@ -28,17 +28,29 @@
 	<button id="btn" style="font-size:14px;">弹窗1</button>
 	<script src="./script.js"></script>
 	<script>
-		var popup = new popBottom();
-
-		$('#btn').click(function(){
-			popup.setItems([
+		var popup = new popBottom([
 				{
-					'title':'153'
+					'title':'153',
+					'fun': function(){
+						alert(1);
+					}
 				},
 				{
 					'title':'246'
 				}
 			]);
+
+		// var popup = new popBottom()
+
+		$('#btn').click(function(){
+			// popup.setItems([
+			// 	{
+			// 		'title':'153'
+			// 	},
+			// 	{
+			// 		'title':'246'
+			// 	}
+			// ])
 			popup.popup();
 		})
 	</script>
