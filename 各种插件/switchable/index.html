@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="../../jquery1.9.1.min.js"></script>
+	<script src="./tools.js"></script>
+	<script src="./switchable.js"></script>
+</head>
+<body>
+	<div id="demo1" class="section" data-toggle="switchable" data-switchable-config="{&quot;events&quot;:&quot;click&quot;}">
+	<ul class="switchable-triggersList">
+		<li class="">标题 A</li>
+		<li class="active">标题 B</li>
+		<li class="">标题 C</li>
+		<li class="">标题 D</li>
+		<li class="">标题 E</li>
+	</ul>
+	<div class="switchable-content">
+		<div style="display: none;">标题 A内容</div>
+		<div style="display: block;">index = 1</div>
+		<div style="display: none;">index = 2</div>
+		<div style="display: none;">内容 D</div>
+		<div style="display: none;">index = 4</div>
+	</div>
+	</div>
+	<script>
+	$('#demo1').switchable();
+	</script>
+</body>
+</html>

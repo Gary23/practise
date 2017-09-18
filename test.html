@@ -10,158 +10,32 @@
         #box {
             width: 200px;
             height: 200px;
-            background-color: red;
+                            background-color: red;
+        }
+        body {
+            height: 2000px;
         }
     </style>
     <script src="./jquery1.9.1.min.js"></script>
 </head>
 
-<body>
+<body>  
+<div id="box"></div>
+<script>
 
-    <!-- <div style="text-align: center;">
-    <img src="http://testmall.aili88.cn/images/23/13/5c/e4d37fb3bdc1757d4a315648c14c6b958296d57a.png" style="line-height: 1.42857;">
-    <img src="http://testmall.aili88.cn/images/f0/e6/3f/eb7ab3274fb9778e4e92e5d72cf33b2aa5b0d7a3.png" style="line-height: 1.42857;">
-    <img src="http://testmall.aili88.cn/images/ce/97/50/365d3b4ccd252233cb133385eb94981cf22b0d02.png" style="line-height: 1.42857;">
-</div>
+function isElement(dom) {
+    if(dom instanceof jQuery) {
+        dom = dom[0];
+    }
+    if(!dom) return false;
+    return dom.nodeName && dom.nodeType === 1;
+}
 
+var box = document.getElementById('box');
+var flag = isElement($('#box'));
+var falg1 = isElement(box);
 
-
-<div style="text-align: center;">
-    <img src="http://testmall.aili88.cn/images/26/8b/fb/a0ad66b580aacc77669ee51e751e0337bbf64d70.png" style="line-height: 1.42857;">
-    <img src="http://testmall.aili88.cn/images/45/8d/76/f6874e87342982bbb46dd31bde664a90e2a57f9f.png" style="line-height: 1.42857;">
-    <img src="http://testmall.aili88.cn/images/26/8b/fb/a0ad66b580aacc77669ee51e751e0337bbf64d70.png" style="line-height: 1.42857;">
-    <img src="http://testmall.aili88.cn/images/03/25/d5/1740f97fe151d00ad7df24b1b9a2584bd81b20d7.png" style="line-height: 1.42857;">
-    <img src="http://testmall.aili88.cn/images/26/8b/fb/a0ad66b580aacc77669ee51e751e0337bbf64d70.png" style="line-height: 1.42857;">
-    <img src="http://testmall.aili88.cn/images/0a/ce/1f/f327aaaaaf9c8e1d3d65dc7d512ed9e7160f3cbd.png" style="line-height: 1.42857;">
-    <img src="http://testmall.aili88.cn/images/26/8b/fb/a0ad66b580aacc77669ee51e751e0337bbf64d70.png" style="line-height: 1.42857;">
-    <img src="http://testmall.aili88.cn/images/92/0b/f3/c46eaaa3616538320fa98173c6a4b15d8c245219.png" style="line-height: 1.42857;">
-</div> -->
-
-
-    <div style="text-align: center;">
-        <p><img src="http://testmall.aili88.cn/images/23/13/5c/e4d37fb3bdc1757d4a315648c14c6b958296d57a.png" style="line-height: 1.42857;"></p>
-        <p style="overflow: hidden; position: relative;"><a href="http://mall.aili88.cn/item.html?item_id=401782" style="position: absolute; left: 0; width: 50%; height: 100%;" target="_blank"></a><a href="http://mall.aili88.cn/item.html?item_id=401783" style="position: absolute; left: 50%; width: 50%; height: 100%;" target="_blank"></a><img src="http://testmall.aili88.cn/images/f0/e6/3f/eb7ab3274fb9778e4e92e5d72cf33b2aa5b0d7a3.png" style="line-height: 1.42857;"></p>
-        <p style="overflow: hidden; position: relative;"><a href="http://mall.aili88.cn/item.html?item_id=401774" style="position: absolute; left: 0; width: 50%; height: 100%;" target="_blank"></a><a href="http://mall.aili88.cn/item.html?item_id=401772" style="position: absolute; left: 50%; width: 50%; height: 100%;" target="_blank"></a><img src="http://testmall.aili88.cn/images/ce/97/50/365d3b4ccd252233cb133385eb94981cf22b0d02.png" style="line-height: 1.42857;"></p>
-    </div>
-
-
-
-    <div style="text-align: center;">
-        <p style="overflow: hidden; position: relative;"><a href="javascript:;" style="position: absolute; left: 0; width: 100%; height: 50%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 0; width: 50%; height: 50%; top: 50%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 50%; width: 50%; height: 50%; top: 50%;" target="_blank"></a><img src="http://testmall.aili88.cn/images/26/8b/fb/a0ad66b580aacc77669ee51e751e0337bbf64d70.png" style="line-height: 1.42857;"></p>
-
-        <p style="overflow: hidden; position: relative;"><a href="javascript:;" style="position: absolute;left: 7%;width: 28%;height: 44%;top: 12%;" target="_blank"></a><a href="javascript:;" style="position: absolute;left: 36%;width: 28%;height: 44%;top: 12%;" target="_blank"></a><a href="javascript:;" style="position: absolute;left: 65%;width: 28%;height: 44%;top: 12%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 7%; width: 28%; height: 44%; top: 56%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 36%; width: 28%; height: 44%; top: 56%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 65%; width: 28%; height: 44%; top: 56%;" target="_blank"></a><img src="http://testmall.aili88.cn/images/45/8d/76/f6874e87342982bbb46dd31bde664a90e2a57f9f.png" style="line-height: 1.42857;"></p>
-
-        <p style="overflow: hidden; position: relative;"><a href="javascript:;" style="position: absolute; left: 0; width: 100%; height: 50%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 0; width: 50%; height: 50%; top: 50%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 50%; width: 50%; height: 50%; top: 50%;" target="_blank"></a><img src="http://testmall.aili88.cn/images/26/8b/fb/a0ad66b580aacc77669ee51e751e0337bbf64d70.png" style="line-height: 1.42857;"></p>
-
-        <p style="overflow: hidden; position: relative;"><a href="javascript:;" style="position: absolute;left: 7%;width: 28%;height: 44%;top: 12%;" target="_blank"></a><a href="javascript:;" style="position: absolute;left: 36%;width: 28%;height: 44%;top: 12%;" target="_blank"></a><a href="javascript:;" style="position: absolute;left: 65%;width: 28%;height: 44%;top: 12%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 7%; width: 28%; height: 44%; top: 56%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 36%; width: 28%; height: 44%; top: 56%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 65%; width: 28%; height: 44%; top: 56%;" target="_blank"></a><img src="http://testmall.aili88.cn/images/03/25/d5/1740f97fe151d00ad7df24b1b9a2584bd81b20d7.png" style="line-height: 1.42857;"></p>
-
-        <p style="overflow: hidden; position: relative;"><a href="javascript:;" style="position: absolute; left: 0; width: 100%; height: 50%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 0; width: 50%; height: 50%; top: 50%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 50%; width: 50%; height: 50%; top: 50%;" target="_blank"></a><img src="http://testmall.aili88.cn/images/26/8b/fb/a0ad66b580aacc77669ee51e751e0337bbf64d70.png" style="line-height: 1.42857;"></p>
-
-        <p style="overflow: hidden; position: relative;"><a href="javascript:;" style="position: absolute;left: 7%;width: 28%;height: 76%;top: 22%;" target="_blank"></a><a href="javascript:;" style="position: absolute;left: 36%;width: 28%;height: 76%;top: 22%;" target="_blank"></a><a href="javascript:;" style="position: absolute;left: 65%;width: 28%;height: 76%;top: 22%;" target="_blank"></a><img src="http://testmall.aili88.cn/images/0a/ce/1f/f327aaaaaf9c8e1d3d65dc7d512ed9e7160f3cbd.png" style="line-height: 1.42857;"></p>
-
-        <p style="overflow: hidden; position: relative;"><a href="javascript:;" style="position: absolute; left: 0; width: 100%; height: 50%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 0; width: 50%; height: 50%; top: 50%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 50%; width: 50%; height: 50%; top: 50%;" target="_blank"></a><img src="http://testmall.aili88.cn/images/26/8b/fb/a0ad66b580aacc77669ee51e751e0337bbf64d70.png" style="line-height: 1.42857;"></p>
-
-        <p style="overflow: hidden; position: relative;"><a href="javascript:;" style="position: absolute;left: 7%;width: 28%;height: 41%;top: 12%;" target="_blank"></a><a href="javascript:;" style="position: absolute;left: 36%;width: 28%;height: 41%;top: 12%;" target="_blank"></a><a href="javascript:;" style="position: absolute;left: 65%;width: 28%;height: 41%;top: 12%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 7%; width: 28%; height: 41%; top: 54%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 36%; width: 28%; height: 41%; top: 54%;" target="_blank"></a><a href="javascript:;" style="position: absolute; left: 65%; width: 28%; height: 41%; top: 54%;" target="_blank"></a><img src="http://testmall.aili88.cn/images/92/0b/f3/c46eaaa3616538320fa98173c6a4b15d8c245219.png" style="line-height: 1.42857;"></p>
-
-    </div>
-
-
-    <div id="box"></div>
-
-    <script>
-        //双dom9点定位
-        $.fn.locate = function (options) {
-            options = $.extend({
-                relative: document.body, // 应该是父元素
-                x: 'center', //left center right
-                y: 'center',
-                pos: 'absolute', // 定位方式
-                //top center bottom
-                offset: { //偏移量
-                    x: 0,
-                    y: 0
-                }
-            }, options);
-
-            var left,
-                top,
-                x,
-                y,
-                offset = options.offset,
-                el = $(options.relative),
-                $this = $(this).css('position', options.pos),
-                h = $this.height(),
-                w = $this.width(),
-                elH = (el.is('body') ? $(window) : el).innerHeight(),
-                elW = el.innerWidth();
-
-            if (options.pos === 'absolute') {
-                switch (options.x) { //left定位
-                    case 0:
-                    case 'left':
-                        x = 0;
-                        break;
-                    case 'right':
-                        x = elW - w;
-                        break;
-                    default:
-                        x = parseInt((elW - w) / 2); // 默认居中
-                        break;
-                }
-
-                switch (options.y) { // top定位
-                    case 0:
-                    case 'top':
-                        y = 0;
-                        break;
-                    case 'bottom':
-                        y = elH - h;
-                        break;
-                    default:
-                        y = parseInt((elH - h) / 2);
-                        break;
-                }
-                // 定位的数值加上父元素的边距
-                left = Math.max(0, Math.floor(x + (el.offset() ? el.offset().left : 0) + el.scrollLeft()));
-
-                top = Math.max(0, Math.floor(y + (el.offset() ? el.offset().top : 0) + el.scrollTop()));
-
-                if (typeof offset === 'string') {
-                    if (offset == 'top') {
-                        top -= h;
-                    } else if (offset == 'left') {
-                        left -= w;
-                    } else if (offset == 'bottom') {
-                        top += elH;
-                    } else if (offset == 'right') {
-                        left += elW;
-                    }
-                } else if ($.isPlainObject(offset)) {
-                    left += offset.x || 0;
-                    top += offset.y || 0;
-                }
-
-                $this.css({
-                    left: left,
-                    top: top
-                });
-            } else if (options.pos === 'fixed') {
-                left = '50%';
-                top = '50%';
-
-                $this.css({
-                    left: left,
-                    top: top,
-                    marginLeft: -w / 2,
-                    marginTop: -h / 2
-                });
-            }
-
-            return this;
-        };
-
-        $('#box').locate();
-    </script>
+</script>
 </body>
 
 </html>
