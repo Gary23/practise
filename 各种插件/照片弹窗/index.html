@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+<div class="com-photo">
+	<div class="com-photo-item" style="background:url(<{$img}>) no-repeat center center/cover" onclick="imgClick('<{$img}>',this);">
+	</div>
+</div>
+
+	
+<script>
+	// 点击图片放大
+function imgClick(url,elem) {
+    $('.top-tab').removeClass('show-tab');
+    // 获取屏幕宽高
+    var ww = window.innerWidth;
+    var wh = window.innerHeight;
+    // 获取图片尺寸
+    if(elem && elem.nodeName == 'DIV'){
+        var src = url;
+    }else{
+        var img_w = $(this).width();
+        var img_h = $(this).height();
+        var src = url;
+        var img_wh = img_h / img_w > 2 ? true : false;
+    }
+    
+    // 获取图片地址
+
+    // 遮罩层的显示
+    $('.lock').css({
+        width: ww,
+        height: wh,
+        display: 'flex',
+    })
+
+    // $('html,body').toggleClass('lock-html');
+    modalHelper.afterTop();
+
+    // 计算遮罩层上图片尺寸，防止图片过高导致高度超出屏幕
+    if(img_wh){
+        $('.lock img').css({
+            width: 10 * (img_w / img_h) + 'rem',
+            height: '10rem',
+        }).prop('src',src)
+    }else{
+        $('.lock img').css({
+            width: '5rem',
+            height: 5 * (img_h / img_w) + 'rem',
+        }).prop('src',src);
+    }
+}
+
+var modalHelper = (function(bodyCls){
+    var scrollTop;
+    return {
+        afterTop: function() {
+            scrollTop = $(window).scrollTop();
+            $('body,html').addClass(bodyCls);
+            $('body').css('top',-scrollTop + 'px');
+        },
+        beforeClose: function(){
+            $('body,html').removeClass(bodyCls);
+            $(window).scrollTop(scrollTop);
+        }
+    }
+})('lock-html')
+
+
+
+// 照片展示
+resultPhoto($('.result-photo'),appinfo);
+</script>
+</body>
+</html>
