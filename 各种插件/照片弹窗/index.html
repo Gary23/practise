@@ -1,80 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.com-photo {
+			width: 200px;
+			height: 200px;
+		}
+
+		.com-photo-item {
+			width: 100%;
+			height: 100%;
+		}
+
+		/* .lock {
+			display: none;
+			position: fixed;
+			z-index: 9999;
+			bottom: 0;
+			left: 0;
+			background-color: rgba(0, 0, 0, 0.7);
+			align-items: center;
+			justify-content: center;
+		} */
+/* 
+		.lock img {
+			display: block;
+		} */
+
+		html.lock-html,
+		body.lock-html {
+			width: 100% !important;
+			position: fixed !important;
+		}
+	</style>
+	<script src="../../jquery1.9.1.min.js"></script>
+	<script src="./script.js"></script>
 </head>
+
 <body>
-<div class="com-photo">
-	<div class="com-photo-item" style="background:url(<{$img}>) no-repeat center center/cover" onclick="imgClick('<{$img}>',this);">
+	<div class="com-photo">
+		<div class="com-photo-item" style="background:url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506311318107&di=772184744e7b23ad77c98715ddadfceb&imgtype=0&src=http%3A%2F%2Fimg.1ppt.com%2Fuploads%2Fallimg%2F1512%2F1_151204145554_1.jpg') no-repeat center center/cover">
+		</div>
+		<!-- <div class="com-photo-item" style="background:url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506339292485&di=d748e51c23c34cc5882ece8b87467434&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201207%2F13%2F20120713191526_sQW8N.thumb.224_0.jpeg') no-repeat center center/cover"> -->
+		</div>
 	</div>
-</div>
 
-	
-<script>
-	// 点击图片放大
-function imgClick(url,elem) {
-    $('.top-tab').removeClass('show-tab');
-    // 获取屏幕宽高
-    var ww = window.innerWidth;
-    var wh = window.innerHeight;
-    // 获取图片尺寸
-    if(elem && elem.nodeName == 'DIV'){
-        var src = url;
-    }else{
-        var img_w = $(this).width();
-        var img_h = $(this).height();
-        var src = url;
-        var img_wh = img_h / img_w > 2 ? true : false;
-    }
-    
-    // 获取图片地址
-
-    // 遮罩层的显示
-    $('.lock').css({
-        width: ww,
-        height: wh,
-        display: 'flex',
-    })
-
-    // $('html,body').toggleClass('lock-html');
-    modalHelper.afterTop();
-
-    // 计算遮罩层上图片尺寸，防止图片过高导致高度超出屏幕
-    if(img_wh){
-        $('.lock img').css({
-            width: 10 * (img_w / img_h) + 'rem',
-            height: '10rem',
-        }).prop('src',src)
-    }else{
-        $('.lock img').css({
-            width: '5rem',
-            height: 5 * (img_h / img_w) + 'rem',
-        }).prop('src',src);
-    }
-}
-
-var modalHelper = (function(bodyCls){
-    var scrollTop;
-    return {
-        afterTop: function() {
-            scrollTop = $(window).scrollTop();
-            $('body,html').addClass(bodyCls);
-            $('body').css('top',-scrollTop + 'px');
-        },
-        beforeClose: function(){
-            $('body,html').removeClass(bodyCls);
-            $(window).scrollTop(scrollTop);
-        }
-    }
-})('lock-html')
+	<script>
+		var photo = new imgClick();
 
 
+		// https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506339292485&di=d748e51c23c34cc5882ece8b87467434&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201207%2F13%2F20120713191526_sQW8N.thumb.224_0.jpeg
 
-// 照片展示
-resultPhoto($('.result-photo'),appinfo);
-</script>
+		$('.com-photo-item').click(function(){
+			var url = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506311318107&di=772184744e7b23ad77c98715ddadfceb&imgtype=0&src=http%3A%2F%2Fimg.1ppt.com%2Fuploads%2Fallimg%2F1512%2F1_151204145554_1.jpg';
+
+			// var url = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506339292485&di=d748e51c23c34cc5882ece8b87467434&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201207%2F13%2F20120713191526_sQW8N.thumb.224_0.jpeg';
+			photo.showLock(url);
+		})
+	</script>
 </body>
+
 </html>
