@@ -1,3 +1,8 @@
+/**
+ *  点击图片后放大查看的方法
+ *  先new一个对象，var img = new imgClick();  在需要弹窗的事件中用 img.showLock(url); 当前图片即可放大查看
+ *  
+ */
 function imgClick() {
 	this.ww = window.innerWidth;
 	this.wh = window.innerHeight;

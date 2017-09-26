@@ -1,0 +1,258 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=OZGI8qUv7izIC4ph8Hn79IVQ"></script>
+	<title>百度地图</title>
+	<style>
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		a {
+			text-decoration-line: none;
+			color: #333;
+		}
+
+
+
+		body,
+		html,
+		#allmap {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			margin: 0;
+			font-family: "微软雅黑";
+		}
+
+		.container {
+			background-color: #fff;
+			height: 100%;
+			background-color: #fafafa;
+		}
+
+		.container.isPhone {
+			padding-top: 0;
+		}
+
+		#r-result {
+		color: #777;
+		background-color: #fff;
+			height: 40px;
+			overflow: hidden;
+			font-size: 14px;
+			padding: 10px;
+		}
+
+		#suggestId {
+		color: #777;
+			border-radius: 5px 0 0 5px;
+		background-color: #f6f6f6;
+			display: inline-block;
+			outline: 0 none;
+			width: 80%;
+			height: 100%;
+			float: left;
+			display: block;
+			border: none;
+			font-size: 14px;
+			padding: 10px;
+		}
+
+		#but {
+			float: left;
+			display: block;
+			width: 20%;
+			height: 100%;
+			border-radius: 0 5px 5px 0;
+		background: #111;
+		color: #fff;
+			line-height: 40px;
+			text-align: center;
+			cursor: pointer;
+		}
+
+		#result {
+			width: 100%;
+			height: 100%;
+		}
+
+		.BMap_scaleCtrl {
+			top: auto !important;
+			left: 0.32rem !important;
+			bottom: 0.96rem !important;
+		}
+
+		.BMap_stdMpCtrl {
+			bottom: 0.64rem !important;
+		}
+
+		#list {
+			border-top: 1px solid #eeeeee;
+			display: block;
+			font-size: 12px;
+			height: 40%;
+			overflow: auto;
+		}
+
+		#list li a {
+			display: block;
+			width: 100%;
+			padding: 5px 10px;
+			background-color: #fafafa;
+			border-bottom: 1px solid #dddddd;
+			line-height: 0.5;
+			box-sizing: border-box;
+		}
+
+		#allmap {
+			height: 50%;
+		}
+
+		#step {
+			position: absolute;
+			color: #ffffff;
+			background-color: rgba(0, 0, 0, 0.7);
+			border-radius: 5px;
+			width: 90%;
+			top: 70px;
+			left: 10px;
+		}
+
+		#step .jt {
+			position: absolute;
+			top: -40px;
+			left: 40px;
+			font-size: 0;
+			height: 0;
+			border: 20px solid rgba(0, 0, 0, 0);
+		}
+
+		#step p {
+			text-align: center;
+		}
+
+		#step .over {
+		 border: 1px solid #ffffff;
+		 color: #fff;
+			padding: 0 8px;
+			display: inline-block;
+			font-size: 16px;
+			margin-top: 10px;
+			border-radius: 5px;
+		}
+
+		#step .jt_top {
+		border-bottom: 20px solid rgba(0, 0, 0, 0.7)
+		}
+	</style>
+	<script src="../../jquery1.9.1.min.js"></script>
+</head>
+
+<body>
+
+	<section class="container">
+		<div id="r-result">
+			<input type="text" id="suggestId" size="20" value="" placeholder="点击查找小区/大厦" onchange="this.blur();" />
+			<buttton id="but">搜索</buttton>
+			<input type="hidden" value="" id="data-floor">
+		</div>
+
+		<div id="searchResultPanel" style="border:1px solid #C0C0C0;width:120px;height:auto; display:none;"></div>
+
+
+		<div id="allmap"></div>
+		<div id="list">
+			<ul id="pois">
+			</ul>
+		</div>
+
+		<div id="result"></div>
+
+		<div id="step">
+			<b class="jt jt_top"></b>
+			<p>可直接搜索您所在的小区/大厦</p>
+			<p>
+				<a href="javascript:;" class="over">确定</a>
+			</p>
+		</div>
+
+	</section>
+
+
+	<script src="./script.js"></script>
+	<script type="text/javascript">
+		// 将地理信息存储
+		function urlBack(l) {
+			console.log(l)
+		}
+
+
+
+		$(function () {
+			$('.over,.container').on('tap click', function () {
+				$('#step').hide();
+			})
+
+			// -------------------------地图调用-------------------------------
+			var Coord = '';
+			var Current = '';
+			// h5获取地理位置参数
+			var options = {
+				enableHighAcuracy: true,
+				timeout: 2000
+			}
+
+			var areaObj = JSON.parse(window.localStorage.getItem('area'));
+
+
+			if (areaObj && areaObj.city) { // 通过地区创建地图
+				Coord = areaObj.city;
+				new baiduMAP(Coord, 12, urlBack);
+			} else
+			if (areaObj && areaObj.lng && areaObj.lat) { // 通过坐标创建地图
+				Current = {
+					lng: areaObj.lng,
+					lat: areaObj.lat
+				};
+				new baiduMAP(Current, 12, urlBack);
+			} else { // 通过h5获取的地理位置创建地图
+				// 获取当前地理位置
+				navigator.geolocation.getCurrentPosition(successMap, errorMap, options);
+
+				function successMap(position) {
+					if (position) {
+						var latitude = position.coords.latitude;
+						var longitude = position.coords.longitude;
+						Current = {
+							lng: longitude,
+							lat: latitude
+						};
+					} else {
+						Current = {
+							lng: "120.388969",
+							lat: "36.073179"
+						};
+					}
+					new baiduMAP(Current, 13, true, urlBack);
+				}
+
+				function errorMap(err) {
+					Current = {
+						lng: "120.388969",
+						lat: "36.073179"
+					};
+					new baiduMAP(Current, 12, urlBack);
+				}
+			}
+		})
+	</script>
+
+
+
+</body>
+
+</html>
