@@ -138,8 +138,8 @@ veImagePrototype._mode = function(fingers) {
 * 绑定开始事件
 */
 veImagePrototype.startEvt = function(e) {
-    this.start = this._finger(e.touches);//记录开始的坐标
-    this._mode(e.touches);//模式初始化(位移或缩放)
+    this.start = this._finger(e.originalEvent.touches);//记录开始的坐标
+    this._mode(e.originalEvent.touches);//模式初始化(位移或缩放)
 };
 
 /**
@@ -147,8 +147,7 @@ veImagePrototype.startEvt = function(e) {
 */
 veImagePrototype.moveEvt = function(e) {
     e.preventDefault();//禁止滚动
-
-    var fingers = this._finger(e.touches);//记录移动中的坐标
+    var fingers = this._finger(e.originalEvent.touches);//记录移动中的坐标
 
     //不能仅仅通过手指数量来判断 因为当缩放后，移除手指的时候，会出现一个手指还停留在页面上，导致位移
     if(this.mode == 1) {//位移

@@ -33,9 +33,13 @@
 		}
 
 		#upload_photo .result {
-			margin: 0 auto;
-			width: 10%;
-			height: 10%;
+			margin: 0 auto;  
+			width: 30%;
+		}
+
+		#upload_photo .result img {
+			display: block;
+			width: 100%;
 		}
 
 		#crop {
@@ -86,16 +90,16 @@
 		}
 
 		#upload_photo .photo-handle {
-			margin-top: 0.1rem;
+			margin-top: 20px;
 			overflow: hidden;
-			padding: 0 0.2rem;
 		}
 
 		#upload_photo .photo-btn {
 			text-align: center;
-			position: relative;
-			z-index: 99;
-			color: #88919a;
+			display: flex;
+			justify-content: space-between;
+		color: #88919a;
+		margin-top: 20px;
 		}
 
 		#upload_photo .upload-file {
@@ -105,28 +109,32 @@
 		#upload_photo .loading {
 			text-align: center;
 			font-size: 0.4rem;
-			color: #fff;
+		color: #fff;
 			padding: 1rem 0;
 		}
 
 		#upload_photo .photo-btn i {
 			display: inline-block;
-			width: 1.5rem;
-			height: 1.5rem;
+			width: 60px;
+			height: 60px;
+		}
+
+		#upload_photo .upload-btn {
+			flex-grow: 1;
 		}
 
 		#upload_photo .crop-btn i {
-			background: url('../../images/member/head/1.jpg') no-repeat;
+			background: url('./image/1.jpg') no-repeat;
 			background-size: contain;
 		}
 
 		#upload_photo .submit i {
-			background: url('../../images/member/head/2.jpg') no-repeat;
+			background: url('./image/2.jpg') no-repeat;
 			background-size: contain;
 		}
 
 		#upload_photo .upload-file-btn i {
-			background: url('../../images/member/head/3.jpg') no-repeat;
+			background: url('./image/3.jpg') no-repeat;
 			background-size: contain;
 		}
 	</style>
@@ -144,24 +152,23 @@
 				<div class="border4"></div>
 			</div>
 		</div>
-		<div class="photo-handle shopex-row">
-			<!-- <div class="result shopex-col-xs-3 shopex-col-sm-3">
-      <img src="" alt="" class="result-img ablock">
-    </div>         -->
+		<div class="photo-handle">
 			<input type="hidden" name="hiddenHead" id="hiddenHead" value="<{$head}>">
-
-			<div class="photo-btn shopex-row">
+			<div class="result">
+				<img src="" alt="" class="result-img ablock">
+			</div>
+			<div class="photo-btn">
 				<input type="file" name="userphoto" class="upload-file" accept="image/*">
 				<!-- <form class="form-container" action="<{url action=topwap_ctl_member@saveUserInfo}>" method="post" id="user_form" name="user_form">   -->
-				<span class="shopex-col-xs-4 shopex-col-sm-4 upload-file-btn">
+				<span class="upload-btn upload-file-btn">
             <i></i>
             <p>选择照片</p>
         </span>
-				<span class="shopex-col-xs-4 shopex-col-sm-4 crop-btn">
+				<span class="upload-btn crop-btn">
             <i></i>
             <p>裁取照片</p>
         </span>
-				<span class="shopex-col-xs-4 shopex-col-sm-4 submit">
+				<span class="upload-btn submit">
             <i></i>
             <p>上传照片</p>          
         </span>
@@ -169,9 +176,7 @@
 				<input type="hidden" class="img_url" name="user[img_url]">
 				<!-- </form> -->
 			</div>
-			<div class="result">
-				<img src="" alt="" class="result-img ablock">
-			</div>
+
 		</div>
 
 
@@ -228,26 +233,8 @@
 			}
 
 			$('.submit').on('click', function () {
-				var val = $('.img_url').val();
-				if (val) {
-					$.post('<{url action=topwap_ctl_member@saveUserInfo}>', {
-						'user[img_url]': val
-					}, function (rs) {
-						if (rs.success && rs.redirect) {
-							if ("<{$app_status}>") {
-								shopex.alert(rs.message);
-							} else {
-								shopex.alert(rs.message, '', function () {
-									location.href = rs.redirect;
-								});
-							}
-						} else {
-							shopex.alert(rs.message);
-						}
-					});
-				} else {
-					shopex.alert('请先上传图片并剪切');
-				}
+
+
 			})
 		})
 	</script>
