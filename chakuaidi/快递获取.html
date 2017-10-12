@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="http://www.kuaidi.com/theme/default/base.css?v=6.1">
+	<link rel="stylesheet" href="http://www.kuaidi.com/theme/default/global.css?v=6.1">
+	<link rel="stylesheet" href="http://www.kuaidi.com/theme/default/query.css?v=6.1">
+	<link rel="stylesheet" href="http://www.kuaidi.com/theme/default/module.css?v=6.1">
+	<link rel="stylesheet" href="http://www.kuaidi.com/theme/default/postmannew.css?v=6.1">
+	<style>
+		#area,#kuaidi {
+			overflow: hidden;
+		}
+		#area li,#kuaidi li {
+			float: left;
+			font-size: 20px;
+			cursor: pointer;
+			margin-right: 20px;
+		}
+	</style>
+	<script src="../jquery1.9.1.min.js"></script>
+</head>
+
+<body>
+<a  download="图片" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507700495686&di=8228bb7dbebe7e02704d067d6a3e75a4&imgtype=0&src=http%3A%2F%2Fpic2.ooopic.com%2F13%2F11%2F52%2F94bOOOPIC31_1024.jpg">下载图片</a>
+<a  download="image" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507700495686&di=8228bb7dbebe7e02704d067d6a3e75a4&imgtype=0&src=http%3A%2F%2Fpic2.ooopic.com%2F13%2F11%2F52%2F94bOOOPIC31_1024.jpg">下载图片</a>
+<a  download="jpg" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507700495686&di=8228bb7dbebe7e02704d067d6a3e75a4&imgtype=0&src=http%3A%2F%2Fpic2.ooopic.com%2F13%2F11%2F52%2F94bOOOPIC31_1024.jpg">下载图片</a>
+<a target="_blank" download href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507700495686&di=8228bb7dbebe7e02704d067d6a3e75a4&imgtype=0&src=http%3A%2F%2Fpic2.ooopic.com%2F13%2F11%2F52%2F94bOOOPIC31_1024.jpg">下载图片</a>
+	<button id="change">获取</button>
+	<ul id="area">
+		<li data="shinan">市南</li>
+		<li data="shibei">市北</li>
+		<li data="licang">李沧</li>
+		<li data="chengyang">城阳</li>
+		<li data="laoshan">崂山</li>
+		<li data="huangdao">黄岛</li>
+		<li data="jimoshi">即墨</li>
+	</ul>
+	<br>
+
+	<ul id="kuaidi">
+		<li data="ems">ems</li>
+		<li data="zhongtong">中通</li>
+		<li data="jd">京东</li>
+		<li data="yousuwuliu">优速物流</li>
+		<li data="quanfengkuaidi">全峰快递</li>
+		<li data="guotongkuaidi">国通快递</li>
+		<li data="yuantong">圆通速递</li>
+		<li data="zengyisudi">增益速递</li>
+		<li data="tiantian">天天快递</li>
+		<li data="zhaijisong">宅急送</li>
+		<li data="annengwuliu">安能物流</li>
+		<li data="debangwuliu">德邦快递</li>
+		<li data="kuaijiesudi">快捷速递</li>
+		<li data="shentong">申通快递</li>
+		<li data="huitongkuaidi">百世汇通</li>
+		<li data="baishiwuliu">百世物流</li>
+		<li data="yunda">韵达快递</li>
+		<li data="shunfeng">顺丰速运</li>
+	</ul>
+
+	<br>
+
+
+	<div id="result"></div>
+
+	<div id="box"></div>
+
+	<script>
+		var url;
+		$('#area li').click(function () {
+			window.localStorage.setItem('area', $(this).attr('data'));
+
+		})
+		$('#kuaidi li').click(function () {
+			window.localStorage.setItem('kuaidi', $(this).attr('data'));
+			window.localStorage.setItem('name', $(this).html());
+			$.ajax({
+				url: 'http://www.kuaidi.com/kuaidiyuan/' + window.localStorage.getItem('area') + '/' + window.localStorage.getItem(
+					'kuaidi') + '.html',
+				type: "GET",
+				// dataType: 'jsonp',
+				// jsonp: 'jsoncallback',
+				success: function (data) {
+					$('#box').html(data);
+				}
+			})
+		})
+	</script>
+	<script src="./快递获取.js"></script>
+</body>
+
+</html>
