@@ -38,3 +38,27 @@ cntb.prototype.selectRadio = function(){
 }
 
 new cntb(user_name);
+
+/**
+ * {
+    "editor.fontSize": 18,
+    "view-in-browser.customBrowser": "chrome",
+    "window.zoomLevel": 0,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.iconTheme": "material-icon-theme",
+    "explorer.autoReveal": false,
+    "vsicons.presets.hideFolders": true,
+    "editor.wordWrap": "on",
+    "editor.renderWhitespace": "all",
+    "editor.renderControlCharacters": true,
+    "editor.fontFamily": "Yahei Consolas Hybrid, Consolas, 'Courier New', monospace",
+    "markdown.preview.fontFamily": "Yahei Consolas Hybrid, -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif",
+    "markdown.preview.fontSize": 16,
+    "gitProjectManager.baseProjectsFolders": [
+    "C:/Users/ypj/Desktop/project/practise",
+    "C:/Users/ypj/Desktop/project/md"
+    ]
+}
+ */
