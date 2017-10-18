@@ -12,7 +12,7 @@ var DOCUMENT_NODE_TYPE = 9;
  */
 if (typeof Element !== 'undefined' && !Element.prototype.matches) {
     var proto = Element.prototype;
-
+    
     proto.matches = proto.matchesSelector ||
                     proto.mozMatchesSelector ||
                     proto.msMatchesSelector ||
