@@ -23,42 +23,38 @@
 
 <div id="box"></div>
 <script>
+var obj = {
+    namespace: function(ns) {
+        var parts = ns.split('.'),
+            object = this,
+            i, len;
+        
+        for (i = 0, len = parts.length; i < len; i++) {
+            if (!object[parts[i]]) {
+                object[parts[i]] = {};
+            }
+            object = object[parts[i]];
+        } 
 
-function isElement(dom) {
-    if(dom instanceof jQuery) {
-        dom = dom[0];
+        return object;
     }
-    if(!dom) return false;
-    return dom.nodeName && dom.nodeType === 1;
-}
+};
 
-var box = document.getElementById('box');
-var flag = isElement($('#box'));
-var falg1 = isElement(box);
+// 同时创建obj.Person和obj.Person.name
+obj.namespace('Person.name');
+// 使用这个命名空间
+obj.Person.name = 'tim';
 
-/**
-{
-    "editor.fontSize": 18,
-    "view-in-browser.customBrowser": "chrome",
-    "window.zoomLevel": 0,
-    "editor.tabSize": 4,
-    "editor.insertSpaces": false,
-    "workbench.colorTheme": "One Dark Pro",
-    "workbench.iconTheme": "material-icon-theme",
-    "explorer.autoReveal": false,
-    "vsicons.presets.hideFolders": true,
-    "editor.wordWrap": "on",
-    "editor.renderWhitespace": "all",
-    "editor.renderControlCharacters": true,
-    "editor.fontFamily": "Yahei Consolas Hybrid, Consolas, 'Courier New', monospace",
-    "markdown.preview.fontFamily": "Yahei Consolas Hybrid, -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif",
-    "markdown.preview.fontSize": 16,
-    "gitProjectManager.baseProjectsFolders": [
-    "C:/Users/ypj/Desktop/project/practise",
-    "C:/Users/ypj/Desktop/project/md"
-    ]
-}
-*/
+// 不会操作Person本身，同时会给它添加age，Person.name也是原封不动的
+obj.namespace('Person.age');
+obj.Person.age = 27;
+
+console.log(obj.Person.name)  // 打印 tim
+console.log(obj.Person.age)  // 打印 27
+
+// 同样可以在方法调用之后立即给它添加新的属性，因为namespace会将传入的命名空间reutrn
+obj.namespace('Person').interest = {};
+
 </script>
 </body>
 
