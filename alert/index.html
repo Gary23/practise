@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		/* 这里是初始化部分 */
+		html, body{
+			width: 100%;
+			height: 2000px;
+			margin: 0;
+			padding: 0;
+		}
+
+
+		p{
+			padding: 0;
+			margin: 0;
+		}
+
+		#alertbox{
+			width: 60%;
+			padding: 10px 10px 50px;
+			background-color: rgb(248, 248, 248);
+			position: fixed;
+			top: 38%;
+			left: 20%;
+			word-wrap: break-word;
+			font-size: 16px;
+			font-weight:bold;
+			z-index: 9999999;
+			text-align: center;
+			border-radius: 10px;
+			line-height: 36px;
+			box-sizing: border-box;
+		}
+
+		#alertbutton{
+			border-top: 1px solid rgb(204, 204, 204);
+			background-color: rgb(255, 255, 255);
+			width: 100%;
+			color:#61a7ea;
+			height: 40px;
+			font-weight: normal;
+			text-align: center;
+			line-height: 40px;
+			outline: none;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			border-bottom-right-radius: 10px;
+			border-bottom-left-radius: 10px;
+		}
+
+		#backg{
+			top:0;
+			position:fixed;
+			width:100%;
+			height:100%;
+			background:#000000;
+			opacity:0.3;
+			overflow:hidden;
+			z-index: 99999;
+		}
+
+	</style>
+</head>
+<body>
+	<script>
+		window.alert = function(name){
+			//创建一个大盒子
+			var box = document.createElement("div");
+			var p = document.createElement("p");
+			var back = document.createElement("div");
+			var h = window.innerHeight;
+			//创建一个关闭按钮
+			back.id = "backg";
+			document.body.appendChild(back);
+			var button = document.createElement("div");
+			//定义一个对象保存样式
+			box.id="alertbox";
+			//把创建的元素添加到body中
+			document.body.appendChild(box);
+			//把alert传入的内容添加到box中
+			if(arguments[0]){
+				p.innerHTML = arguments[0];
+				box.appendChild(p);
+			}
+			button.innerHTML = "确定";
+			//定义按钮样式
+			button.id="alertbutton";
+			//把按钮添加到box中
+			box.appendChild(button);
+
+			var box_h = box.offsetHeight;
+			box.style.top = (h - box_h) / 2 + 'px';
+
+			//给按钮添加单击事件
+			button.addEventListener("click",function(){
+				document.body.removeChild(box);
+				document.body.removeChild(back);//每次点击需要移除子元素
+			})
+		}; 
+		
+		alert('1231123312311231231231123312311231231231123312311')
+	</script>
+</body>
+</html>
