@@ -101,3 +101,30 @@ window.setTimeout(function(){
 		
 	},10)
 },100)
+
+
+
+var del_btn = $('#bundlev2_s_745949152 .itemv2');
+if (del_btn.hasClass('edit-false')) {
+	del_btn.removeClass('edit-false').addClass('edit-true');
+}
+console.log(del_btn)
+
+
+
+
+
+var bot = document.querySelector('.op');
+bot.addEventListener('touchstart', function () { alert('touchstart'); }); 
+
+creatTouchstartEventAndDispatch(bot); 
+
+function creatTouchstartEventAndDispatch (el) { 
+	var event = new MouseEvent('touchstart', {'view': window,'bubbles': true,'cancelable': true});
+	//  event.initEvent('touchstart', true, true); 
+	 el.dispatchEvent(event); 
+} 
+
+
+var event = new MouseEvent('click', {'view': window,'bubbles': true,'cancelable': true});
+dom.dispatchEvent(event);
