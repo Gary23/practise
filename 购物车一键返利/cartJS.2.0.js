@@ -1,10 +1,5 @@
 (function(){
-	/**
-	 *  1 一个函数，执行后开始删除操作。
-	 *  2 遍历购物车所有的商品，获取标识(商品id)，保存到缓存。
-	 *  3 本地缓存一个索引，初次执行如果没有，就缓存一个0，如果是0，则+1。当+到和所有商品总是相同时，就初始化为0
-	 */
-	
+
 	function setLocal(k, v) {
 		if (!k && !v) return false;
 		if (!v) {
@@ -46,12 +41,6 @@
 			setLocal('item_index','0');
 			setLocal('start','0');
 		}
-
-		// 1 进入页面新建一个按钮，文字为开始
-		// 2 设定一个开关为false，当开始按钮按下时为true，开始按钮的文字为进行中，刷新页面，按钮再次按下就不要刷新了。
-		// 3 按下开始刷新页面后，当开关为true时候，执行处理程序代码，false时不执行。
-		// 需要一个缓存数据来控制开始按钮的文字
-		// fanliMain函数应该由开始按钮来第一次执行，按钮按下后会增加一条缓存，之后的执行都是根据这个缓存来判断，次数达到后将这个缓存删除
 
 		function getCurrentItem(index) {
 			if (typeof index != 'number') return false;
@@ -212,7 +201,7 @@
 			$parent;
 			
 		var fanli_search = getSearch(window.location.search);
-		
+
 		var timer = window.setInterval(function(){
 			time_count++;
 			if (fanli_search) {
@@ -225,6 +214,7 @@
 					} else {
 						setNum();
 					}
+
 				} else {
 					if (time_count > 50) {
 						window.clearInterval(timer);
@@ -236,20 +226,18 @@
 
 		function getSearch(search) {
 			var arr = search.split('&');
+			var obj = {};
 			btn.click();
-			if (arr.length === 2) {
-				var num = arr[1].split('=')[1];
-				// notSkuCart(num);
-				return {
-					"num": num
+			for (var i = 0; i < arr.length; i++) {
+				if (arr[i].indexOf('num=') >= 0) {
+					obj['num'] = arr[i].split('=')[1];
 				}
-			} else if (arr.length === 3) {
-				var search_sku = decodeURI(arr[1].split('=')[1]);
-				return {
-					"num": arr[2].split('=')[1],
-					"sku": search_sku.split(';')
+				if (arr[i].indexOf('sku=') >= 0) {
+					var sku = decodeURI(arr[i].split('=')[1])
+					obj['sku'] = sku.split(';');
 				}
 			}
+			return obj;
 		}
 
 		function notSkuCart(num) {
@@ -268,14 +256,17 @@
 
 		function setSku() {
 			
-			var list_sku = $parent.querySelectorAll('.sku-list-wrap li');
+			var list_sku = $parent.querySelectorAll('.sku-list-wrap li .items a');
 			if (!list_sku) return false;
-			for (var i = 0, sku_l = list_sku.length; i < sku_l; i++) {
-				var sku_a = list_sku[i].querySelectorAll('.items a');
-				for (var j = 0, sku_a_l = sku_a.length; j < sku_a_l; j++) {
-					if (fanli_search["sku"] && sku_a[j].innerHTML == fanli_search["sku"][i]) {
-						sku_a[j].click();
-						break;
+			var sku_arr = fanli_search["sku"];
+
+			for (var i = 0, sku_l = sku_arr.length; i < sku_l; i++) {
+				for (var j = 0, list_l = list_sku.length; j < list_l; j++) {
+					if (sku_arr[i] == list_sku[j].innerHTML) {
+						if (list_sku[j].className.indexOf('checked') < 0) {
+							list_sku[j].click();
+							break;
+						}
 					}
 				}
 			}
@@ -335,31 +326,31 @@
 
 		function getSearch(search) {
 			var arr = search.split('&');
+			var obj = {};
 			cart_btn.click();
-			if (arr.length === 2) {
-				var num = arr[1].split('=')[1];
-				return {
-					"num": num
+			for (var i = 0; i < arr.length; i++) {
+				if (arr[i].indexOf('num=') >= 0) {
+					obj['num'] = arr[i].split('=')[1];
 				}
-			} else if (arr.length === 3) {
-				var search_sku = decodeURI(arr[1].split('=')[1]);
-				return {
-					"num": arr[2].split('=')[1],
-					"sku": search_sku ? search_sku.split(';').reverse() : ''
+				if (arr[i].indexOf('sku=') >= 0) {
+					var sku = decodeURI(arr[i].split('=')[1]);
+					obj['sku'] = sku ? sku.split(';') : '';
 				}
 			}
+			return obj;
 		}
 
 		function setSku() {
-			var list_sku = widgets.querySelectorAll('.sku-info > div > ul');
+			var list_sku = widgets.querySelectorAll('.sku-info > div > ul > li');
 			if (!list_sku) return false;
-			for (var i = 0,list_sku_l = list_sku.length; i < list_sku_l; i++) {
-				var sku_a = list_sku[i].querySelectorAll('li');
-				for (var j = 0, sku_a_l = sku_a.length; j < sku_a_l; j++) {
-					if (fanli_search["sku"] && sku_a[j].innerText == fanli_search["sku"][i]) {
-						
-						sku_a[j].click();
-						break;
+			var arr_sku = fanli_search['sku'];
+			for (var i = 0; i < arr_sku.length; i++) {
+				for (var j = 0; j < list_sku.length; j ++) {
+					if (arr_sku[i] == list_sku[j].innerHTML) {
+						if (list_sku[j].className.indexOf('sel') < 0) {
+							list_sku[j].click();
+							break;
+						}
 					}
 				}
 			}
@@ -388,6 +379,5 @@
 				},500)
 			},500)
 		}
-
 	}
 })()
