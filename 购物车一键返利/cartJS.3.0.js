@@ -12,6 +12,7 @@
 		}
 	}
 
+	// 设置本地缓存
 	FanliCart.prototype.setLocal = function(k, v) {
 		if (!k && !v) return false;
 		if (!v) {
@@ -23,14 +24,17 @@
 		}
 	}
 
+	// 获取本地缓存
 	FanliCart.prototype.getLocal = function(k) {
 		return window.localStorage.getItem(k);
 	}
 
+	// 删除本地缓存
 	FanliCart.prototype.removeLocal = function(k) {
 		window.localStorage.removeItem(k);
 	}
 
+	// 购物车页面----初始化操作
 	FanliCart.prototype.cartInit = function() {
 		var _this = this;
 		this.$parent = $('.bundlev2').not('#bundlev2_invalid');
@@ -73,6 +77,7 @@
 		}
 	}
 
+	// 天猫商品页----初始化操作
 	FanliCart.prototype.tmallInit = function() {
 		var _this = this;
 		var btn = document.querySelector('#s-actionBar-container .trade .cart');
@@ -105,6 +110,7 @@
 		
 	}
 
+	// 淘宝商品页----初始化操作
 	FanliCart.prototype.taobaoInit = function() {
 		var _this = this;
 		var bottom = document.querySelector('.bottom_bar.homePage');
@@ -136,7 +142,7 @@
 		}, 10)
 	}
 
-	// 获取缓存商品id中对应的购物车中的商品
+	// 购物车页面----获取缓存商品id的数组中相对应的购物车商品
 	FanliCart.prototype.getCurrentItem = function(index, arr_id) {
 		if (typeof index != 'number') return false;
 		var obj = {};
@@ -152,6 +158,7 @@
 		return obj;
 	}
 
+	// 购物车页面----创建按钮
 	FanliCart.prototype.createBtn = function() {
 		var span = $('<span id="getFanliAili"></span>');
 
@@ -174,7 +181,7 @@
 		return span;
 	}
 
-	// 将购物车所有商品id缓存
+	// 购物车页面----将购物车所有商品id缓存
 	FanliCart.prototype.getAllId = function() {
 		var arr = [];
 		for (var i = 0, l = this.$item.length; i < l; i++) {
@@ -185,6 +192,7 @@
 		return arr;
 	}
 
+	// 购物车页面----删除商品前获取商品信息和按钮元素
 	FanliCart.prototype.fanliMain = function(index) {
 		var _this = this;
 		this.item_obj = {};
@@ -219,6 +227,7 @@
 
 	}
 
+	// 购物车页面----删除商品
 	FanliCart.prototype.delItem = function(arr, i) {
 		var _this = this;
 		this.item_obj['$item_del'].click();
@@ -236,6 +245,7 @@
 		}, 20)
 	}
 
+	// 购物车页面----获取返利链接并跳转，改变本地缓存中的item_index
 	FanliCart.prototype.ajaxItemLink = function(data, index) {
 		var _this = this;
 		index++;
@@ -260,6 +270,7 @@
 		}, 500)
 	}
 
+	// 商品页----获取url中的sku和num
 	FanliCart.prototype.getSearch = function(search) {
 		var arr = search.split('&');
 		var obj = {};
@@ -276,6 +287,7 @@
 		return obj;
 	}
 
+	// 商品页----没有sku弹出的情况改变商品数量并加入购物车返回
 	FanliCart.prototype.notSkuCart = function(num) {
 		var count = 0;
 		var timer_num = window.setInterval(function () {
@@ -290,6 +302,7 @@
 		}, 300)
 	}
 
+	// 商品页----选择商品的sku
 	FanliCart.prototype.setSku = function() {
 
 		if (this.ua === '/item.htm') {
@@ -317,6 +330,7 @@
 		this.setNum();
 	}
 
+	// 商品页----有sku弹出的情况下改变商品数量
 	FanliCart.prototype.setNum = function() {
 		if (this.ua === '/item.htm') {
 			var input = document.querySelector('.number .increase');
@@ -336,6 +350,7 @@
 		this.skuCart();
 	}
 
+	// 加入购物车并返回
 	FanliCart.prototype.skuCart = function() {
 		if (this.ua === '/item.htm') {
 			var enter_btn = this.$parent.querySelector('.footer .ok');
