@@ -10,7 +10,7 @@
 		} else if (this.ua === '/awp/core/detail.htm') {
 			this.taobaoInit();
 		}
-	}
+	};
 
 	// 设置本地缓存
 	FanliCart.prototype.setLocal = function(k, v) {
@@ -22,17 +22,17 @@
 		} else {
 			window.localStorage.setItem(k, v);
 		}
-	}
+	};
 
 	// 获取本地缓存
 	FanliCart.prototype.getLocal = function(k) {
 		return window.localStorage.getItem(k);
-	}
+	};
 
 	// 删除本地缓存
 	FanliCart.prototype.removeLocal = function(k) {
 		window.localStorage.removeItem(k);
-	}
+	};
 
 	// 购物车页面----初始化操作
 	FanliCart.prototype.cartInit = function() {
@@ -57,14 +57,14 @@
 				this.removeLocal('item_max');
 				this.setLocal('item_index', '0');
 				this.setLocal('start', '0');
-				this.btn.html('开始');
+				this.btn.remove();
 				alert('已完成');
 			}
 		}
 
 		// 根据进度改变开始按钮
 		if (this.getLocal('start') == '0') {
-			this.btn.html('开始')
+			this.btn.html('开始');
 			this.btn.click(function () {
 				// 初始化缓存
 				_this.setLocal('item_max', _this.$item.length);
@@ -75,15 +75,15 @@
 		} else {
 			this.btn.html('进行中');
 		}
-	}
+	};
 
 	// 天猫商品页----初始化操作
 	FanliCart.prototype.tmallInit = function() {
 		var _this = this;
-		var btn = document.querySelector('#s-actionBar-container .trade .cart');
+		this.btn = document.querySelector('#s-actionBar-container .trade .cart');
 		var time_count = 0;
 
-		btn.click();		
+		this.btn.click();		
 		this.fanli_search = this.getSearch(window.location.search);
 
 		var timer = window.setInterval(function () {
@@ -93,7 +93,7 @@
 				if (widgets.indexOf('decision=cart') != -1) {
 					window.clearInterval(timer);
 					_this.$parent = document.querySelector('.widgets-cover');
-					if (_this.fanli_search["sku"]) {
+					if (_this.fanli_search['sku']) {
 						_this.setSku();
 					} else {
 						_this.setNum();
@@ -102,24 +102,24 @@
 				} else {
 					if (time_count > 50) {
 						window.clearInterval(timer);
-						_this.notSkuCart(_this.fanli_search["num"] - 1); // 因为getSearch已经点了一下，所以这里要少点一次
+						_this.notSkuCart(_this.fanli_search['num'] - 1); // 因为getSearch已经点了一下，所以这里要少点一次
 					}
 				}
 			}
-		}, 20)
+		}, 20);
 		
-	}
+	};
 
 	// 淘宝商品页----初始化操作
 	FanliCart.prototype.taobaoInit = function() {
 		var _this = this;
 		var bottom = document.querySelector('.bottom_bar.homePage');
-		var cart_btn = bottom.querySelector('.sys_button.cart ');
+		this.btn = bottom.querySelector('.sys_button.cart ');
 		var time_count = 0;
 
 		this.fanli_search = this.getSearch(window.location.search);
 
-		cart_btn.click();
+		this.btn.click();
 
 		var timer = window.setInterval(function () {
 			time_count++;
@@ -127,7 +127,7 @@
 				_this.$parent = document.querySelector('#J_skuPop');
 				if (_this.$parent.className.indexOf('show') != -1) {
 					window.clearInterval(timer);
-					if (_this.fanli_search["sku"]) {
+					if (_this.fanli_search['sku']) {
 						_this.setSku();
 					} else {
 						_this.setNum();
@@ -135,12 +135,12 @@
 				} else {
 					if (time_count > 50) {
 						window.clearInterval(timer);
-						_this.notSkuCart(_this.fanli_search["num"] - 1); // 因为getSearch已经点了一下，所以这里要少点一次
+						_this.notSkuCart(_this.fanli_search['num'] - 1); // 因为getSearch已经点了一下，所以这里要少点一次
 					}
 				}
 			}
 		}, 10)
-	}
+	};
 
 	// 购物车页面----获取缓存商品id的数组中相对应的购物车商品
 	FanliCart.prototype.getCurrentItem = function(index, arr_id) {
@@ -150,17 +150,17 @@
 			var link = this.$item.eq(i).find('.item-img > a').prop('href');
 			if (link.indexOf(arr_id[index]) >= 0) {
 				obj['$cur'] = this.$item.eq(i);
-				obj['index'] = i
+				obj['index'] = i;
 				break;
 			}
 		}
 		
 		return obj;
-	}
+	};
 
 	// 购物车页面----创建按钮
 	FanliCart.prototype.createBtn = function() {
-		var span = $('<span id="getFanliAili"></span>');
+		var span = $('<span id=\'getFanliAili\'></span>');
 
 		span.css({
 			display: 'block',
@@ -179,7 +179,7 @@
 		});
 		$('body').append(span);
 		return span;
-	}
+	};
 
 	// 购物车页面----将购物车所有商品id缓存
 	FanliCart.prototype.getAllId = function() {
@@ -190,7 +190,7 @@
 			arr.push(id);
 		}
 		return arr;
-	}
+	};
 
 	// 购物车页面----删除商品前获取商品信息和按钮元素
 	FanliCart.prototype.fanliMain = function(index) {
@@ -223,9 +223,9 @@
 			_this.item_obj['$item_del'] = parent.find('.item-del.c-edit-delshow');
 			_this.item_obj['$input'] = parent.find('.btn-input > input');
 			_this.delItem(arr_id, index);
-		},200)
+		},200);
 
-	}
+	};
 
 	// 购物车页面----删除商品
 	FanliCart.prototype.delItem = function(arr, i) {
@@ -242,8 +242,8 @@
 				// 在这里发送ajax
 				_this.ajaxItemLink(arr[i], i);
 			}
-		}, 20)
-	}
+		}, 20);
+	};
 
 	// 购物车页面----获取返利链接并跳转，改变本地缓存中的item_index
 	FanliCart.prototype.ajaxItemLink = function(data, index) {
@@ -267,8 +267,8 @@
 				url = url + '&sku=' + sku + '&num=' + num;
 				window.open(encodeURI(url), '_self');
 			}
-		}, 500)
-	}
+		}, 500);
+	};
 
 	// 商品页----获取url中的sku和num
 	FanliCart.prototype.getSearch = function(search) {
@@ -280,42 +280,45 @@
 				obj['num'] = arr[i].split('=')[1];
 			}
 			if (arr[i].indexOf('sku=') >= 0) {
-				var sku = decodeURI(arr[i].split('=')[1])
+				var sku = decodeURI(arr[i].split('=')[1]);
 				obj['sku'] = sku ? sku.split(';') : '';
 			}
 		}
 		return obj;
-	}
+	};
 
 	// 商品页----没有sku弹出的情况改变商品数量并加入购物车返回
 	FanliCart.prototype.notSkuCart = function(num) {
 		var count = 0;
+		var _this = this;
 		var timer_num = window.setInterval(function () {
 			if (count < num) {
 				count++;
-				btn.click();
+				window.setTimeout(function(){
+					_this.btn.click();
+				},100)
 			} else {
 				window.setTimeout(function () {
 					window.history.go(-1);
-				}, 300)
+				}, 500)
 			}
 		}, 300)
-	}
+	};
 
 	// 商品页----选择商品的sku
 	FanliCart.prototype.setSku = function() {
 
 		if (this.ua === '/item.htm') {
 			var list_sku = this.$parent.querySelectorAll('.sku-list-wrap li .items a');	
-			var str = 'checked'		
+			var str = 'checked';		
 		} else if (this.ua === '/awp/core/detail.htm') {
 			var list_sku = this.$parent.querySelectorAll('.sku-info > div > ul > li');		
-			var str = 'sel'	
+			var str = 'sel';	
 		}
 
 		if (!list_sku) return false;
 		
-		var sku_arr = this.fanli_search["sku"];
+		var sku_arr = this.fanli_search['sku'];
 
 		for (var i = 0, sku_l = sku_arr.length; i < sku_l; i++) {
 			for (var j = 0, list_l = list_sku.length; j < list_l; j++) {
@@ -328,7 +331,7 @@
 			}
 		}
 		this.setNum();
-	}
+	};
 
 	// 商品页----有sku弹出的情况下改变商品数量
 	FanliCart.prototype.setNum = function() {
@@ -341,14 +344,14 @@
 		if (!input) {
 			this.skuCart();
 		};
-		var num = this.fanli_search["num"]
+		var num = this.fanli_search['num']
 		if (num) {
 			for (var i = 1; i < num; i++) {
 				input.click();
 			}
 		}
 		this.skuCart();
-	}
+	};
 
 	// 加入购物车并返回
 	FanliCart.prototype.skuCart = function() {
@@ -362,9 +365,9 @@
 			enter_btn.click();
 			window.setTimeout(function () {
 				window.history.go(-1);
-			}, 500)
-		}, 500)
-	}
+			}, 500);
+		}, 500);
+	};
 
 	new FanliCart();
 
