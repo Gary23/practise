@@ -5,17 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script>
-        var aaa = document.querySelector('input');
-        aaa.onclick = function(){
-            return false;
-        }
-        aaa.onfocus = function(){
-            return false;
-        }
-    </script>
+
 </head>
 <body>
-    <input type="date">
+    <div data-a-ks="123"></div>
+    <script>
+        function vvv() {
+            this.init()
+        }
+        vvv.prototype.init = function(){
+            setInterval.call('this',function(){
+                console.log(this)
+            },1000)
+            
+        }
+        
+
+        new vvv();
+    </script>
 </body>
 </html>
