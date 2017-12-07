@@ -29,29 +29,21 @@
 			height: 100%;
 			font-family: "微软雅黑";
 		}
-		#search {
-			padding: 10px 0;
-			margin-left: 40px;
-		}
-		#search button {
-			padding:  0 6px;
-		}
+
 	</style>
 </head>
 <body>
-	<div id="search">
-		<input type="text" name="search-text">
-		<button>搜索</button>
-	</div>
+
 	<section id="allmap"></section>
 	<input type="hidden" name="point" id="point">
 
-	<script>
+	<script>	
 
 		new BaiduMap({
-			map: 'allmap',
-			search: '#search',
-			point: '#point'
+			map: 'allmap',     // 地图容器
+			area: [120.325845,36.072369],   // 获取的坐标点
+			scale: '16',    // 地图初始缩放
+			sContent: '一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字'     // 展示的文字内容
 		});
 	</script>
 </body>
