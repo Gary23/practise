@@ -5,7 +5,8 @@ function BaiduMap(options) {
 	this.ipt = options['point'];
 	this.area = options['area'] || [120.385109,36.070048];
 	this.scale = options['scale'] || 12;
-	this.sContent = options['sContent'];
+	this.sContent = options['sContent'] || '';
+	this.sTitle = options['sTitle'] || '';
 
 	if (!this.id) {
 		return false;
@@ -34,7 +35,7 @@ BaiduMap.prototype.init = function() {
 
 	this.marker = new BMap.Marker(this.point);        // 创建标注
 	this.map.addOverlay(this.marker);     // 将标注添加到地图中
-	this.marker.setAnimation(BMAP_ANIMATION_BOUNCE);   // 添加标注动画
+	// this.marker.setAnimation(BMAP_ANIMATION_BOUNCE);   // 添加标注动画
 
 	if (this.sea) {
 		// 创建地址解析器实例
@@ -74,8 +75,7 @@ BaiduMap.prototype.init = function() {
 			},
 			enableCloseOnClick: false,
 			// offset: 2,
-			title : "海底捞王府井店", // 信息窗口标题
-			
+			title: _this.sTitle,	// 信息窗口标题
 		}
 
 		this.infoWindow = new BMap.InfoWindow(this.sContent, opts);
@@ -90,7 +90,7 @@ BaiduMap.prototype.mapEvent = function() {
 
 	var form = document.querySelector(this.sea);
 	var input = form.querySelector('input');
-	var button = form.querySelector('button');
+	var button = form.querySelector('span');
 	var val = '';
 
 	button.addEventListener('click', function() {

@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
+	<title>查看地图位置</title>
 	<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=OZGI8qUv7izIC4ph8Hn79IVQ"></script>
 	<script src="./script.js"></script>
 	<style>
@@ -30,6 +30,12 @@
 			font-family: "微软雅黑";
 		}
 
+		.BMap_bubble_title {
+			text-align: center;
+			margin-bottom: 4px;
+			font-weight: 700;
+		}
+
 	</style>
 </head>
 <body>
@@ -43,6 +49,7 @@
 			map: 'allmap',     // 地图容器
 			area: [120.325845,36.072369],   // 获取的坐标点
 			scale: '16',    // 地图初始缩放
+			sTitle: '海底捞王府井店',
 			sContent: '一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字'     // 展示的文字内容
 		});
 	</script>
