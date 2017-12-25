@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-
+    <script src="./jquery1.9.1.min.js"></script>
+    <!-- <script src="./test.js"></script> -->
+    <style>
+        #editor {
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000;
+        }
+    </style>
 </head>
-<body>
-    <div data-a-ks="123"></div>
-    <script>
-        function vvv() {
-            this.init()
-        }
-        vvv.prototype.init = function(){
-            setInterval.call('this',function(){
-                console.log(this)
-            },1000)
-            
-        }
-        
 
-        new vvv();
+<body>
+        <div contenteditable="true" id="editor">
+            hello,paste your image here
+        </div>
+
+
+            
+    <script>
+
+$("#editor").on("paste",function(event){
+	var file = event.originalEvent.clipboardData.files[0];
+	console.log(event)
+});
+
+
+
     </script>
 </body>
+
 </html>
