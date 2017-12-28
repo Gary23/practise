@@ -1,3 +1,5 @@
+// Array.from方法
+
 // json数组格式
 
 // es6中，数组的相关操作都放到了Array对象中。jsonp的数组格式key值必须是数字字符串才可以转换为数组。length属性也是必须的。
@@ -12,4 +14,18 @@ let json = {
 let arr = Array.from(json);
 console.log(arr);
 
-// 图片url: http://picabstract.preview.ftn.qq.com:8080/ftn_pic_abs_v2/72cfec93fb96c8caf4c2b3b7f48a7345cb2d0845a5290b0d0baf7841a99c1e6f55af7d68fa61cfe2bb27deee992e27b5?pictype=scale&from=30113&version=2.0.0.2&uin=406490508&fname=20171223-4.png&size=1024
+// Array.of方法
+// 这个方法的作用是把字符串转为数组
+
+let arr1 = Array.of('3','4','5','6');
+console.log(arr1);
+
+// find() 实例方法（声明好Array实例之后的方法叫做实例方法）
+// 在数组中查找匹配条件的数组中的数组元素
+// value 是当前查找的值
+// index 是当前查找的值得索引
+// arr 数组原型
+let arr2 = [1,2,3,4,5,6,7];
+console.log(arr2.find(function(value, index, arr){
+	return value > 5;   // 打印6 如果不匹配条件则返回undefined
+}))
