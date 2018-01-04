@@ -1,31 +1,61 @@
-// 用proxy进行预处理
+// Promise
 
-// Proxy 就是代理的意思。
+// 在es5中，有一种回调地狱的比喻，指的就是层级特别深的回调函数，一层函数套着一层函数套了很多层，这样非常不便于后期维护代码。由此便有了es6中的promise。
 
-// Proxy 在 ES6 中作用是增强函数和对象。增强的是声明周期。相当于于一种钩子函数，只不过是在处理任何方法之前进行的，所以叫做预处理。
+// 要是用 promise 的函数要接收两个参数，resolve（成功时调用） 和 reject（失败时调用），调用时需要传递相应参数，参数可以是字符串、代码、业务逻辑等等。
 
-// es5 中对象的声明和使用
+let state = 1;
 
-let obj = {
-	add: function(val) {
-		return val + 100;
-	},
-	name: 'tim'
+function step1(resolve, reject) {
+	console.log('第一步-注册');
+	if (state == 1) {
+		resolve('第一步-完成');
+	} else {
+		reject('第一步-失败');
+	}
 }
-console.log(obj.add(100))   // 200
-console.log(obj.name)   // tim
 
-// es5 这种方式如果要在 obj 声明之前先处理一些东西就要再写一个方法。Proxy 就是为了解决这个问题。
+function step2(resolve, reject) {
+	console.log('第二步-登录');
+	if (state == 1) {
+		resolve('第二步-完成');
+	} else {
+		reject('第二步-失败');
+	}
+}
 
-// Proxy 的声明
+function step3(resolve, reject) {
+	console.log('第三步-购物');
+	if (state == 1) {
+		resolve('第三步-完成');
+	} else {
+		reject('第三步-失败');
+	}
+}
 
-// Proxy 声明时传递两个参数，第一个就是对象的内容，第二个就是预处理的内容，都是对象的数据结构。
-
-let pro = new Proxy({
-	add: function(val) {
-		return val + 100;
-	},
-	name: 'tim'
-},{
-
+new Promise(step1)
+.then(function(val) {
+	console.log(val);
+	return new Promise(step2);
 })
+.then(function(val) {
+	console.log(val);
+	return new Promise(step3);
+})
+.then(function(val) {
+	console.log(val);
+});
+
+// 最终打印:
+/**
+第一步-注册
+第一步-完成
+第二步-登录
+第二步-完成
+第三步-购物
+第三步-完成
+ */
+
+// 上面的例子中 then 方法中的匿名函数的 val 就是 resolve 或者 reject 传递的参数。
+
+// 在 es5 中 step2 肯定是 step1 的回调，step3 肯定是 step2 的回调。如果回调太多，就会很乱难以维护，通过 promise 的 then 方法就解决了这个问题。

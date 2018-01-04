@@ -39,51 +39,14 @@
 	</head>
 
 	<body class="main_box" >
+		<form action="" method="get">
+			<input type="text">
+			<button type="submit">1111</button>
+		</form>
 		<script>
-
-
-
-			window.toast = function(str, timer) {
-				var parent = document.createElement('div');
-				var p = document.createElement('p');
-				var body = document.querySelector('body');
-
-				parent.id = 'toast';
-				parent.style.width = '100%';
-				parent.style.height = 'auto';
-				parent.style.display = 'flex';
-				parent.style.justifyContent = 'center';
-				parent.style.alignItems = 'center';
-				parent.style.position = 'fixed';
-				parent.style.zIndex = '99999999';
-
-				p.style.color = '#fff';
-				p.style.backgroundColor = 'rgba(0,0,0,0.6)';
-				p.style.width = '60%';
-				p.style.fontSize = '0.34rem';
-				p.style.textAlign = 'center';
-				p.style.padding = '0.1rem 0.4rem';
-				p.style.borderRadius = '0.2rem';
-				p.style.lineHeight = '1.8';
-				p.innerHTML = str;
-
-				parent.appendChild(p);
-				body.appendChild(parent);
-
-				var wh = document.documentElement.clientHeight;
-				var toast_h = parent.clientHeight;
-
-				parent.style.top = (wh - toast_h) / 2 + 'px';
-
-				var timer_toast = window.setTimeout(function() {
-					body.removeChild(parent);
-					window.clearTimeout(timer_toast);
-				},timer);
-			}
-			toast('12122', 3000);
-
-
-		// createElemload('文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字')
+			$('form').submit(function() {
+				alert(1);
+			})
 		</script>
 	</body>
 

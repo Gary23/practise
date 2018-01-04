@@ -1,40 +1,46 @@
 'use strict';
 
-// map的声明和赋值
+// Promise
 
-// map 比 Set 用的更加广泛。
+// 在es5中，有一种回调地狱的比喻，指的就是层级特别深的回调函数，一层函数套着一层函数套了很多层，这样非常不便于后期维护代码。由此便有了es6中的promise。
 
-// map 的灵活性比 json 更加优秀，像下面这种 json.name 的获取 value 的方式实际上是遍历了整个 json 对象。
+// 要是用 promise 的函数要接收两个参数，resolve（成功时调用） 和 reject（失败时调用），调用时需要传递相应参数，参数可以是字符串、代码、业务逻辑等等。
 
-var json = {
-	name: 'tim',
-	skill: 'web'
-};
-console.log(json.name); // tim
+var state = 1;
 
-// map就是用箭头声明 key 和 value，可以是任何数据类型。
+function step1(resolve, reject) {
+	console.log('第一步-注册');
+	if (state == 1) {
+		resolve('第一步-完成');
+	} else {
+		reject('第一步-失败');
+	}
+}
 
-var map = new Map();
-map.set(json, 'Iam');
-console.log(map); // {{name: "tim", skill: "web"} => "Iam"}
+function step2(resolve, reject) {
+	console.log('第二步-登录');
+	if (state == 1) {
+		resolve('第二步-完成');
+	} else {
+		reject('第二步-失败');
+	}
+}
 
-// 上面的例子就体现了 key 可以是任何数据类型，这里 => 前面的就是 key 之后的就是 value。同样 value 也可以是任何数据类型
+function step3(resolve, reject) {
+	console.log('第三步-购物');
+	if (state == 1) {
+		resolve('第三步-完成');
+	} else {
+		reject('第三步-失败');
+	}
+}
 
-// map 的长度
-
-// 和数组查看长度一样，通过 size 来查看 map 中有多少条数据。
-
-console.log(map.size); // 1
-
-// map 的增删查
-
-map.set('Iam', json); // {{name: "tim", skill: "web"} => "Iam", "Iam" => {name: "tim", skill: "web"}}
-console.log(map);
-console.log(map.has('Iam')); // true
-console.log(map.has('Iam`')); // false
-console.log(map.get(json)); // Iam
-console.log(map.get('Iam')); // {name: "tim", skill: "web"}
-map.delete(json);
-console.log(map); // {"Iam" => {name: "tim", skill: "web"}}
-map.clear();
-console.log(map); // {}
+new Promise(step1).then(function (val) {
+	console.log(val);
+	return new Promise(step2);
+}).then(function (val) {
+	console.log(val);
+	return new Promise(step3);
+}).then(function (val) {
+	console.log(val);
+});
