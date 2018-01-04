@@ -1,28 +1,16 @@
 'use strict';
 
-// 对象的函数解构
-// 如果在函数中传的参数是对象中的一个属性值，在es5中就要从对象中获取这个属性值。而通过es6的函数的解构功能，直接传递这个对象就可以。
-// 函数的参数必须是对象中的属性名，顺序是无所谓的，函数中需要什么属性值就在形参中写其属性名即可。注意要写大括号。
-var json = {
-	a: 'js',
-	b: 'html'
-};
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-function fun(_ref) {
-	var a = _ref.a,
-	    b = _ref.b;
+// Symbol
 
-	console.log(a, b); // 打印 js html
-}
+// Symbol是es6中新增加的数据类型。是原始数据类型。
 
-fun(json);
+// 声明
 
-// 数组的函数解构
-var arr = ['html', 'js', 'css'];
+var s = Symbol();
+console.log(typeof s === 'undefined' ? 'undefined' : _typeof(s)); // Symbol
 
-function fun1() {
-	console.log(arguments.length <= 0 ? undefined : arguments[0]);
-	// console.log(a, b, c);  // 打印 html js css
-}
-
-fun1.apply(undefined, arr);
+var skill = Symbol('web');
+console.log(skill);
+console.log(skill.toString());
