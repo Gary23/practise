@@ -10,67 +10,80 @@
 		<meta name="layoutmode" content="standard">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="renderer" content="webkit">
-
-		<!--uc浏览器判断到页面上文字居多时，会自动放大字体优化移动用户体验。添加以下头部可以禁用掉该优化-->
-		<meta name="wap-font-scale" content="no">
-
-		<meta content="telephone=no" name="format-detection">
-		<meta http-equiv="Pragma" content="no-cache">
-
-		<script type="text/javascript">
-			//html root的字体计算应该放在最前面，这样计算就不会有误差了/
-			//2016.3.23 wjq update 之所以要加个判断返回一个20.5，是因为当用户在谷歌等浏览器直接输入手机端网站网址时，如果用户设置模块自定义样式的高度比较小，由于这时候的clientWidth为1920px，及返回的_htmlFontSize为40，这时候就会使模块太小，展示不完全，因此先取一个较为准确的值去展示。Mobi.resetHtmlFontSize()顺便也加了
-			var _htmlFontSize = (function() {
-				var clientWidth = document.documentElement ? document.documentElement.clientWidth : document.body.clientWidth;
-				if(clientWidth > 640) clientWidth = 640;
-				document.documentElement.style.fontSize = clientWidth * 1 / 16 + "px";
-				return clientWidth * 1 / 16;
-			})();
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+		<script src="./jquery1.9.1.min.js"></script>
+		<script>
+			(function (doc, win) {
+	var docEl = doc.documentElement,
+		resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+		recalc = function () {
+			var clientWidth = docEl.clientWidth;
+			if (!clientWidth) return;
+			if (clientWidth >= 750) {
+				docEl.style.fontSize = '100px';
+			} else {
+				docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+			}
+		};
+	if (!doc.addEventListener) return;
+	recalc();
+	win.addEventListener(resizeEvt, recalc, false);
+	doc.addEventListener('DOMContentLoaded', recalc, false);
+})(document, window);
 		</script>
-		<link rel="stylesheet" type="text/css" href="css/base.min.css"/>
-
 	</head>
 
-	<body class="main_box" style="background-color: #1A1A1A">
-		<div class="box">
-			<div class="bg_in">
-				<div class="title">•&nbsp;刮奖区&nbsp;•</div>
-			</div>
-			<div class="content">
-				<div id="mask_img_bg"><img  src="images/mask_img_bg1.jpg" /></div>
-				<img id="redux" src="images/mask-img.jpg" />
-			</div>
-		</div>
-		<div class="show">
-			<img class="show_bg" src="images/ok.png">
-			<img class="show_bg1" src="images/ok1.png">
-			<img class="show_food" src="images/mask_img_bg1.jpg" />
-			<a class="close"></a>
-			<a class="btn"></a>
-		</div>
-		<div class="mask"></div>
-		<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-		<script type="text/javascript" src="jquery.eraser.js" ></script>
+	<body class="main_box" >
 		<script>
-			$(window).load(function  () { //这个适用手机端，等图片加载完再显示，因为有可能会出现第一次加载图片没有加载完就不会出现canvas
-				$('#redux').eraser( {
-					size: 20,   //设置橡皮擦大小
-				    completeRatio: .6, //设置擦除面积比例
-				    completeFunction: showResetButton   //大于擦除面积比例触发函数
-				});
-				function showResetButton(){
-					$(".main_box .show,.main_box .mask").fadeIn(300)
-				}
-				$(".main_box .mask,.main_box .show .close,.main_box .show .btn").click(function  () {
-					$(".main_box .show,.main_box .mask").fadeOut(300)
-				})
-			})
 
-			alert('document.documentElement.clientHeight' + document.documentElement.clientHeight)
-			alert('document.body.clientHeight' + document.body.clientHeight)
-			alert('document.body.offsetHeight' + document.body.offsetHeight)
-			alert('document.body.scrollHeight' + document.body.scrollHeight)
-			alert('document.body.scrollHeight' + window.innerHeight)
+
+
+			window.toast = function(str, timer) {
+				var parent = document.createElement('div');
+				var p = document.createElement('p');
+				var body = document.querySelector('body');
+
+				parent.id = 'toast';
+				parent.style.width = '100%';
+				parent.style.height = 'auto';
+				parent.style.display = 'flex';
+				parent.style.justifyContent = 'center';
+				parent.style.alignItems = 'center';
+				parent.style.position = 'fixed';
+				parent.style.zIndex = '99999999';
+
+				p.style.color = '#fff';
+				p.style.backgroundColor = 'rgba(0,0,0,0.6)';
+				p.style.width = '60%';
+				p.style.fontSize = '0.34rem';
+				p.style.textAlign = 'center';
+				p.style.padding = '0.1rem 0.4rem';
+				p.style.borderRadius = '0.2rem';
+				p.style.lineHeight = '1.8';
+				p.innerHTML = str;
+
+				parent.appendChild(p);
+				body.appendChild(parent);
+
+				var wh = document.documentElement.clientHeight;
+				var toast_h = parent.clientHeight;
+
+				parent.style.top = (wh - toast_h) / 2 + 'px';
+
+				var timer_toast = window.setTimeout(function() {
+					body.removeChild(parent);
+					window.clearTimeout(timer_toast);
+				},timer);
+			}
+			toast('12122', 3000);
+
+
+		// createElemload('文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字')
 		</script>
 	</body>
 
