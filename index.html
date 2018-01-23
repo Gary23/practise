@@ -12,9 +12,17 @@
 		}
 		html,body,#box,.inner {
 			height: 100%;
+<<<<<<< HEAD
 		}
 		#box {
 			overflow: auto;
+=======
+			overflow-x: hidden;
+		}
+		#box {
+			overflow-y: auto;
+			-webkit-overflow-scrolling: touch
+>>>>>>> 1a20e99e88b71f688e4ea1e04998cd37feb53c85
 		}
 		.inner {
 			height: auto;
@@ -86,8 +94,11 @@
 				var temp_h = $box.scrollTop() + $('.inner').height();
 
 				$('#box').scrollTop(temp_h);
+<<<<<<< HEAD
 
 				$('.inner.temp').removeClass('temp');
+=======
+>>>>>>> 1a20e99e88b71f688e4ea1e04998cd37feb53c85
 			},
 			error: function error() {
 				alert('error');
